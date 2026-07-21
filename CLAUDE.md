@@ -73,16 +73,26 @@ Espanol-Doctorado/
 
 `curso.json` é a fonte de verdade do conteúdo: cada módulo tem `estado`
 (`concluido`/`en_curso`/`pendiente`) e `progreso.modulo_actual` aponta o
-próximo. Ao avançar um módulo: 1) preencher, em `curso.json`,
-`gramatica.explicacion` (parágrafos `{es, pt}`, `pt` só quando houver
-confusão específica de falante de português), `gramatica.ejemplos`,
-`gramatica.ejercicios` (`{frase, opciones, respuesta}`), `vocabulario.items`,
-`dictado`, `shadowing` e `conversacion.pasos` (diálogo guionado:
-`{npc, opciones: [{texto, resultado: "ok"|"mal", nota}]}`, sempre linear —
-toda opção avança pro próximo passo, "mal" só muda o feedback, nunca trava);
-2) copiar o mesmo módulo atualizado para o objeto `CURSO` dentro do
-`<script>` de `practica.html` (os dois precisam ficar em sincronia manual,
-por enquanto).
+próximo. **Todos os 10 módulos já têm conteúdo completo** (gramática,
+vocabulário, dictado, shadowing, conversação) — o curso inteiro está
+autorado. Daqui pra frente o trabalho é ajustar/corrigir conteúdo existente
+e avançar o `estado`/`progreso.modulo_actual` conforme o usuário estuda,
+não mais escrever módulos do zero.
+
+Estrutura de cada módulo em `curso.json`: `gramatica.explicacion`
+(parágrafos `{es, pt}`, `pt` só quando houver confusão específica de
+falante de português), `gramatica.ejemplos`, `gramatica.ejercicios`
+(`{frase, opciones, respuesta}`), `vocabulario.items` (`{cat, emoji|icon,
+answer}` — preferir emoji; `icon` só para os poucos casos sem emoji bom,
+ver `ICONS` em `practica.html`), `dictado`, `shadowing` e
+`conversacion.pasos` (diálogo guionado: `{npc, opciones: [{texto,
+resultado: "ok"|"mal", nota}]}`, sempre linear — toda opção avança pro
+próximo passo, "mal" só muda o feedback, nunca trava).
+
+**Depois de editar `curso.json`, rodar `node sync-curso.js`** — copia o
+conteúdo pro objeto `CURSO` embebido em `practica.html` automaticamente
+(entre os marcadores `/* CURSO:START */` e `/* CURSO:END */`). Não editar
+esse bloco à mão.
 
 ### Hospedagem (PWA / GitHub Pages)
 
@@ -108,20 +118,21 @@ timestamp `updatedAt` salvo dentro do próprio gist.
 
 ## Status do curso
 
-- **Módulo 0 (Diagnóstico y bases)**: **concluído.** Gramática (ser/estar,
-  saludos), `practica.html` e a atividade de conversação (apresentação
-  pessoal: quién es, de dónde es, dónde está, tema de doctorado) já foram
-  entregues e respondidas.
-- **Módulo 1 (Llegada y movimiento)**: **em curso, conteúdo completo no
-  app.** Gramática (verbos de movimiento · imperativo informal tú, com
-  explicação + 4 exercícios), vocabulário (16 itens), dictado (5 frases),
-  shadowing (5 frases) e conversação (simulacro guionado de 6 passos, "del
-  avión al hotel") já carregados em `curso.json` e `practica.html`. Falta
-  só o usuário praticar — nada pendente de autoria.
-- Módulos 2–9: só o esqueleto (tema/gramática/badges), sem conteúdo de
-  prática ainda.
+- **Todos os 10 módulos (0 a 9) têm conteúdo completo** no app: gramática
+  com explicação + exercícios, vocabulário, dictado, shadowing e
+  conversação guionada. Autoria do curso finalizada em 2026-07.
+- **Módulo 0 (Diagnóstico y bases)**: **concluído** (trabalhado no chat,
+  antes da decisão de mover tudo pro app).
+- **Módulo 1 (Llegada y movimiento)**: **em curso** — é o módulo atual do
+  usuário (`progreso.modulo_actual` em `curso.json`).
+- **Módulos 2–9**: conteúdo pronto, `estado: "pendiente"` (ainda não
+  estudados pelo usuário).
 
 Ao retomar uma sessão nova, ler este arquivo e `curso.json` primeiro (o
 `progreso.modulo_actual` do JSON é a fonte de verdade do avanço, mais
-confiável que a lista acima); não é preciso pedir ao usuário para
-reexplicar o contexto.
+confiável que a lista acima). Quando o usuário avisar que avançou de
+módulo, atualizar `estado` e `progreso.modulo_actual` em `curso.json`,
+rodar `node sync-curso.js`, e commitar/dar push. Não é preciso pedir ao
+usuário para reexplicar o contexto, e não é mais preciso ensinar
+gramática/conversação no chat (ver decisão de 2026-07 acima) — só
+manutenção de conteúdo se ele pedir ajuste ou achar um erro.
