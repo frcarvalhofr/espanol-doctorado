@@ -67,8 +67,22 @@ mesmo módulo atualizado para o objeto `CURSO` dentro do `<script>` de
 O app foi pensado para funcionar 100% offline abrindo os arquivos direto
 (`file://`), mas para virar instalável de verdade (botão "Adicionar à tela
 inicial"/"Instalar app") o navegador exige HTTPS — por isso a decisão de
-publicar num repositório GitHub Pages. Isso é hospedagem pública (qualquer
-um com o link acessa), sem nenhuma relação com a conta Claude do usuário.
+publicar num repositório GitHub Pages (`frcarvalhofr/espanol-doctorado`,
+site em `https://frcarvalhofr.github.io/espanol-doctorado/`). Isso é
+hospedagem pública (qualquer um com o link acessa), sem nenhuma relação
+com a conta Claude do usuário.
+
+### Sincronização entre dispositivos
+
+`practica.html` tem um painel "☁️ Sincronizar entre dispositivos" que
+guarda o progresso (XP, racha, vocabulário aprendido, dictado/shadowing
+marcados) num **Gist privado/secreto da própria conta GitHub do usuário**
+(marcado com a descrição fixa `espanol-doctorado-progreso (privado — no
+compartir)`). Requer colar, em cada aparelho, um token pessoal do GitHub
+com escopo só de `gist` — o token e o id do gist ficam só no `localStorage`
+daquele dispositivo, **nunca** são commitados no repositório (que é
+público). Sincronização é "a escrita mais recente vence", comparando um
+timestamp `updatedAt` salvo dentro do próprio gist.
 
 ## Status do curso
 
