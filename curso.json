@@ -1,5 +1,5 @@
 {
-  "$schema_note": "Fuente estructurada única del curso. programa.html y practica.html van a pasar a leer este archivo (próximo paso); por ahora es el catálogo de contenido y progreso.",
+  "$schema_note": "Fuente estructurada única del curso. programa.html lee esto a mano (hardcoded); practica.html lee una copia embebida generada por sync-curso.js.",
 
   "meta": {
     "titulo": "Del aeropuerto de Ezeiza a la Facultad de Derecho",
@@ -11,7 +11,7 @@
     "pilares": {
       "gramatica": "Un punto gramatical por módulo, explicado con ejemplos y contrastado con el portugués cuando la diferencia es sutil o confusa.",
       "vocabulario": "Listas breves y temáticas: lo que se dice en un mostrador de migraciones o lo que se dice en un aula de posgrado, no vocabulario genérico de manual. Se practica con imágenes en la ficha de práctica de cada módulo.",
-      "conversacion": "Diálogos y simulacros en el chat, más ejercicios de dictado y \"habla en voz alta\" con audio real en la ficha de práctica de cada módulo."
+      "conversacion": "Diálogos guionados de opción múltiple dentro del app — sin escribir, sin IA en vivo (ver decisión de 2026-07 en CLAUDE.md)."
     },
     "nota_tu_vos": {
       "titulo": "Vas a hablar en tú, pero vas a escuchar en vos",
@@ -27,44 +27,35 @@
 
   "modulos": [
     {
-      "id": 0,
-      "bloque": 0,
-      "bloque_titulo": "Punto de partida",
-      "titulo": "Diagnóstico y bases",
+      "id": 0, "bloque": 0, "bloque_titulo": "Punto de partida", "titulo": "Diagnóstico y bases",
       "badges": [{ "clase": "mixto", "etiqueta": "Mixto" }],
       "descripcion": "Pronunciación, alfabeto, ser/estar, presente regular e irregular, saludos formales e informales.",
       "estado": "concluido",
-      "gramatica": {
-        "punto": "Ser vs. estar · presente indicativo",
-        "ejemplos": []
-      },
-      "vocabulario": {
-        "tema": "Saludos, presentaciones, números",
-        "items": [
-          { "cat": "saludo informal", "emoji": "🙋", "answer": "hola" },
-          { "cat": "saludo formal · mañana", "emoji": "🌅", "answer": "buenos días" },
-          { "cat": "saludo formal · tarde", "emoji": "🌤️", "answer": "buenas tardes" },
-          { "cat": "saludo formal · noche", "emoji": "🌙", "answer": "buenas noches" },
-          { "cat": "despedida", "emoji": "👋", "answer": "adiós" },
-          { "cat": "cortesía · pedir", "emoji": "🙏", "answer": "por favor" },
-          { "cat": "cortesía · agradecer", "emoji": "🙌", "answer": "gracias" },
-          { "cat": "cortesía · responder \"gracias\"", "emoji": "👍", "answer": "de nada" },
-          { "cat": "presentación", "emoji": "🤝", "answer": "mucho gusto" },
-          { "cat": "afirmación", "emoji": "✅", "answer": "sí" },
-          { "cat": "negación", "emoji": "❌", "answer": "no" },
-          { "cat": "número", "emoji": "0️⃣", "answer": "cero" },
-          { "cat": "número", "emoji": "1️⃣", "answer": "uno" },
-          { "cat": "número", "emoji": "2️⃣", "answer": "dos" },
-          { "cat": "número", "emoji": "3️⃣", "answer": "tres" },
-          { "cat": "número", "emoji": "4️⃣", "answer": "cuatro" },
-          { "cat": "número", "emoji": "5️⃣", "answer": "cinco" },
-          { "cat": "número", "emoji": "6️⃣", "answer": "seis" },
-          { "cat": "número", "emoji": "7️⃣", "answer": "siete" },
-          { "cat": "número", "emoji": "8️⃣", "answer": "ocho" },
-          { "cat": "número", "emoji": "9️⃣", "answer": "nueve" },
-          { "cat": "número", "emoji": "🔟", "answer": "diez" }
-        ]
-      },
+      "gramatica": { "punto": "Ser vs. estar · presente indicativo", "ejemplos": [] },
+      "vocabulario": { "tema": "Saludos, presentaciones, números", "items": [
+        { "cat": "saludo informal", "emoji": "🙋", "answer": "hola" },
+        { "cat": "saludo formal · mañana", "emoji": "🌅", "answer": "buenos días" },
+        { "cat": "saludo formal · tarde", "emoji": "🌤️", "answer": "buenas tardes" },
+        { "cat": "saludo formal · noche", "emoji": "🌙", "answer": "buenas noches" },
+        { "cat": "despedida", "emoji": "👋", "answer": "adiós" },
+        { "cat": "cortesía · pedir", "emoji": "🙏", "answer": "por favor" },
+        { "cat": "cortesía · agradecer", "emoji": "🙌", "answer": "gracias" },
+        { "cat": "cortesía · responder \"gracias\"", "emoji": "👍", "answer": "de nada" },
+        { "cat": "presentación", "emoji": "🤝", "answer": "mucho gusto" },
+        { "cat": "afirmación", "emoji": "✅", "answer": "sí" },
+        { "cat": "negación", "emoji": "❌", "answer": "no" },
+        { "cat": "número", "emoji": "0️⃣", "answer": "cero" },
+        { "cat": "número", "emoji": "1️⃣", "answer": "uno" },
+        { "cat": "número", "emoji": "2️⃣", "answer": "dos" },
+        { "cat": "número", "emoji": "3️⃣", "answer": "tres" },
+        { "cat": "número", "emoji": "4️⃣", "answer": "cuatro" },
+        { "cat": "número", "emoji": "5️⃣", "answer": "cinco" },
+        { "cat": "número", "emoji": "6️⃣", "answer": "seis" },
+        { "cat": "número", "emoji": "7️⃣", "answer": "siete" },
+        { "cat": "número", "emoji": "8️⃣", "answer": "ocho" },
+        { "cat": "número", "emoji": "9️⃣", "answer": "nueve" },
+        { "cat": "número", "emoji": "🔟", "answer": "diez" }
+      ]},
       "dictado": [
         "Hola, ¿cómo estás?",
         "Buenos días, ¿cómo te llamas?",
@@ -80,15 +71,12 @@
         "Mucho gusto."
       ],
       "conversacion": {
-        "prompt": "Presentarte y presentar tu proyecto de doctorado",
-        "notas": "Trabajado y respondido en el chat: quién es, de dónde es, dónde está, tema de doctorado."
+        "escenario": "Presentarte y presentar tu proyecto de doctorado",
+        "notas": "Trabajado y respondido en el chat: quién es, de dónde es, dónde está, tema de doctorado (antes de la decisión de 2026-07 de mover todo al app)."
       }
     },
     {
-      "id": 1,
-      "bloque": 1,
-      "bloque_titulo": "Para viajar",
-      "titulo": "Llegada y movimiento",
+      "id": 1, "bloque": 1, "bloque_titulo": "Para viajar", "titulo": "Llegada y movimiento",
       "badges": [{ "clase": "viaje", "etiqueta": "Viaje" }],
       "descripcion": "Aeropuerto, migraciones, taxis y transporte público, pedir y entender indicaciones en la calle.",
       "estado": "en_curso",
@@ -107,27 +95,24 @@
           { "frase": "___ directo a la puerta 12, el vuelo sale pronto.", "opciones": ["Ve", "Vas", "Ir"], "respuesta": "Ve" }
         ]
       },
-      "vocabulario": {
-        "tema": "Migraciones, subte/colectivo, direcciones",
-        "items": [
-          { "cat": "medio de transporte · llegar", "emoji": "✈️", "answer": "vuelo" },
-          { "cat": "control al llegar · documentos", "emoji": "🛂", "answer": "migraciones" },
-          { "cat": "control de equipaje prohibido", "emoji": "🛃", "answer": "aduana" },
-          { "cat": "buscar la valija", "emoji": "🛄", "answer": "equipaje" },
-          { "cat": "documento de viaje", "icon": "pasaporte", "answer": "pasaporte" },
-          { "cat": "transporte subterráneo porteño", "emoji": "🚇", "answer": "subte" },
-          { "cat": "transporte de superficie", "emoji": "🚌", "answer": "colectivo" },
-          { "cat": "transporte privado", "emoji": "🚕", "answer": "taxi" },
-          { "cat": "para pagar el viaje en Buenos Aires", "icon": "tarjeta", "answer": "tarjeta SUBE" },
-          { "cat": "punto de partida", "emoji": "🛫", "answer": "salida" },
-          { "cat": "punto de llegada", "emoji": "🛬", "answer": "llegada" },
-          { "cat": "parada intermedia del vuelo", "icon": "escala", "answer": "escala" },
-          { "cat": "dirección · hacia la izquierda", "emoji": "⬅️", "answer": "a la izquierda" },
-          { "cat": "dirección · hacia la derecha", "emoji": "➡️", "answer": "a la derecha" },
-          { "cat": "dirección · todo recto", "emoji": "⬆️", "answer": "todo derecho" },
-          { "cat": "ubicación en la calle", "emoji": "📍", "answer": "la esquina" }
-        ]
-      },
+      "vocabulario": { "tema": "Migraciones, subte/colectivo, direcciones", "items": [
+        { "cat": "medio de transporte · llegar", "emoji": "✈️", "answer": "vuelo" },
+        { "cat": "control al llegar · documentos", "emoji": "🛂", "answer": "migraciones" },
+        { "cat": "control de equipaje prohibido", "emoji": "🛃", "answer": "aduana" },
+        { "cat": "buscar la valija", "emoji": "🛄", "answer": "equipaje" },
+        { "cat": "documento de viaje", "icon": "pasaporte", "answer": "pasaporte" },
+        { "cat": "transporte subterráneo porteño", "emoji": "🚇", "answer": "subte" },
+        { "cat": "transporte de superficie", "emoji": "🚌", "answer": "colectivo" },
+        { "cat": "transporte privado", "emoji": "🚕", "answer": "taxi" },
+        { "cat": "para pagar el viaje en Buenos Aires", "icon": "tarjeta", "answer": "tarjeta SUBE" },
+        { "cat": "punto de partida", "emoji": "🛫", "answer": "salida" },
+        { "cat": "punto de llegada", "emoji": "🛬", "answer": "llegada" },
+        { "cat": "parada intermedia del vuelo", "icon": "escala", "answer": "escala" },
+        { "cat": "dirección · hacia la izquierda", "emoji": "⬅️", "answer": "a la izquierda" },
+        { "cat": "dirección · hacia la derecha", "emoji": "➡️", "answer": "a la derecha" },
+        { "cat": "dirección · todo recto", "emoji": "⬆️", "answer": "todo derecho" },
+        { "cat": "ubicación en la calle", "emoji": "📍", "answer": "la esquina" }
+      ]},
       "dictado": [
         "Perdón, ¿dónde queda el control de migraciones?",
         "Sigue todo derecho y dobla a la izquierda.",
@@ -145,174 +130,722 @@
       "conversacion": {
         "escenario": "Simulacro: del avión al hotel",
         "pasos": [
-          {
-            "npc": "Buenos días. ¿Me muestra su pasaporte, por favor?",
-            "opciones": [
-              { "texto": "Sí, aquí tiene.", "resultado": "ok", "nota": "" },
-              { "texto": "Sí, acá está.", "resultado": "ok", "nota": "\"Acá\" en vez de \"aquí\" es muy usado en Argentina — las dos formas están bien." },
-              { "texto": "No, no tengo.", "resultado": "mal", "nota": "Sin pasaporte no podés cruzar migraciones — en un viaje real, siempre lo llevás encima." }
-            ]
-          },
-          {
-            "npc": "¿Tiene algo para declarar?",
-            "opciones": [
-              { "texto": "No, nada.", "resultado": "ok", "nota": "" },
-              { "texto": "Solo mi equipaje.", "resultado": "ok", "nota": "\"Declarar\" es avisar sobre objetos especiales (dinero, comida, etc.) — el equipaje normal no hace falta declararlo." },
-              { "texto": "¿Qué es declarar?", "resultado": "mal", "nota": "Está bien preguntar si no entendés, pero acá ya sabés: declarar = avisar en la aduana sobre lo que traés." }
-            ]
-          },
-          {
-            "npc": "¿Necesita ayuda? ¿Adónde va?",
-            "opciones": [
-              { "texto": "Voy al hotel, en el centro.", "resultado": "ok", "nota": "" },
-              { "texto": "¿Dónde está la salida?", "resultado": "ok", "nota": "" },
-              { "texto": "Voy a un juzgado.", "resultado": "mal", "nota": "Fuera de contexto — recién estás llegando del aeropuerto, todavía no es momento de trámites judiciales." }
-            ]
-          },
-          {
-            "npc": "¿A dónde lo llevo?",
-            "opciones": [
-              { "texto": "Al hotel San Telmo, por favor.", "resultado": "ok", "nota": "" },
-              { "texto": "Al aeropuerto, por favor.", "resultado": "mal", "nota": "Ya estás en el aeropuerto — el taxi te lleva desde acá hacia otro lugar, no de vuelta." },
-              { "texto": "No sé, decida usted.", "resultado": "mal", "nota": "Mejor tener siempre una dirección clara para dar." }
-            ]
-          },
-          {
-            "npc": "¿Prefiere que doble en la esquina o siga derecho?",
-            "opciones": [
-              { "texto": "Doble en la esquina, por favor.", "resultado": "ok", "nota": "" },
-              { "texto": "Siga todo derecho.", "resultado": "ok", "nota": "" },
-              { "texto": "Como usted quiera.", "resultado": "mal", "nota": "Está bien ser flexible, pero practicá dar una indicación concreta con \"doble\" o \"siga\"." }
-            ]
-          },
-          {
-            "npc": "¡Bienvenido! ¿Tiene una reserva?",
-            "opciones": [
-              { "texto": "Sí, a mi nombre.", "resultado": "ok", "nota": "" },
-              { "texto": "No, ¿tiene habitaciones libres?", "resultado": "ok", "nota": "" },
-              { "texto": "Sí, tengo un vuelo mañana.", "resultado": "mal", "nota": "No responde la pregunta del recepcionista." }
-            ]
-          }
+          { "npc": "Buenos días. ¿Me muestra su pasaporte, por favor?", "opciones": [
+            { "texto": "Sí, aquí tiene.", "resultado": "ok", "nota": "" },
+            { "texto": "Sí, acá está.", "resultado": "ok", "nota": "\"Acá\" en vez de \"aquí\" es muy usado en Argentina — las dos formas están bien." },
+            { "texto": "No, no tengo.", "resultado": "mal", "nota": "Sin pasaporte no podés cruzar migraciones — en un viaje real, siempre lo llevás encima." }
+          ]},
+          { "npc": "¿Tiene algo para declarar?", "opciones": [
+            { "texto": "No, nada.", "resultado": "ok", "nota": "" },
+            { "texto": "Solo mi equipaje.", "resultado": "ok", "nota": "\"Declarar\" es avisar sobre objetos especiales (dinero, comida, etc.) — el equipaje normal no hace falta declararlo." },
+            { "texto": "¿Qué es declarar?", "resultado": "mal", "nota": "Está bien preguntar si no entendés, pero acá ya sabés: declarar = avisar en la aduana sobre lo que traés." }
+          ]},
+          { "npc": "¿Necesita ayuda? ¿Adónde va?", "opciones": [
+            { "texto": "Voy al hotel, en el centro.", "resultado": "ok", "nota": "" },
+            { "texto": "¿Dónde está la salida?", "resultado": "ok", "nota": "" },
+            { "texto": "Voy a un juzgado.", "resultado": "mal", "nota": "Fuera de contexto — recién estás llegando del aeropuerto, todavía no es momento de trámites judiciales." }
+          ]},
+          { "npc": "¿A dónde lo llevo?", "opciones": [
+            { "texto": "Al hotel San Telmo, por favor.", "resultado": "ok", "nota": "" },
+            { "texto": "Al aeropuerto, por favor.", "resultado": "mal", "nota": "Ya estás en el aeropuerto — el taxi te lleva desde acá hacia otro lugar, no de vuelta." },
+            { "texto": "No sé, decida usted.", "resultado": "mal", "nota": "Mejor tener siempre una dirección clara para dar." }
+          ]},
+          { "npc": "¿Prefiere que doble en la esquina o siga derecho?", "opciones": [
+            { "texto": "Doble en la esquina, por favor.", "resultado": "ok", "nota": "" },
+            { "texto": "Siga todo derecho.", "resultado": "ok", "nota": "" },
+            { "texto": "Como usted quiera.", "resultado": "mal", "nota": "Está bien ser flexible, pero practicá dar una indicación concreta con \"doble\" o \"siga\"." }
+          ]},
+          { "npc": "¡Bienvenido! ¿Tiene una reserva?", "opciones": [
+            { "texto": "Sí, a mi nombre.", "resultado": "ok", "nota": "" },
+            { "texto": "No, ¿tiene habitaciones libres?", "resultado": "ok", "nota": "" },
+            { "texto": "Sí, tengo un vuelo mañana.", "resultado": "mal", "nota": "No responde la pregunta del recepcionista." }
+          ]}
         ]
       }
     },
     {
-      "id": 2,
-      "bloque": 1,
-      "bloque_titulo": "Para viajar",
-      "titulo": "Alojamiento y vida diaria",
+      "id": 2, "bloque": 1, "bloque_titulo": "Para viajar", "titulo": "Alojamiento y vida diaria",
       "badges": [{ "clase": "viaje", "etiqueta": "Viaje" }],
       "descripcion": "Reservar alojamiento, pedir en un restaurante, hacer compras cotidianas.",
       "estado": "pendiente",
-      "gramatica": { "punto": "Pretérito perfecto compuesto · \"gustar\" y verbos similares", "ejemplos": [] },
-      "vocabulario": { "tema": "Comida, precios, quejas y reclamos", "items": [] },
-      "dictado": [],
-      "shadowing": [],
-      "conversacion": { "prompt": "Pedir en un café porteño, negociar un alquiler temporal", "notas": "" }
+      "gramatica": {
+        "punto": "Pretérito perfecto compuesto · \"gustar\" y verbos similares",
+        "explicacion": [
+          { "es": "El pretérito perfecto compuesto (he comido, has llegado, ha reservado) se usa para acciones recientes o que todavía tienen conexión con el presente: lo que ya hiciste desde que llegaste a un lugar.", "pt": "Cuidado com o falso amigo: o \"pretérito perfeito composto\" do português (\"tenho comido\") indica ação repetida/habitual — bem diferente do espanhol, que aqui é só \"eu comi\" (uma vez, recentemente). É um erro clássico de quem fala português." },
+          { "es": "Se forma con he/has/ha/hemos/habéis/han + participio (-ado para -ar, -ido para -er/-ir). Irregulares comunes: hecho (hacer), dicho (decir), visto (ver), puesto (poner), abierto (abrir), escrito (escribir).", "pt": "" },
+          { "es": "\"Gustar\" se conjuga según lo que gusta, no según quién gusta: \"me gusta la comida\" (singular), \"me gustan las empanadas\" (plural). Nunca \"yo gusto\".", "pt": "Erro típico: em português \"eu gosto de comida\" tem \"eu\" como sujeito. Em espanhol o sujeito gramatical é a coisa que agrada — por isso \"me gusta\", nunca \"yo gusto\"." }
+        ],
+        "ejemplos": ["He reservado una habitación.", "¿Has probado el mate?", "Me gusta esta ciudad.", "Nos gustan las empanadas.", "Todavía no he comido nada."],
+        "ejercicios": [
+          { "frase": "Yo ya ___ en ese restaurante.", "opciones": ["he comido", "ha comido", "hemos comido"], "respuesta": "he comido" },
+          { "frase": "¿___ el asado argentino?", "opciones": ["Has probado", "He probado", "Ha probado"], "respuesta": "Has probado" },
+          { "frase": "Me ___ mucho las empanadas.", "opciones": ["gusta", "gustan", "gusto"], "respuesta": "gustan" },
+          { "frase": "A ella le ___ el hotel.", "opciones": ["gusta", "gustan", "gusto"], "respuesta": "gusta" }
+        ]
+      },
+      "vocabulario": { "tema": "Comida, precios, quejas y reclamos", "items": [
+        { "cat": "lugar para dormir en un hotel", "emoji": "🛏️", "answer": "habitación" },
+        { "cat": "apartar un lugar con anticipación", "emoji": "📅", "answer": "reserva" },
+        { "cat": "comida típica argentina a la parrilla", "emoji": "🥩", "answer": "asado" },
+        { "cat": "empanada, comida típica", "emoji": "🥟", "answer": "empanada" },
+        { "cat": "bebida típica rioplatense compartida", "emoji": "🧉", "answer": "mate" },
+        { "cat": "pedir para pagar en un restaurante", "emoji": "🧾", "answer": "la cuenta" },
+        { "cat": "dinero extra para el mesero", "emoji": "🪙", "answer": "propina" },
+        { "cat": "quejarse formalmente por algo mal", "emoji": "📢", "answer": "reclamo" },
+        { "cat": "lugar para comprar comida", "emoji": "🛒", "answer": "supermercado" },
+        { "cat": "cuánto cuesta algo", "emoji": "💰", "answer": "precio" },
+        { "cat": "rebaja de precio", "emoji": "🏷️", "answer": "descuento" },
+        { "cat": "forma de pagar en billetes/monedas", "emoji": "💵", "answer": "efectivo" },
+        { "cat": "forma de pagar con plástico", "emoji": "💳", "answer": "tarjeta" },
+        { "cat": "lista de platos de un restaurante", "emoji": "📋", "answer": "el menú" },
+        { "cat": "vivienda alquilada por poco tiempo", "emoji": "🔑", "answer": "alquiler temporal" }
+      ]},
+      "dictado": [
+        "¿Tiene una habitación disponible para esta noche?",
+        "La cuenta, por favor.",
+        "¿Aceptan tarjeta de crédito?",
+        "Quiero hacer un reclamo sobre la habitación.",
+        "¿Me puede recomendar un buen restaurante cerca?"
+      ],
+      "shadowing": [
+        "¿Tiene una habitación libre?",
+        "La cuenta, por favor.",
+        "Esto no funciona bien.",
+        "¿Aceptan tarjeta?",
+        "Quisiera hacer un reclamo."
+      ],
+      "conversacion": {
+        "escenario": "Pedir en un café porteño y negociar un alquiler temporal",
+        "pasos": [
+          { "npc": "¡Buenas! ¿Qué le puedo traer?", "opciones": [
+            { "texto": "Un café con leche y una medialuna, por favor.", "resultado": "ok", "nota": "" },
+            { "texto": "¿Tiene medialunas?", "resultado": "ok", "nota": "" },
+            { "texto": "Quiero eso.", "resultado": "mal", "nota": "Muy vago — mejor pedí algo específico del menú." }
+          ]},
+          { "npc": "Acá tiene, ¿algo más?", "opciones": [
+            { "texto": "No, la cuenta por favor.", "resultado": "ok", "nota": "" },
+            { "texto": "Sí, un vaso de agua, por favor.", "resultado": "ok", "nota": "" },
+            { "texto": "Sí, quiero hablar con el juez.", "resultado": "mal", "nota": "Fuera de contexto para un café." }
+          ]},
+          { "npc": "Hola, ¿en qué te puedo ayudar?", "opciones": [
+            { "texto": "Busco un alquiler temporal por dos meses.", "resultado": "ok", "nota": "" },
+            { "texto": "¿Cuánto cuesta el mes?", "resultado": "ok", "nota": "" },
+            { "texto": "Busco un juzgado.", "resultado": "mal", "nota": "Fuera de contexto para esta escena." }
+          ]},
+          { "npc": "Son 500 dólares por mes, con los servicios incluidos.", "opciones": [
+            { "texto": "Me parece bien, ¿cuándo puedo mudarme?", "resultado": "ok", "nota": "" },
+            { "texto": "Es un poco caro, ¿hay descuento?", "resultado": "ok", "nota": "" },
+            { "texto": "No entiendo nada.", "resultado": "mal", "nota": "Evita la negociación — mejor preguntar algo concreto." }
+          ]},
+          { "npc": "Puedo hacerte un descuento si pagás los dos meses juntos.", "opciones": [
+            { "texto": "Perfecto, acepto.", "resultado": "ok", "nota": "" },
+            { "texto": "Prefiero pagar mes a mes.", "resultado": "ok", "nota": "" },
+            { "texto": "No tengo tarjeta ni efectivo.", "resultado": "mal", "nota": "Sin forma de pago no se puede cerrar el trato." }
+          ]},
+          { "npc": "Genial, entonces te espero mañana con el depósito.", "opciones": [
+            { "texto": "Ahí estaré, gracias.", "resultado": "ok", "nota": "" },
+            { "texto": "¿Puedo pagar con tarjeta?", "resultado": "ok", "nota": "" },
+            { "texto": "Ya me tengo que ir al juzgado.", "resultado": "mal", "nota": "No responde ni cierra la conversación de forma natural." }
+          ]}
+        ]
+      }
     },
     {
-      "id": 3,
-      "bloque": 1,
-      "bloque_titulo": "Para viajar",
-      "titulo": "Buenos Aires y el español rioplatense",
-      "badges": [
-        { "clase": "viaje", "etiqueta": "Viaje" },
-        { "clase": "mixto", "etiqueta": "Reconocimiento" }
-      ],
+      "id": 3, "bloque": 1, "bloque_titulo": "Para viajar", "titulo": "Buenos Aires y el español rioplatense",
+      "badges": [{ "clase": "viaje", "etiqueta": "Viaje" }, { "clase": "mixto", "etiqueta": "Reconocimiento" }],
       "descripcion": "Entender el voseo y el \"che\" de oído, el acento porteño (yeísmo rehilado), barrios y referencias culturales básicas.",
       "estado": "pendiente",
-      "gramatica": { "punto": "Voseo: reconocer, no producir", "ejemplos": [] },
-      "vocabulario": { "tema": "Lunfardo cotidiano, barrios, \"che/boludo/laburo\"", "items": [] },
-      "dictado": [],
-      "shadowing": [],
-      "conversacion": { "prompt": "Entender a un taxista o a un vecino porteño", "notas": "" }
+      "gramatica": {
+        "punto": "Voseo: reconocer, no producir",
+        "explicacion": [
+          { "es": "El voseo reemplaza \"tú\" por \"vos\" en Argentina, con una conjugación propia en presente: la sílaba tónica se mueve al final. Tú hablas → Vos hablás · Tú comes → Vos comés · Tú vives → Vos vivís.", "pt": "Bem diferente de qualquer variante do português — a conjugação muda de lugar de um jeito que nenhum \"tu\" ou \"você\" faz." },
+          { "es": "El imperativo también cambia: habla (tú) → hablá (vos); come (tú) → comé (vos); ven (tú) → vení (vos).", "pt": "" },
+          { "es": "El objetivo de este módulo es solo reconocer el voseo de oído — vos seguís produciendo siempre en tú, como en los módulos anteriores.", "pt": "" }
+        ],
+        "ejemplos": ["¿Vos de dónde sos?", "¿Qué hacés?", "Vení para acá.", "¿Tenés hora?", "Che, ¿sabés qué hora es?"],
+        "ejercicios": [
+          { "frase": "\"¿Vos sabés dónde queda el subte?\" en tú es:", "opciones": ["¿Tú sabes dónde queda el subte?", "¿Tú sabés dónde queda el subte?", "¿Usted vos sabe dónde queda el subte?"], "respuesta": "¿Tú sabes dónde queda el subte?" },
+          { "frase": "\"¿Qué hacés esta noche?\" en tú es:", "opciones": ["¿Qué haces esta noche?", "¿Qué hacés esta noche?", "¿Qué hace esta noche?"], "respuesta": "¿Qué haces esta noche?" },
+          { "frase": "\"Vení a casa mañana.\" en tú es:", "opciones": ["Ven a casa mañana.", "Viene a casa mañana.", "Venís a casa mañana."], "respuesta": "Ven a casa mañana." },
+          { "frase": "\"¿Tenés hambre?\" en tú es:", "opciones": ["¿Tienes hambre?", "¿Tenés hambre?", "¿Tiene hambre?"], "respuesta": "¿Tienes hambre?" }
+        ]
+      },
+      "vocabulario": { "tema": "Lunfardo cotidiano, barrios, \"che/boludo/laburo\"", "items": [
+        { "cat": "forma de llamar la atención, muy porteño", "emoji": "👋", "answer": "che" },
+        { "cat": "trabajo, en lunfardo", "emoji": "💼", "answer": "laburo" },
+        { "cat": "chico/a, en lunfardo", "emoji": "🧑", "answer": "pibe" },
+        { "cat": "dinero, en lunfardo", "emoji": "💸", "answer": "plata" },
+        { "cat": "lío o desorden, en lunfardo", "emoji": "🌀", "answer": "quilombo" },
+        { "cat": "genial, en lunfardo", "emoji": "🤩", "answer": "copado" },
+        { "cat": "pereza, no tener ganas de nada", "emoji": "😩", "answer": "fiaca" },
+        { "cat": "colectivo, en lunfardo porteño", "emoji": "🚌", "answer": "bondi" },
+        { "cat": "forma muy informal de llamar a un amigo", "emoji": "🙄", "answer": "boludo" },
+        { "cat": "peso argentino, en lunfardo", "emoji": "🪙", "answer": "mango" },
+        { "cat": "barrio bohemio y tanguero", "emoji": "🏛️", "answer": "San Telmo" },
+        { "cat": "barrio elegante porteño", "emoji": "🏙️", "answer": "Recoleta" },
+        { "cat": "barrio con muchos bares y parques", "emoji": "🌳", "answer": "Palermo" },
+        { "cat": "estadio, lugar de fútbol", "emoji": "⚽", "answer": "la cancha" }
+      ]},
+      "dictado": [
+        "¿Vos de dónde sos?",
+        "¿Qué hacés en Buenos Aires?",
+        "Che, ¿sabés qué hora es?",
+        "Vení, te muestro el barrio.",
+        "¿Tenés ganas de tomar unos mates?"
+      ],
+      "shadowing": [
+        "No entendí bien, ¿puedes repetir?",
+        "¿Qué significa eso?",
+        "Ah, ahora entiendo.",
+        "Ese barrio me encanta.",
+        "Che, es una palabra que se usa mucho, ¿no?"
+      ],
+      "conversacion": {
+        "escenario": "Entender a un taxista o a un vecino porteño (él habla en vos, vos respondés en tú)",
+        "pasos": [
+          { "npc": "¿Vos sos de acá o estás de visita?", "opciones": [
+            { "texto": "Estoy de visita, soy de Brasil.", "resultado": "ok", "nota": "" },
+            { "texto": "Soy de acá, laburo cerca.", "resultado": "mal", "nota": "No aplica — recién estás llegando de visita." },
+            { "texto": "No hablo español.", "resultado": "mal", "nota": "Contradice que ya estás manteniendo la conversación." }
+          ]},
+          { "npc": "¿Y qué te trajo a Buenos Aires?", "opciones": [
+            { "texto": "Vengo a estudiar un doctorado en Derecho.", "resultado": "ok", "nota": "" },
+            { "texto": "Vengo por trabajo.", "resultado": "ok", "nota": "" },
+            { "texto": "No sé, me perdí.", "resultado": "mal", "nota": "" }
+          ]},
+          { "npc": "¡Qué copado! ¿Ya conocés algún barrio?", "opciones": [
+            { "texto": "Todavía no, recién llegué.", "resultado": "ok", "nota": "" },
+            { "texto": "Sí, me encanta San Telmo.", "resultado": "ok", "nota": "" },
+            { "texto": "¿Qué es un barrio?", "resultado": "mal", "nota": "" }
+          ]},
+          { "npc": "Tenés que ir a Palermo, hay muchos bares lindos.", "opciones": [
+            { "texto": "Genial, voy a anotarlo.", "resultado": "ok", "nota": "" },
+            { "texto": "¿Queda lejos de acá?", "resultado": "ok", "nota": "" },
+            { "texto": "No me gusta salir.", "resultado": "mal", "nota": "Corta la conversación de forma poco natural." }
+          ]},
+          { "npc": "No, está cerca, unos 15 minutos.", "opciones": [
+            { "texto": "Perfecto, gracias por el dato.", "resultado": "ok", "nota": "" },
+            { "texto": "¿Cuánto sale el taxi hasta ahí?", "resultado": "ok", "nota": "" },
+            { "texto": "Prefiero ir a un juzgado.", "resultado": "mal", "nota": "Fuera de contexto." }
+          ]},
+          { "npc": "Bueno, llegamos. ¡Que la pases bien!", "opciones": [
+            { "texto": "Muchas gracias, que tengas un buen día.", "resultado": "ok", "nota": "" },
+            { "texto": "Gracias, che.", "resultado": "ok", "nota": "\"Che\" como interjección de cierre es normal aunque sigas produciendo en tú — no es lo mismo que conjugar en voseo." },
+            { "texto": "Necesito hablar con el juez.", "resultado": "mal", "nota": "Fuera de contexto." }
+          ]}
+        ]
+      }
     },
     {
-      "id": 4,
-      "bloque": 2,
-      "bloque_titulo": "Para la universidad y el derecho",
-      "titulo": "La vida académica",
+      "id": 4, "bloque": 2, "bloque_titulo": "Para la universidad y el derecho", "titulo": "La vida académica",
       "badges": [{ "clase": "derecho", "etiqueta": "Universidad" }],
       "descripcion": "Inscripción, campus, biblioteca, trámites migratorios de estudiante extranjero.",
       "estado": "pendiente",
-      "gramatica": { "punto": "Pretérito indefinido vs. imperfecto", "ejemplos": [] },
-      "vocabulario": { "tema": "Cátedra, legajo, beca, aula, biblioteca", "items": [] },
-      "dictado": [],
-      "shadowing": [],
-      "conversacion": { "prompt": "Hablar con la secretaría de posgrado", "notas": "" }
+      "gramatica": {
+        "punto": "Pretérito indefinido vs. imperfecto",
+        "explicacion": [
+          { "es": "El pretérito indefinido (hablé, comí, viví) cuenta acciones puntuales, completas, con principio y fin claro: \"Me inscribí ayer.\" El imperfecto (hablaba, comía, vivía) describe el fondo, lo habitual o lo que estaba pasando: \"Cuando llegué, ya estaban todos en clase.\"", "pt": "A distinção existe em português também (pretérito perfeito vs. imperfeito), então a lógica é familiar — muda principalmente a conjugação." },
+          { "es": "Regla práctica: indefinido = la acción principal de la historia; imperfecto = la descripción o el contexto alrededor.", "pt": "" }
+        ],
+        "ejemplos": ["Me inscribí en la facultad la semana pasada.", "Cuando llegué a Buenos Aires, no conocía a nadie.", "El profesor explicaba el tema cuando sonó el timbre.", "Presenté mi legajo ayer."],
+        "ejercicios": [
+          { "frase": "Ayer ___ en la facultad.", "opciones": ["me inscribí", "me inscribía", "me inscribo"], "respuesta": "me inscribí" },
+          { "frase": "Cuando era chico, ___ ser abogado.", "opciones": ["quería", "quise", "quiero"], "respuesta": "quería" },
+          { "frase": "El profesor ___ cuando entré al aula.", "opciones": ["hablaba", "habló", "habla"], "respuesta": "hablaba" },
+          { "frase": "La semana pasada ___ mi proyecto de tesis.", "opciones": ["presenté", "presentaba", "presento"], "respuesta": "presenté" }
+        ]
+      },
+      "vocabulario": { "tema": "Cátedra, legajo, beca, aula, biblioteca", "items": [
+        { "cat": "grupo de una materia con su profesor titular", "emoji": "📖", "answer": "cátedra" },
+        { "cat": "carpeta con tus datos de estudiante", "emoji": "📁", "answer": "legajo" },
+        { "cat": "ayuda económica para estudiar", "emoji": "🎓", "answer": "beca" },
+        { "cat": "salón de clase", "emoji": "🏫", "answer": "aula" },
+        { "cat": "lugar con libros para estudiar", "emoji": "📚", "answer": "biblioteca" },
+        { "cat": "papel oficial que certifica algo", "emoji": "📜", "answer": "certificado" },
+        { "cat": "anotarse en una materia", "emoji": "✍️", "answer": "inscripción" },
+        { "cat": "lista de materias que cursás", "emoji": "📑", "answer": "plan de estudios" },
+        { "cat": "persona que enseña en la universidad", "emoji": "👩‍🏫", "answer": "profesor" },
+        { "cat": "personas que estudian con vos", "emoji": "👥", "answer": "compañeros" },
+        { "cat": "evaluación final de una materia", "emoji": "📝", "answer": "examen" },
+        { "cat": "trabajo escrito de investigación", "emoji": "📄", "answer": "trabajo final" },
+        { "cat": "documento de identidad para extranjeros en Argentina", "emoji": "🪪", "answer": "DNI" },
+        { "cat": "pausa entre clases", "emoji": "☕", "answer": "receso" }
+      ]},
+      "dictado": [
+        "¿Dónde queda la secretaría de posgrado?",
+        "Necesito presentar mi legajo para inscribirme.",
+        "¿Hasta cuándo puedo pedir la beca?",
+        "La biblioteca cierra a las ocho de la noche.",
+        "¿Este profesor tiene otra cátedra los martes?"
+      ],
+      "shadowing": [
+        "¿Dónde queda la secretaría?",
+        "Vengo a inscribirme al doctorado.",
+        "¿Necesito el DNI para esto?",
+        "¿A qué hora abre la biblioteca?",
+        "Quisiera hablar con mi tutor."
+      ],
+      "conversacion": {
+        "escenario": "Hablar con la secretaría de posgrado",
+        "pasos": [
+          { "npc": "Buenos días, ¿en qué lo puedo ayudar?", "opciones": [
+            { "texto": "Vengo a inscribirme al doctorado en Derecho.", "resultado": "ok", "nota": "" },
+            { "texto": "¿Acá es la facultad de Derecho?", "resultado": "ok", "nota": "" },
+            { "texto": "Busco la cancha de fútbol.", "resultado": "mal", "nota": "Fuera de contexto." }
+          ]},
+          { "npc": "Perfecto, ¿ya tiene su legajo armado?", "opciones": [
+            { "texto": "Sí, acá lo tengo.", "resultado": "ok", "nota": "" },
+            { "texto": "No, ¿qué necesito para armarlo?", "resultado": "ok", "nota": "" },
+            { "texto": "No sé qué es un legajo.", "resultado": "mal", "nota": "Mejor preguntar directamente qué necesitás, en vez de quedarte sin entender." }
+          ]},
+          { "npc": "Necesito su DNI y el certificado de la maestría.", "opciones": [
+            { "texto": "Acá tiene los dos.", "resultado": "ok", "nota": "" },
+            { "texto": "El certificado lo tengo en casa.", "resultado": "ok", "nota": "" },
+            { "texto": "No tengo DNI.", "resultado": "mal", "nota": "" }
+          ]},
+          { "npc": "Muy bien. ¿Ya sabe con qué profesor va a trabajar la tesis?", "opciones": [
+            { "texto": "Todavía no, ¿me puede recomendar a alguien?", "resultado": "ok", "nota": "" },
+            { "texto": "Sí, ya tengo director de tesis.", "resultado": "ok", "nota": "" },
+            { "texto": "No me interesa la tesis.", "resultado": "mal", "nota": "" }
+          ]},
+          { "npc": "Bien, entonces le mando la lista de cátedras disponibles por mail.", "opciones": [
+            { "texto": "Perfecto, muchas gracias.", "resultado": "ok", "nota": "" },
+            { "texto": "¿Puede ser por WhatsApp mejor?", "resultado": "ok", "nota": "" },
+            { "texto": "Ya me tengo que ir a un partido de fútbol.", "resultado": "mal", "nota": "" }
+          ]},
+          { "npc": "Listo, bienvenido a la facultad.", "opciones": [
+            { "texto": "Muchas gracias, nos vemos pronto.", "resultado": "ok", "nota": "" },
+            { "texto": "Gracias, ¡qué bueno estar acá!", "resultado": "ok", "nota": "" },
+            { "texto": "No entendí nada de esta conversación.", "resultado": "mal", "nota": "" }
+          ]}
+        ]
+      }
     },
     {
-      "id": 5,
-      "bloque": 2,
-      "bloque_titulo": "Para la universidad y el derecho",
-      "titulo": "Vocabulario jurídico esencial",
+      "id": 5, "bloque": 2, "bloque_titulo": "Para la universidad y el derecho", "titulo": "Vocabulario jurídico esencial",
       "badges": [{ "clase": "derecho", "etiqueta": "Derecho" }],
       "descripcion": "Ramas del derecho, poder judicial, fuentes del derecho, latinismos usados en español jurídico.",
       "estado": "pendiente",
-      "gramatica": { "punto": "Futuro simple · condicional", "ejemplos": [] },
-      "vocabulario": { "tema": "Fallo, sentencia, demanda, juzgado, código", "items": [] },
-      "dictado": [],
-      "shadowing": [],
-      "conversacion": { "prompt": "Describir tu área de investigación", "notas": "" }
+      "gramatica": {
+        "punto": "Futuro simple · condicional",
+        "explicacion": [
+          { "es": "El futuro simple (hablaré, comeré, viviré) anuncia lo que va a pasar, y en textos jurídicos también expresa obligación normativa: \"El juez dictará sentencia en 30 días.\"", "pt": "Esse uso do futuro pra normas também existe no português jurídico (\"O juiz decidirá...\"), então a lógica é bem parecida." },
+          { "es": "El condicional (hablaría, comería, viviría) se usa para hipótesis, cortesía y argumentación: \"Yo argumentaría que...\" / \"Esto podría interpretarse de otra manera.\"", "pt": "" },
+          { "es": "Ambos se forman sobre el infinitivo completo. Irregulares comunes: tendrá/tendría (tener), podrá/podría (poder), dirá/diría (decir), hará/haría (hacer).", "pt": "" }
+        ],
+        "ejemplos": ["El fallo se dictará la semana próxima.", "Yo argumentaría que hay un vacío legal.", "¿Podría explicar su punto de vista?", "La sentencia tendrá efecto inmediato."],
+        "ejercicios": [
+          { "frase": "El juez ___ sentencia mañana.", "opciones": ["dictará", "dictaría", "dicta"], "respuesta": "dictará" },
+          { "frase": "Yo ___ que el contrato es nulo.", "opciones": ["argumentaría", "argumentaré", "argumento"], "respuesta": "argumentaría" },
+          { "frase": "¿___ repetir la pregunta?", "opciones": ["Podría", "Podrá", "Puede"], "respuesta": "Podría" },
+          { "frase": "Esta ley ___ efecto a partir de enero.", "opciones": ["tendrá", "tendría", "tiene"], "respuesta": "tendrá" }
+        ]
+      },
+      "vocabulario": { "tema": "Fallo, sentencia, demanda, juzgado, código", "items": [
+        { "cat": "decisión de un juez", "emoji": "⚖️", "answer": "fallo" },
+        { "cat": "resolución final de un juicio", "emoji": "🔨", "answer": "sentencia" },
+        { "cat": "pedido formal de justicia contra alguien", "emoji": "📄", "answer": "demanda" },
+        { "cat": "lugar donde trabaja un juez", "emoji": "🏛️", "answer": "juzgado" },
+        { "cat": "conjunto ordenado de leyes", "emoji": "📕", "answer": "código" },
+        { "cat": "persona que decide en un juicio", "emoji": "👨‍⚖️", "answer": "juez" },
+        { "cat": "representa a una parte en el juicio", "emoji": "💼", "answer": "abogado" },
+        { "cat": "acuerdo entre dos partes", "emoji": "🤝", "answer": "contrato" },
+        { "cat": "norma más importante de un país", "emoji": "📘", "answer": "constitución" },
+        { "cat": "lo que estudiás en la facultad", "emoji": "📋", "answer": "derecho" },
+        { "cat": "norma escrita y aprobada por el Congreso", "emoji": "📜", "answer": "ley" },
+        { "cat": "conjunto de jueces que deciden un caso", "emoji": "🏢", "answer": "tribunal" }
+      ]},
+      "dictado": [
+        "El juez dictará sentencia la próxima semana.",
+        "Necesito presentar la demanda antes del viernes.",
+        "¿Dónde queda el juzgado civil?",
+        "El contrato debe firmarse por las dos partes.",
+        "Este artículo del código es fundamental para mi tesis."
+      ],
+      "shadowing": [
+        "Estoy investigando el derecho constitucional.",
+        "¿Podría explicarme ese fallo?",
+        "Necesito leer el código completo.",
+        "Mi tesis trata sobre este tribunal.",
+        "El contrato tiene una cláusula importante."
+      ],
+      "conversacion": {
+        "escenario": "Describir tu área de investigación",
+        "pasos": [
+          { "npc": "Cuénteme, ¿sobre qué trata su investigación?", "opciones": [
+            { "texto": "Estudio el derecho constitucional comparado.", "resultado": "ok", "nota": "" },
+            { "texto": "Todavía no lo sé bien.", "resultado": "ok", "nota": "Es una respuesta honesta y aceptable al principio del doctorado." },
+            { "texto": "Me gusta el fútbol.", "resultado": "mal", "nota": "" }
+          ]},
+          { "npc": "Interesante. ¿Y por qué eligió ese tema?", "opciones": [
+            { "texto": "Porque quiero comparar el sistema de Brasil y Argentina.", "resultado": "ok", "nota": "" },
+            { "texto": "Porque mi director me lo sugirió.", "resultado": "ok", "nota": "" },
+            { "texto": "Porque me pareció fácil.", "resultado": "mal", "nota": "Poco convincente como justificación académica." }
+          ]},
+          { "npc": "¿Ya tiene alguna hipótesis de trabajo?", "opciones": [
+            { "texto": "Sí, creo que hay vacíos legales importantes.", "resultado": "ok", "nota": "" },
+            { "texto": "No, todavía estoy leyendo sobre el tema.", "resultado": "ok", "nota": "" },
+            { "texto": "¿Qué es una hipótesis?", "resultado": "mal", "nota": "" }
+          ]},
+          { "npc": "¿Qué fuentes está usando?", "opciones": [
+            { "texto": "Principalmente jurisprudencia y doctrina.", "resultado": "ok", "nota": "" },
+            { "texto": "Códigos y fallos recientes.", "resultado": "ok", "nota": "" },
+            { "texto": "Solo internet.", "resultado": "mal", "nota": "Poco riguroso para una investigación de doctorado." }
+          ]},
+          { "npc": "Me parece un buen enfoque. ¿Necesita ayuda con algo?", "opciones": [
+            { "texto": "Sí, ¿podría recomendarme bibliografía?", "resultado": "ok", "nota": "" },
+            { "texto": "No, por ahora está todo bien.", "resultado": "ok", "nota": "" },
+            { "texto": "Sí, ¿sabe dónde queda el subte?", "resultado": "mal", "nota": "Fuera de contexto." }
+          ]},
+          { "npc": "Claro, se la envío por mail. Éxitos con la tesis.", "opciones": [
+            { "texto": "Muchas gracias, profesor.", "resultado": "ok", "nota": "" },
+            { "texto": "Se lo agradezco mucho.", "resultado": "ok", "nota": "" },
+            { "texto": "Ya me tengo que ir al aeropuerto.", "resultado": "mal", "nota": "" }
+          ]}
+        ]
+      }
     },
     {
-      "id": 6,
-      "bloque": 2,
-      "bloque_titulo": "Para la universidad y el derecho",
-      "titulo": "Trámites y vida cotidiana en Buenos Aires",
-      "badges": [
-        { "clase": "viaje", "etiqueta": "Viaje" },
-        { "clase": "derecho", "etiqueta": "Universidad" }
-      ],
+      "id": 6, "bloque": 2, "bloque_titulo": "Para la universidad y el derecho", "titulo": "Trámites y vida cotidiana en Buenos Aires",
+      "badges": [{ "clase": "viaje", "etiqueta": "Viaje" }, { "clase": "derecho", "etiqueta": "Universidad" }],
       "descripcion": "Banco, salud, vivienda estable, DNI/CUIT, trámites de residencia.",
       "estado": "pendiente",
-      "gramatica": { "punto": "Subjuntivo presente (deseo, duda, petición)", "ejemplos": [] },
-      "vocabulario": { "tema": "Trámite, comprobante, turno, obra social", "items": [] },
-      "dictado": [],
-      "shadowing": [],
-      "conversacion": { "prompt": "Pedir un turno, reclamar en un banco", "notas": "" }
+      "gramatica": {
+        "punto": "Subjuntivo presente (deseo, duda, petición)",
+        "explicacion": [
+          { "es": "El subjuntivo se usa después de expresiones de deseo, duda, petición o emoción: \"Quiero que me ayude.\" / \"Es posible que llegue tarde.\" / \"Espero que tengas turno.\"", "pt": "O subjuntivo existe em português também, mas o espanhol usa muito mais em pedidos do dia a dia — é comum esquecer de trocar depois de \"quiero que\", \"espero que\", \"es necesario que\"." },
+          { "es": "Formación regular: se toma la forma \"yo\" del presente, se saca la -o y se agregan las terminaciones opuestas. Hablar → hable; comer → coma; vivir → viva.", "pt": "" },
+          { "es": "Muy usado en trámites: \"Quiero que me den un turno.\" / \"Necesito que me confirme la cita.\"", "pt": "" }
+        ],
+        "ejemplos": ["Quiero que me den un turno para mañana.", "Espero que el trámite no tarde mucho.", "Es necesario que traiga el DNI.", "Ojalá que tengan lugar."],
+        "ejercicios": [
+          { "frase": "Quiero que me ___ un turno.", "opciones": ["dé", "doy", "da"], "respuesta": "dé" },
+          { "frase": "Espero que no ___ muy caro el trámite.", "opciones": ["sea", "es", "será"], "respuesta": "sea" },
+          { "frase": "Es necesario que ___ el DNI.", "opciones": ["traiga", "trae", "traerá"], "respuesta": "traiga" },
+          { "frase": "Ojalá que ___ turnos disponibles.", "opciones": ["haya", "hay", "habrá"], "respuesta": "haya" }
+        ]
+      },
+      "vocabulario": { "tema": "Trámite, comprobante, turno, obra social", "items": [
+        { "cat": "proceso administrativo oficial", "emoji": "📋", "answer": "trámite" },
+        { "cat": "papel que confirma un pago o gestión", "emoji": "🧾", "answer": "comprobante" },
+        { "cat": "hora asignada para ser atendido", "emoji": "🎫", "answer": "turno" },
+        { "cat": "seguro de salud privado en Argentina", "emoji": "🏥", "answer": "obra social" },
+        { "cat": "documento nacional de identidad argentino", "emoji": "🪪", "answer": "DNI" },
+        { "cat": "número de identificación tributaria", "emoji": "🔢", "answer": "CUIT" },
+        { "cat": "cuenta para guardar dinero en el banco", "emoji": "🏦", "answer": "cuenta bancaria" },
+        { "cat": "máquina para sacar dinero", "emoji": "🏧", "answer": "cajero automático" },
+        { "cat": "vivienda alquilada de forma estable", "emoji": "🗝️", "answer": "alquiler" },
+        { "cat": "quien firma el contrato de alquiler junto al inquilino", "emoji": "💼", "answer": "garante" },
+        { "cat": "consultorio médico", "emoji": "🩺", "answer": "consultorio" },
+        { "cat": "medicamento con receta", "emoji": "💊", "answer": "receta médica" },
+        { "cat": "formulario para completar", "emoji": "📝", "answer": "formulario" },
+        { "cat": "fila de espera", "emoji": "🚶", "answer": "la cola" }
+      ]},
+      "dictado": [
+        "Necesito sacar un turno para el médico.",
+        "¿Dónde consigo el comprobante de pago?",
+        "Mi obra social no cubre este estudio.",
+        "Tengo que hacer un trámite en el banco.",
+        "¿Cuánto tiempo tarda en salir el CUIT?"
+      ],
+      "shadowing": [
+        "Necesito sacar un turno.",
+        "¿Tiene el comprobante?",
+        "Vengo a hacer un reclamo.",
+        "¿Dónde queda el banco más cercano?",
+        "Necesito mi CUIT para este trámite."
+      ],
+      "conversacion": {
+        "escenario": "Pedir un turno y reclamar en un banco",
+        "pasos": [
+          { "npc": "Buenos días, ¿en qué lo puedo ayudar?", "opciones": [
+            { "texto": "Quiero sacar un turno para el médico.", "resultado": "ok", "nota": "" },
+            { "texto": "Vengo a reclamar por un cobro.", "resultado": "ok", "nota": "" },
+            { "texto": "Vengo a jugar al fútbol.", "resultado": "mal", "nota": "" }
+          ]},
+          { "npc": "¿Para qué especialidad necesita el turno?", "opciones": [
+            { "texto": "Para clínica médica general.", "resultado": "ok", "nota": "" },
+            { "texto": "Para un control de rutina.", "resultado": "ok", "nota": "" },
+            { "texto": "No sé, cualquiera.", "resultado": "mal", "nota": "Mejor tener claro qué necesitás antes de pedir el turno." }
+          ]},
+          { "npc": "Tengo lugar el jueves a las 10. ¿Le sirve?", "opciones": [
+            { "texto": "Sí, perfecto.", "resultado": "ok", "nota": "" },
+            { "texto": "¿No hay algo más tarde?", "resultado": "ok", "nota": "" },
+            { "texto": "No, prefiero ir al juzgado.", "resultado": "mal", "nota": "" }
+          ]},
+          { "npc": "Buenos días, ¿en qué lo puedo ayudar? (en el banco)", "opciones": [
+            { "texto": "Vengo a reclamar por un cobro que no reconozco.", "resultado": "ok", "nota": "" },
+            { "texto": "Quiero abrir una cuenta.", "resultado": "ok", "nota": "" },
+            { "texto": "Vengo a comprar empanadas.", "resultado": "mal", "nota": "" }
+          ]},
+          { "npc": "¿Me puede mostrar el comprobante del movimiento?", "opciones": [
+            { "texto": "Sí, acá lo tengo.", "resultado": "ok", "nota": "" },
+            { "texto": "No lo tengo conmigo.", "resultado": "ok", "nota": "Es una respuesta realista, aunque puede complicar el trámite." },
+            { "texto": "¿Qué comprobante?", "resultado": "mal", "nota": "" }
+          ]},
+          { "npc": "Perfecto, voy a revisar el reclamo. Le llega la respuesta por mail en 5 días.", "opciones": [
+            { "texto": "Muchas gracias.", "resultado": "ok", "nota": "" },
+            { "texto": "¿No hay una respuesta más rápida?", "resultado": "ok", "nota": "" },
+            { "texto": "Ya me tengo que ir a clase de portugués.", "resultado": "mal", "nota": "" }
+          ]}
+        ]
+      }
     },
     {
-      "id": 7,
-      "bloque": 2,
-      "bloque_titulo": "Para la universidad y el derecho",
-      "titulo": "Lectura y redacción jurídica",
+      "id": 7, "bloque": 2, "bloque_titulo": "Para la universidad y el derecho", "titulo": "Lectura y redacción jurídica",
       "badges": [{ "clase": "derecho", "etiqueta": "Derecho" }],
       "descripcion": "Comprensión de sentencias y doctrina, conectores argumentativos, fichaje y resumen académico.",
       "estado": "pendiente",
-      "gramatica": { "punto": "Subjuntivo en subordinadas · voz pasiva", "ejemplos": [] },
-      "vocabulario": { "tema": "Por consiguiente, en tanto, cabe destacar", "items": [] },
-      "dictado": [],
-      "shadowing": [],
-      "conversacion": { "prompt": "Resumir un fallo en tus propias palabras", "notas": "" }
+      "gramatica": {
+        "punto": "Subjuntivo en subordinadas · voz pasiva",
+        "explicacion": [
+          { "es": "El subjuntivo también aparece en subordinadas de finalidad, condición o concesión: \"para que\", \"aunque\", \"a menos que\", \"sin que\". Ejemplo: \"El fallo se dictó para que las partes cumplan el acuerdo.\"", "pt": "" },
+          { "es": "La voz pasiva con \"ser\" (fue dictado, fue firmado) es común en textos jurídicos formales; la pasiva refleja con \"se\" (se dictó el fallo, se firmó el contrato) es más natural y muy usada en redacción jurídica.", "pt": "A voz passiva com \"ser\" existe igual em português (foi assinado). A \"pasiva refleja\" com \"se\" é a que costuma confundir, porque não tem um equivalente tão direto no português." }
+        ],
+        "ejemplos": ["El contrato fue firmado por ambas partes.", "Se dictó sentencia el lunes.", "Esto se hizo para que no haya dudas.", "Aunque apele, el fallo ya es firme."],
+        "ejercicios": [
+          { "frase": "El contrato ___ ayer.", "opciones": ["fue firmado", "fue firmada", "es firmado"], "respuesta": "fue firmado" },
+          { "frase": "___ sentencia la semana pasada.", "opciones": ["Se dictó", "Se dicta", "Fue dictó"], "respuesta": "Se dictó" },
+          { "frase": "Esto se hizo para que no ___ dudas.", "opciones": ["haya", "hay", "había"], "respuesta": "haya" },
+          { "frase": "Aunque ___, el fallo sigue firme.", "opciones": ["apele", "apela", "apeló"], "respuesta": "apele" }
+        ]
+      },
+      "vocabulario": { "tema": "Por consiguiente, en tanto, cabe destacar", "items": [
+        { "cat": "conector: indica consecuencia", "emoji": "➡️", "answer": "por consiguiente" },
+        { "cat": "conector: indica mientras/al mismo tiempo", "emoji": "⏳", "answer": "en tanto" },
+        { "cat": "conector: para resaltar algo importante", "emoji": "⭐", "answer": "cabe destacar" },
+        { "cat": "conector: agrega otro argumento", "emoji": "➕", "answer": "asimismo" },
+        { "cat": "conector: contrasta ideas", "emoji": "🔄", "answer": "sin embargo" },
+        { "cat": "conector: da una razón", "emoji": "❓", "answer": "debido a" },
+        { "cat": "conector: resume lo anterior", "emoji": "🔚", "answer": "en conclusión" },
+        { "cat": "conector: agrega una excepción", "emoji": "⚠️", "answer": "salvo que" },
+        { "cat": "leer con atención y tomar apuntes", "emoji": "🖊️", "answer": "fichar" },
+        { "cat": "resumen breve de un texto largo", "emoji": "📄", "answer": "resumen" },
+        { "cat": "idea principal defendida en un texto", "emoji": "💡", "answer": "tesis" },
+        { "cat": "opinión de varios autores sobre un tema", "emoji": "📚", "answer": "doctrina" }
+      ]},
+      "dictado": [
+        "Por consiguiente, el juez rechazó la demanda.",
+        "Cabe destacar que este fallo cambió la jurisprudencia.",
+        "Sin embargo, la doctrina no está de acuerdo en este punto.",
+        "En conclusión, el contrato es válido.",
+        "Debido a la falta de pruebas, el caso fue archivado."
+      ],
+      "shadowing": [
+        "Cabe destacar que esto es importante.",
+        "Por consiguiente, estoy de acuerdo.",
+        "Sin embargo, tengo una duda.",
+        "En conclusión, esto resuelve el problema.",
+        "Necesito fichar este texto."
+      ],
+      "conversacion": {
+        "escenario": "Resumir un fallo en tus propias palabras",
+        "pasos": [
+          { "npc": "¿Puede resumirme el fallo que leyó para hoy?", "opciones": [
+            { "texto": "Sí, el tribunal decidió que el contrato era nulo.", "resultado": "ok", "nota": "" },
+            { "texto": "Trata sobre un caso de derecho constitucional.", "resultado": "ok", "nota": "" },
+            { "texto": "No lo leí.", "resultado": "mal", "nota": "Respuesta honesta, pero no favorable para la clase." }
+          ]},
+          { "npc": "¿Y cuál fue el argumento principal del tribunal?", "opciones": [
+            { "texto": "Que faltaba un requisito esencial del contrato.", "resultado": "ok", "nota": "" },
+            { "texto": "Que una de las partes actuó de mala fe.", "resultado": "ok", "nota": "" },
+            { "texto": "No sé, no entendí esa parte.", "resultado": "mal", "nota": "" }
+          ]},
+          { "npc": "¿Cabe destacar algo más sobre este fallo?", "opciones": [
+            { "texto": "Sí, cambió la jurisprudencia anterior sobre el tema.", "resultado": "ok", "nota": "" },
+            { "texto": "No, nada más.", "resultado": "ok", "nota": "" },
+            { "texto": "Sí, es un fallo muy largo.", "resultado": "mal", "nota": "No aporta análisis." }
+          ]},
+          { "npc": "¿Está de acuerdo con la decisión del tribunal?", "opciones": [
+            { "texto": "Sí, me parece razonable.", "resultado": "ok", "nota": "" },
+            { "texto": "No, creo que hay otra interpretación posible.", "resultado": "ok", "nota": "" },
+            { "texto": "No tengo opinión sobre nada.", "resultado": "mal", "nota": "" }
+          ]},
+          { "npc": "Interesante. ¿Puede fundamentar esa opinión?", "opciones": [
+            { "texto": "Sí, por consiguiente, creo que el criterio es muy estricto.", "resultado": "ok", "nota": "" },
+            { "texto": "Sí, la doctrina mayoritaria opina distinto.", "resultado": "ok", "nota": "" },
+            { "texto": "Simplemente no me gusta.", "resultado": "mal", "nota": "Poco argumentado para una clase de posgrado." }
+          ]},
+          { "npc": "Muy buen análisis. Sigamos con el siguiente fallo.", "opciones": [
+            { "texto": "Perfecto, profesor.", "resultado": "ok", "nota": "" },
+            { "texto": "Gracias por la devolución.", "resultado": "ok", "nota": "" },
+            { "texto": "Ya terminé, me voy a casa.", "resultado": "mal", "nota": "" }
+          ]}
+        ]
+      }
     },
     {
-      "id": 8,
-      "bloque": 3,
-      "bloque_titulo": "Fluidez y práctica real",
-      "titulo": "Seminarios y debate académico",
+      "id": 8, "bloque": 3, "bloque_titulo": "Fluidez y práctica real", "titulo": "Seminarios y debate académico",
       "badges": [{ "clase": "derecho", "etiqueta": "Derecho" }],
       "descripcion": "Participar en clase, defender una posición, citar y parafrasear a otros autores.",
       "estado": "pendiente",
-      "gramatica": { "punto": "Estilo indirecto · conectores de contraste", "ejemplos": [] },
-      "vocabulario": { "tema": "Coincido con, discrepo de, sostengo que", "items": [] },
-      "dictado": [],
-      "shadowing": [],
-      "conversacion": { "prompt": "Simulacro de seminario con réplica", "notas": "" }
+      "gramatica": {
+        "punto": "Estilo indirecto · conectores de contraste",
+        "explicacion": [
+          { "es": "El estilo indirecto sirve para contar lo que otra persona dijo, sin citarla textualmente: \"El autor dice que el sistema es injusto.\" Con el verbo principal en pasado, el tiempo del verbo citado también cambia: \"dijo que era\" (no \"dijo que es\").", "pt": "O estilo indireto em português segue uma lógica de mudança de tempo verbal parecida (\"disse que era\"), então a ideia é familiar — o que muda é a conjugação espanhola." },
+          { "es": "Conectores de contraste para debatir: \"no obstante\", \"si bien\", \"aunque\", \"por el contrario\", \"en cambio\" — sirven para presentar una idea y después matizarla.", "pt": "" }
+        ],
+        "ejemplos": ["El autor sostiene que el sistema necesita una reforma.", "Si bien coincido en parte, discrepo con la conclusión.", "No obstante, hay otra interpretación posible.", "Ella dijo que iba a presentar su ponencia mañana."],
+        "ejercicios": [
+          { "frase": "El autor dijo que el sistema ___ injusto.", "opciones": ["era", "es", "fue"], "respuesta": "era" },
+          { "frase": "___ coincido, tengo una objeción.", "opciones": ["Si bien", "Por consiguiente", "Ojalá"], "respuesta": "Si bien" },
+          { "frase": "Mi colega sostiene que la ley ___ cambios.", "opciones": ["necesita", "necesitaba", "necesitó"], "respuesta": "necesita" },
+          { "frase": "___, hay otra corriente doctrinaria distinta.", "opciones": ["No obstante", "Por eso", "Ojalá que"], "respuesta": "No obstante" }
+        ]
+      },
+      "vocabulario": { "tema": "Coincido con, discrepo de, sostengo que", "items": [
+        { "cat": "estar de acuerdo con alguien", "emoji": "🤝", "answer": "coincido con" },
+        { "cat": "no estar de acuerdo con alguien", "emoji": "🙅", "answer": "discrepo de" },
+        { "cat": "defender una idea con argumentos", "emoji": "💬", "answer": "sostengo que" },
+        { "cat": "decir la fuente de una idea", "emoji": "📖", "answer": "citar" },
+        { "cat": "explicar una idea con otras palabras", "emoji": "🔁", "answer": "parafrasear" },
+        { "cat": "responder a un argumento contrario", "emoji": "↩️", "answer": "réplica" },
+        { "cat": "exponer un tema frente a otros", "emoji": "🎤", "answer": "ponencia" },
+        { "cat": "charla académica con varios expertos", "emoji": "🗣️", "answer": "seminario" },
+        { "cat": "pregunta al final de una exposición", "emoji": "❓", "answer": "pregunta" },
+        { "cat": "defender tu postura con calma y respeto", "emoji": "🧘", "answer": "argumentar" },
+        { "cat": "quien modera un debate", "emoji": "🎙️", "answer": "moderador" },
+        { "cat": "punto de vista sobre un tema", "emoji": "🔍", "answer": "perspectiva" }
+      ]},
+      "dictado": [
+        "Coincido con su análisis, pero tengo una objeción.",
+        "Discrepo de esa interpretación del fallo.",
+        "Sostengo que la ley necesita una reforma urgente.",
+        "¿Puede parafrasear su pregunta, por favor?",
+        "Mi ponencia trata sobre el derecho comparado."
+      ],
+      "shadowing": [
+        "Coincido con eso.",
+        "Discrepo respetuosamente.",
+        "Sostengo que hay otra forma de verlo.",
+        "¿Puedo hacer una pregunta?",
+        "Quisiera agregar algo a mi ponencia."
+      ],
+      "conversacion": {
+        "escenario": "Simulacro de seminario con réplica",
+        "pasos": [
+          { "npc": "Bienvenidos al seminario. ¿Quién quiere empezar con su ponencia?", "opciones": [
+            { "texto": "Yo, con gusto.", "resultado": "ok", "nota": "" },
+            { "texto": "Prefiero escuchar primero.", "resultado": "ok", "nota": "" },
+            { "texto": "No vine preparado para nada.", "resultado": "mal", "nota": "" }
+          ]},
+          { "npc": "Adelante, tiene diez minutos.", "opciones": [
+            { "texto": "Sostengo que el sistema actual tiene un vacío legal importante.", "resultado": "ok", "nota": "" },
+            { "texto": "Mi tesis compara Argentina y Brasil en este punto.", "resultado": "ok", "nota": "" },
+            { "texto": "No sé bien qué decir.", "resultado": "mal", "nota": "" }
+          ]},
+          { "npc": "Discrepo de esa conclusión, creo que el sistema funciona bien.", "opciones": [
+            { "texto": "Si bien entiendo su punto, los datos dicen lo contrario.", "resultado": "ok", "nota": "" },
+            { "texto": "Puede tener razón, lo voy a revisar.", "resultado": "ok", "nota": "" },
+            { "texto": "Usted no sabe nada.", "resultado": "mal", "nota": "Falta el respeto académico esperado en un debate." }
+          ]},
+          { "npc": "¿Tiene alguna fuente que respalde eso?", "opciones": [
+            { "texto": "Sí, cito un fallo reciente del tribunal.", "resultado": "ok", "nota": "" },
+            { "texto": "Sí, hay doctrina reciente sobre esto.", "resultado": "ok", "nota": "" },
+            { "texto": "No, es solo mi opinión.", "resultado": "mal", "nota": "Débil como argumento académico." }
+          ]},
+          { "npc": "Muy interesante el debate. ¿Alguna pregunta más?", "opciones": [
+            { "texto": "Sí, quisiera agregar algo.", "resultado": "ok", "nota": "" },
+            { "texto": "No, está todo claro.", "resultado": "ok", "nota": "" },
+            { "texto": "¿A qué hora sale el subte?", "resultado": "mal", "nota": "" }
+          ]},
+          { "npc": "Perfecto, gracias a todos por la participación.", "opciones": [
+            { "texto": "Gracias a usted por la oportunidad.", "resultado": "ok", "nota": "" },
+            { "texto": "Fue un gusto debatir con todos.", "resultado": "ok", "nota": "" },
+            { "texto": "Ya me quiero ir a comer.", "resultado": "mal", "nota": "" }
+          ]}
+        ]
+      }
     },
     {
-      "id": 9,
-      "bloque": 3,
-      "bloque_titulo": "Fluidez y práctica real",
-      "titulo": "Simulacros integrados",
+      "id": 9, "bloque": 3, "bloque_titulo": "Fluidez y práctica real", "titulo": "Simulacros integrados",
       "badges": [{ "clase": "mixto", "etiqueta": "Integrador" }],
       "descripcion": "Del aeropuerto a la facultad en una sola secuencia: primer día de clases, entrevista con un profesor, mesa de debate. Autoevaluación final.",
       "estado": "pendiente",
-      "gramatica": { "punto": "Repaso integrado de todos los tiempos vistos", "ejemplos": [] },
-      "vocabulario": { "tema": "Repaso cruzado viaje + derecho", "items": [] },
-      "dictado": [],
-      "shadowing": [],
-      "conversacion": { "prompt": "Simulacro largo, sin apoyo", "notas": "" }
+      "gramatica": {
+        "punto": "Repaso integrado de todos los tiempos vistos",
+        "explicacion": [
+          { "es": "Este módulo no trae gramática nueva — es repaso: presente, pretérito perfecto compuesto, indefinido, imperfecto, futuro, condicional y subjuntivo, todos combinados como en la vida real.", "pt": "" },
+          { "es": "Truco para no trabarte: contá la historia en orden (qué pasó primero, qué es el fondo, qué falta) y elegí el tiempo verbal según esa lógica.", "pt": "" }
+        ],
+        "ejemplos": ["Llegué a Buenos Aires hace un mes y ya me inscribí en la facultad.", "Si tuviera más tiempo, leería toda la doctrina.", "Espero que el fallo de mañana sea favorable."],
+        "ejercicios": [
+          { "frase": "Ayer ___ mi legajo en la facultad.", "opciones": ["presenté", "presentaba", "presento"], "respuesta": "presenté" },
+          { "frase": "Si tuviera más tiempo, ___ toda la doctrina.", "opciones": ["leería", "leí", "leo"], "respuesta": "leería" },
+          { "frase": "Espero que el fallo ___ favorable.", "opciones": ["sea", "es", "será"], "respuesta": "sea" },
+          { "frase": "Para la próxima semana, ___ mi ponencia.", "opciones": ["terminaré", "terminaría", "termino"], "respuesta": "terminaré" }
+        ]
+      },
+      "vocabulario": { "tema": "Repaso cruzado viaje + derecho", "items": [
+        { "cat": "repaso · lugar donde llegás en avión", "emoji": "✈️", "answer": "aeropuerto" },
+        { "cat": "repaso · control al llegar al país", "emoji": "🛂", "answer": "migraciones" },
+        { "cat": "repaso · transporte subterráneo porteño", "emoji": "🚇", "answer": "subte" },
+        { "cat": "repaso · forma de llamar la atención, porteño", "emoji": "👋", "answer": "che" },
+        { "cat": "repaso · trabajo, en lunfardo", "emoji": "💼", "answer": "laburo" },
+        { "cat": "repaso · decisión de un juez", "emoji": "⚖️", "answer": "fallo" },
+        { "cat": "repaso · lugar donde trabaja el juez", "emoji": "🏛️", "answer": "juzgado" },
+        { "cat": "repaso · hora asignada para ser atendido", "emoji": "🎫", "answer": "turno" },
+        { "cat": "repaso · seguro de salud privado", "emoji": "🏥", "answer": "obra social" },
+        { "cat": "repaso · grupo de una materia con su profesor", "emoji": "📖", "answer": "cátedra" },
+        { "cat": "repaso · ayuda económica para estudiar", "emoji": "🎓", "answer": "beca" },
+        { "cat": "repaso · estar de acuerdo con alguien", "emoji": "🤝", "answer": "coincido con" },
+        { "cat": "repaso · no estar de acuerdo con alguien", "emoji": "🙅", "answer": "discrepo de" },
+        { "cat": "repaso · exponer un tema frente a otros", "emoji": "🎤", "answer": "ponencia" }
+      ]},
+      "dictado": [
+        "Perdón, ¿dónde queda el control de migraciones?",
+        "Necesito presentar mi legajo para inscribirme.",
+        "El juez dictará sentencia la próxima semana.",
+        "Che, ¿sabés qué hora es?",
+        "Coincido con su análisis, pero tengo una objeción."
+      ],
+      "shadowing": [
+        "Necesito un taxi, por favor.",
+        "Vengo a inscribirme al doctorado.",
+        "¿Podría explicarme ese fallo?",
+        "No entendí bien, ¿puedes repetir?",
+        "Sostengo que hay otra forma de verlo."
+      ],
+      "conversacion": {
+        "escenario": "Simulacro largo, sin apoyo: del aeropuerto a la facultad en un solo día",
+        "pasos": [
+          { "npc": "Buenos días. ¿Me muestra su pasaporte, por favor?", "opciones": [
+            { "texto": "Sí, aquí tiene.", "resultado": "ok", "nota": "" },
+            { "texto": "Sí, acá está.", "resultado": "ok", "nota": "" },
+            { "texto": "No, no tengo.", "resultado": "mal", "nota": "" }
+          ]},
+          { "npc": "¿A dónde lo llevo?", "opciones": [
+            { "texto": "A la facultad de Derecho, por favor.", "resultado": "ok", "nota": "" },
+            { "texto": "Al hotel primero, después a la facultad.", "resultado": "ok", "nota": "" },
+            { "texto": "No sé, decida usted.", "resultado": "mal", "nota": "" }
+          ]},
+          { "npc": "Buenos días, ¿en qué lo puedo ayudar?", "opciones": [
+            { "texto": "Vengo a inscribirme al doctorado.", "resultado": "ok", "nota": "" },
+            { "texto": "¿Acá es la facultad de Derecho?", "resultado": "ok", "nota": "" },
+            { "texto": "Busco un juzgado.", "resultado": "mal", "nota": "" }
+          ]},
+          { "npc": "¿Sobre qué trata su investigación?", "opciones": [
+            { "texto": "Estudio el derecho constitucional comparado.", "resultado": "ok", "nota": "" },
+            { "texto": "Todavía no lo sé bien.", "resultado": "ok", "nota": "" },
+            { "texto": "Me gusta el fútbol.", "resultado": "mal", "nota": "" }
+          ]},
+          { "npc": "Bienvenidos al seminario. ¿Quién quiere empezar con su ponencia?", "opciones": [
+            { "texto": "Yo, con gusto.", "resultado": "ok", "nota": "" },
+            { "texto": "Prefiero escuchar primero.", "resultado": "ok", "nota": "" },
+            { "texto": "No vine preparado.", "resultado": "mal", "nota": "" }
+          ]},
+          { "npc": "Discrepo de esa conclusión.", "opciones": [
+            { "texto": "Si bien entiendo su punto, los datos dicen lo contrario.", "resultado": "ok", "nota": "" },
+            { "texto": "Puede tener razón, lo voy a revisar.", "resultado": "ok", "nota": "" },
+            { "texto": "Usted no sabe nada.", "resultado": "mal", "nota": "" }
+          ]},
+          { "npc": "¡Bienvenido! ¿Tiene una reserva?", "opciones": [
+            { "texto": "Sí, a mi nombre.", "resultado": "ok", "nota": "" },
+            { "texto": "No, ¿tiene habitaciones libres?", "resultado": "ok", "nota": "" },
+            { "texto": "Sí, tengo un vuelo mañana.", "resultado": "mal", "nota": "" }
+          ]}
+        ]
+      }
     }
   ]
 }
