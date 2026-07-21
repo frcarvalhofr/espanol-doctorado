@@ -1,0 +1,630 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Expediente de Español — Viaje y Derecho</title>
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#5b4a96">
+<link rel="icon" href="icons/favicon-32.png" sizes="32x32">
+<link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+<style>
+  :root {
+    --bg: #eeede4;
+    --bg-raised: #faf9f4;
+    --bg-sunken: #e4e1d4;
+    --ink: #221f2b;
+    --ink-soft: #55506a;
+    --ink-faint: #85809a;
+    --accent: #5b4a96;
+    --accent-ink: #ffffff;
+    --accent-soft: #e9e2f6;
+    --track-viaje: #2f6f5e;
+    --track-viaje-soft: #dfeee8;
+    --track-derecho: #8a2e2e;
+    --track-derecho-soft: #f3e2e0;
+    --track-mixto: #a3791f;
+    --track-mixto-soft: #f3ead1;
+    --rule: #d9d4c6;
+    --stamp: #8a2e2e;
+    --serif: "Iowan Old Style", "Palatino Linotype", "URW Palladio L", Palatino, "Book Antiqua", P052, serif;
+    --sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    --mono: ui-monospace, "Cascadia Mono", "Consolas", "SFMono-Regular", Menlo, monospace;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #17151f;
+      --bg-raised: #201c2c;
+      --bg-sunken: #100e17;
+      --ink: #ede9f5;
+      --ink-soft: #a79fc2;
+      --ink-faint: #746b93;
+      --accent: #b6a5e8;
+      --accent-ink: #17151f;
+      --accent-soft: #2c2542;
+      --track-viaje: #7fdcc0;
+      --track-viaje-soft: #1e3630;
+      --track-derecho: #e39a9a;
+      --track-derecho-soft: #3a2323;
+      --track-mixto: #e0bd6b;
+      --track-mixto-soft: #3a3120;
+      --rule: #352f47;
+      --stamp: #e39a9a;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #17151f;
+    --bg-raised: #201c2c;
+    --bg-sunken: #100e17;
+    --ink: #ede9f5;
+    --ink-soft: #a79fc2;
+    --ink-faint: #746b93;
+    --accent: #b6a5e8;
+    --accent-ink: #17151f;
+    --accent-soft: #2c2542;
+    --track-viaje: #7fdcc0;
+    --track-viaje-soft: #1e3630;
+    --track-derecho: #e39a9a;
+    --track-derecho-soft: #3a2323;
+    --track-mixto: #e0bd6b;
+    --track-mixto-soft: #3a3120;
+    --rule: #352f47;
+    --stamp: #e39a9a;
+  }
+  :root[data-theme="light"] {
+    --bg: #eeede4;
+    --bg-raised: #faf9f4;
+    --bg-sunken: #e4e1d4;
+    --ink: #221f2b;
+    --ink-soft: #55506a;
+    --ink-faint: #85809a;
+    --accent: #5b4a96;
+    --accent-ink: #ffffff;
+    --accent-soft: #e9e2f6;
+    --track-viaje: #2f6f5e;
+    --track-viaje-soft: #dfeee8;
+    --track-derecho: #8a2e2e;
+    --track-derecho-soft: #f3e2e0;
+    --track-mixto: #a3791f;
+    --track-mixto-soft: #f3ead1;
+    --rule: #d9d4c6;
+    --stamp: #8a2e2e;
+  }
+
+  * { box-sizing: border-box; }
+  html { -webkit-text-size-adjust: 100%; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: var(--sans);
+    line-height: 1.55;
+    -webkit-font-smoothing: antialiased;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    * { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+  }
+
+  a { color: var(--accent); }
+  a:focus-visible, button:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+  .wrap {
+    max-width: 920px;
+    margin: 0 auto;
+    padding: clamp(20px, 4vw, 56px) clamp(16px, 4vw, 28px) 80px;
+  }
+
+  /* ---------- Cover / expediente header ---------- */
+  .cover {
+    background: var(--bg-raised);
+    border: 1px solid var(--rule);
+    border-radius: 6px;
+    padding: clamp(22px, 4vw, 40px);
+    position: relative;
+    overflow: hidden;
+  }
+  .cover::before {
+    content: "";
+    position: absolute;
+    left: 0; top: 0; bottom: 0;
+    width: 10px;
+    background: var(--accent);
+  }
+  .eyebrow {
+    font-family: var(--mono);
+    font-size: 0.72rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+    margin: 0 0 10px;
+  }
+  h1 {
+    font-family: var(--serif);
+    font-weight: 600;
+    font-size: clamp(1.7rem, 4vw, 2.5rem);
+    line-height: 1.15;
+    margin: 0 0 6px;
+    text-wrap: balance;
+    color: var(--ink);
+  }
+  .subtitle {
+    font-family: var(--serif);
+    font-style: italic;
+    color: var(--ink-soft);
+    font-size: 1.05rem;
+    margin: 0 0 26px;
+    text-wrap: balance;
+  }
+
+  .datos {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 1px;
+    background: var(--rule);
+    border: 1px solid var(--rule);
+    border-radius: 4px;
+    overflow: hidden;
+  }
+  .dato {
+    background: var(--bg-raised);
+    padding: 12px 16px;
+  }
+  .dato dt {
+    font-family: var(--mono);
+    font-size: 0.68rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+    margin: 0 0 4px;
+  }
+  .dato dd {
+    margin: 0;
+    font-size: 0.94rem;
+    color: var(--ink);
+  }
+
+  .stamp {
+    position: absolute;
+    right: clamp(14px, 4vw, 34px);
+    top: clamp(18px, 4vw, 34px);
+    border: 2px solid var(--stamp);
+    color: var(--stamp);
+    border-radius: 50%;
+    width: 84px;
+    height: 84px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    font-family: var(--mono);
+    font-size: 0.62rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    line-height: 1.25;
+    transform: rotate(8deg);
+    opacity: 0.85;
+  }
+
+  /* ---------- Section scaffolding ---------- */
+  section { margin-top: 56px; }
+  .section-head {
+    display: flex;
+    align-items: baseline;
+    gap: 14px;
+    margin-bottom: 18px;
+    border-bottom: 1px solid var(--rule);
+    padding-bottom: 10px;
+  }
+  .section-head h2 {
+    font-family: var(--serif);
+    font-weight: 600;
+    font-size: 1.4rem;
+    margin: 0;
+    color: var(--ink);
+  }
+  .section-head .n {
+    font-family: var(--mono);
+    color: var(--accent);
+    font-size: 0.85rem;
+  }
+  p.lede {
+    color: var(--ink-soft);
+    max-width: 65ch;
+    margin: 0 0 20px;
+  }
+
+  /* ---------- Pilares ---------- */
+  .pilares {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 14px;
+  }
+  .pilar {
+    background: var(--bg-raised);
+    border: 1px solid var(--rule);
+    border-radius: 4px;
+    padding: 18px 20px;
+  }
+  .pilar .tag {
+    font-family: var(--mono);
+    font-size: 0.7rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin: 0 0 8px;
+  }
+  .pilar h3 {
+    font-family: var(--serif);
+    font-size: 1.08rem;
+    margin: 0 0 6px;
+  }
+  .pilar p {
+    margin: 0;
+    font-size: 0.92rem;
+    color: var(--ink-soft);
+  }
+
+  /* ---------- Nota tú/vos ---------- */
+  .nota {
+    background: var(--accent-soft);
+    border-left: 3px solid var(--accent);
+    border-radius: 0 4px 4px 0;
+    padding: 18px 22px;
+  }
+  .nota h3 {
+    font-family: var(--serif);
+    margin: 0 0 8px;
+    font-size: 1.05rem;
+  }
+  .nota p { margin: 0 0 10px; font-size: 0.94rem; }
+  .nota p:last-child { margin-bottom: 0; }
+  .nota .pt {
+    color: var(--ink-soft);
+    font-size: 0.86rem;
+    font-style: italic;
+  }
+  .nota .pt::before {
+    content: "PT — ";
+    font-style: normal;
+    font-family: var(--mono);
+    font-size: 0.72rem;
+    letter-spacing: 0.06em;
+    color: var(--ink-faint);
+  }
+
+  /* ---------- Bloques y módulos ---------- */
+  .bloque-title {
+    font-family: var(--mono);
+    font-size: 0.72rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+    margin: 34px 0 12px;
+  }
+  .bloque-title:first-child { margin-top: 0; }
+
+  .modulos { display: flex; flex-direction: column; gap: 10px; }
+
+  .modulo {
+    background: var(--bg-raised);
+    border: 1px solid var(--rule);
+    border-radius: 4px;
+    padding: 16px 20px;
+    display: grid;
+    grid-template-columns: 2.6rem 1fr;
+    gap: 4px 16px;
+  }
+  .modulo .num {
+    font-family: var(--serif);
+    font-size: 1.6rem;
+    color: var(--ink-faint);
+    line-height: 1;
+    align-self: start;
+    padding-top: 2px;
+  }
+  .modulo .head {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: 8px 12px;
+  }
+  .modulo h3 {
+    font-family: var(--serif);
+    font-size: 1.12rem;
+    margin: 0;
+    color: var(--ink);
+  }
+  .badges { display: flex; gap: 6px; flex-wrap: wrap; }
+  .badge {
+    font-family: var(--mono);
+    font-size: 0.66rem;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    padding: 2px 8px;
+    border-radius: 999px;
+    white-space: nowrap;
+  }
+  .badge.viaje { background: var(--track-viaje-soft); color: var(--track-viaje); }
+  .badge.derecho { background: var(--track-derecho-soft); color: var(--track-derecho); }
+  .badge.mixto { background: var(--track-mixto-soft); color: var(--track-mixto); }
+
+  .modulo .desc {
+    grid-column: 2;
+    color: var(--ink-soft);
+    font-size: 0.92rem;
+    margin: 2px 0 8px;
+  }
+  .modulo .detalle {
+    grid-column: 2;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 6px 20px;
+    font-size: 0.84rem;
+  }
+  .modulo .detalle dt {
+    font-family: var(--mono);
+    font-size: 0.64rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+    margin: 0;
+  }
+  .modulo .detalle dd {
+    margin: 1px 0 0;
+    color: var(--ink);
+  }
+
+  /* ---------- Cómo empezamos ---------- */
+  .empezar {
+    background: var(--ink);
+    color: var(--bg);
+    border-radius: 6px;
+    padding: clamp(20px, 4vw, 32px);
+  }
+  .empezar h2 {
+    font-family: var(--serif);
+    margin: 0 0 10px;
+    font-size: 1.3rem;
+    color: var(--bg);
+  }
+  .empezar p { margin: 0; color: color-mix(in srgb, var(--bg) 78%, transparent); max-width: 62ch; }
+  .empezar strong { color: var(--bg); }
+
+  footer {
+    margin-top: 48px;
+    padding-top: 16px;
+    border-top: 1px solid var(--rule);
+    font-family: var(--mono);
+    font-size: 0.72rem;
+    color: var(--ink-faint);
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  @media (max-width: 520px) {
+    .modulo { grid-template-columns: 1fr; }
+    .modulo .num { display: none; }
+    .modulo .desc, .modulo .detalle { grid-column: 1; }
+    .stamp { position: static; margin-bottom: 16px; transform: rotate(-3deg); }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="cover">
+    <div class="stamp">Expediente<br>N.º 001<br>2026</div>
+    <p class="eyebrow">Programa de estudio — Español</p>
+    <h1>Del aeropuerto de Ezeiza a la Facultad de Derecho</h1>
+    <p class="subtitle">Un recorrido de español para viajar por el mundo hispanohablante y cursar un doctorado en Derecho en Buenos Aires.</p>
+    <dl class="datos">
+      <div class="dato"><dt>Nivel de partida</dt><dd>Básico / Intermedio (A2–B1)</dd></div>
+      <div class="dato"><dt>Objetivo</dt><dd>Viajes + vida académica jurídica</dd></div>
+      <div class="dato"><dt>Destino</dt><dd>Buenos Aires, Argentina</dd></div>
+      <div class="dato"><dt>Forma de tratamiento</dt><dd>Tuteo (tú) — con oído entrenado para el voseo</dd></div>
+    </dl>
+  </div>
+
+  <section>
+    <div class="section-head"><span class="n">§1</span><h2>Los tres pilares de cada módulo</h2></div>
+    <p class="lede">Cada módulo combina las mismas tres piezas, en distinta proporción según el tema.</p>
+    <div class="pilares">
+      <div class="pilar">
+        <p class="tag">Gramática</p>
+        <h3>La estructura</h3>
+        <p>Un punto gramatical por módulo, explicado con ejemplos y contrastado con el portugués cuando la diferencia es sutil o confusa.</p>
+      </div>
+      <div class="pilar">
+        <p class="tag">Vocabulario</p>
+        <h3>Las palabras que vas a usar de verdad</h3>
+        <p>Listas breves y temáticas: lo que se dice en un mostrador de migraciones o lo que se dice en un aula de posgrado, no vocabulario genérico de manual. Se practica con imágenes en la ficha de práctica de cada módulo.</p>
+      </div>
+      <div class="pilar">
+        <p class="tag">Conversación</p>
+        <h3>Escucha y habla</h3>
+        <p>Diálogos y simulacros en el chat, más ejercicios de dictado y "habla en voz alta" con audio real en la ficha de práctica de cada módulo.</p>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="section-head"><span class="n">§2</span><h2>Una aclaración necesaria: tú y vos</h2></div>
+    <div class="nota">
+      <h3>Vas a hablar en tú, pero vas a escuchar en vos</h3>
+      <p>En Buenos Aires casi todo el mundo te va a hablar de <strong>vos</strong> (<em>vos tenés, vos podés, vos sabés</em>), incluidos tus profesores y compañeros de doctorado. Como preferís usar <strong>tú</strong>, este programa te va a enseñar a producir siempre en tú/usted — nadie se va a extrañar, es perfectamente normal para un extranjero — pero cada módulo con contenido rioplatense incluye una nota de "reconocimiento": cómo identificar el voseo cuando lo escuchás, sin que tengas que producirlo.</p>
+      <p class="pt">Você vai falar sempre em "tú", mas em Buenos Aires quase todo mundo vai falar com você em "vos" (vos tenés, vos podés). Isso é absolutamente normal para um estrangeiro. O programa ensina você a reconhecer o voseo de ouvido — para entender — sem exigir que você o produza.</p>
+    </div>
+  </section>
+
+  <section>
+    <div class="section-head"><span class="n">§3</span><h2>Hoja de ruta — 10 módulos</h2></div>
+    <p class="lede">Progresión sugerida, de la supervivencia inmediata en un viaje hasta la lectura y el debate jurídico. Cada módulo se trabaja en el chat; esta página queda como mapa general.</p>
+
+    <p class="bloque-title">Bloque 0 — Punto de partida</p>
+    <div class="modulos">
+      <div class="modulo">
+        <div class="num">0</div>
+        <div class="head">
+          <h3>Diagnóstico y bases</h3>
+          <div class="badges"><span class="badge mixto">Mixto</span></div>
+        </div>
+        <p class="desc">Pronunciación, alfabeto, ser/estar, presente regular e irregular, saludos formales e informales.</p>
+        <dl class="detalle">
+          <div><dt>Gramática</dt><dd>Ser vs. estar · presente indicativo</dd></div>
+          <div><dt>Vocabulario</dt><dd>Saludos, presentaciones, números</dd></div>
+          <div><dt>Conversación</dt><dd>Presentarte y presentar tu proyecto de doctorado</dd></div>
+        </dl>
+      </div>
+    </div>
+
+    <p class="bloque-title">Bloque 1 — Para viajar</p>
+    <div class="modulos">
+      <div class="modulo">
+        <div class="num">1</div>
+        <div class="head">
+          <h3>Llegada y movimiento</h3>
+          <div class="badges"><span class="badge viaje">Viaje</span></div>
+        </div>
+        <p class="desc">Aeropuerto, migraciones, taxis y transporte público, pedir y entender indicaciones en la calle.</p>
+        <dl class="detalle">
+          <div><dt>Gramática</dt><dd>Verbos de movimiento · imperativo informal (tú)</dd></div>
+          <div><dt>Vocabulario</dt><dd>Migraciones, subte/colectivo, direcciones</dd></div>
+          <div><dt>Conversación</dt><dd>Simulacro: del avión al hotel</dd></div>
+        </dl>
+      </div>
+      <div class="modulo">
+        <div class="num">2</div>
+        <div class="head">
+          <h3>Alojamiento y vida diaria</h3>
+          <div class="badges"><span class="badge viaje">Viaje</span></div>
+        </div>
+        <p class="desc">Reservar alojamiento, pedir en un restaurante, hacer compras cotidianas.</p>
+        <dl class="detalle">
+          <div><dt>Gramática</dt><dd>Pretérito perfecto compuesto · "gustar" y verbos similares</dd></div>
+          <div><dt>Vocabulario</dt><dd>Comida, precios, quejas y reclamos</dd></div>
+          <div><dt>Conversación</dt><dd>Pedir en un café porteño, negociar un alquiler temporal</dd></div>
+        </dl>
+      </div>
+      <div class="modulo">
+        <div class="num">3</div>
+        <div class="head">
+          <h3>Buenos Aires y el español rioplatense</h3>
+          <div class="badges"><span class="badge viaje">Viaje</span><span class="badge mixto">Reconocimiento</span></div>
+        </div>
+        <p class="desc">Entender el voseo y el "che" de oído, el acento porteño (yeísmo rehilado), barrios y referencias culturales básicas.</p>
+        <dl class="detalle">
+          <div><dt>Gramática</dt><dd>Voseo: reconocer, no producir</dd></div>
+          <div><dt>Vocabulario</dt><dd>Lunfardo cotidiano, barrios, "che/boludo/laburo"</dd></div>
+          <div><dt>Conversación</dt><dd>Entender a un taxista o a un vecino porteño</dd></div>
+        </dl>
+      </div>
+    </div>
+
+    <p class="bloque-title">Bloque 2 — Para la universidad y el derecho</p>
+    <div class="modulos">
+      <div class="modulo">
+        <div class="num">4</div>
+        <div class="head">
+          <h3>La vida académica</h3>
+          <div class="badges"><span class="badge derecho">Universidad</span></div>
+        </div>
+        <p class="desc">Inscripción, campus, biblioteca, trámites migratorios de estudiante extranjero.</p>
+        <dl class="detalle">
+          <div><dt>Gramática</dt><dd>Pretérito indefinido vs. imperfecto</dd></div>
+          <div><dt>Vocabulario</dt><dd>Cátedra, legajo, beca, aula, biblioteca</dd></div>
+          <div><dt>Conversación</dt><dd>Hablar con la secretaría de posgrado</dd></div>
+        </dl>
+      </div>
+      <div class="modulo">
+        <div class="num">5</div>
+        <div class="head">
+          <h3>Vocabulario jurídico esencial</h3>
+          <div class="badges"><span class="badge derecho">Derecho</span></div>
+        </div>
+        <p class="desc">Ramas del derecho, poder judicial, fuentes del derecho, latinismos usados en español jurídico.</p>
+        <dl class="detalle">
+          <div><dt>Gramática</dt><dd>Futuro simple · condicional</dd></div>
+          <div><dt>Vocabulario</dt><dd>Fallo, sentencia, demanda, juzgado, código</dd></div>
+          <div><dt>Conversación</dt><dd>Describir tu área de investigación</dd></div>
+        </dl>
+      </div>
+      <div class="modulo">
+        <div class="num">6</div>
+        <div class="head">
+          <h3>Trámites y vida cotidiana en Buenos Aires</h3>
+          <div class="badges"><span class="badge viaje">Viaje</span><span class="badge derecho">Universidad</span></div>
+        </div>
+        <p class="desc">Banco, salud, vivienda estable, DNI/CUIT, trámites de residencia.</p>
+        <dl class="detalle">
+          <div><dt>Gramática</dt><dd>Subjuntivo presente (deseo, duda, petición)</dd></div>
+          <div><dt>Vocabulario</dt><dd>Trámite, comprobante, turno, obra social</dd></div>
+          <div><dt>Conversación</dt><dd>Pedir un turno, reclamar en un banco</dd></div>
+        </dl>
+      </div>
+      <div class="modulo">
+        <div class="num">7</div>
+        <div class="head">
+          <h3>Lectura y redacción jurídica</h3>
+          <div class="badges"><span class="badge derecho">Derecho</span></div>
+        </div>
+        <p class="desc">Comprensión de sentencias y doctrina, conectores argumentativos, fichaje y resumen académico.</p>
+        <dl class="detalle">
+          <div><dt>Gramática</dt><dd>Subjuntivo en subordinadas · voz pasiva</dd></div>
+          <div><dt>Vocabulario</dt><dd>Por consiguiente, en tanto, cabe destacar</dd></div>
+          <div><dt>Conversación</dt><dd>Resumir un fallo en tus propias palabras</dd></div>
+        </dl>
+      </div>
+    </div>
+
+    <p class="bloque-title">Bloque 3 — Fluidez y práctica real</p>
+    <div class="modulos">
+      <div class="modulo">
+        <div class="num">8</div>
+        <div class="head">
+          <h3>Seminarios y debate académico</h3>
+          <div class="badges"><span class="badge derecho">Derecho</span></div>
+        </div>
+        <p class="desc">Participar en clase, defender una posición, citar y parafrasear a otros autores.</p>
+        <dl class="detalle">
+          <div><dt>Gramática</dt><dd>Estilo indirecto · conectores de contraste</dd></div>
+          <div><dt>Vocabulario</dt><dd>Coincido con, discrepo de, sostengo que</dd></div>
+          <div><dt>Conversación</dt><dd>Simulacro de seminario con réplica</dd></div>
+        </dl>
+      </div>
+      <div class="modulo">
+        <div class="num">9</div>
+        <div class="head">
+          <h3>Simulacros integrados</h3>
+          <div class="badges"><span class="badge mixto">Integrador</span></div>
+        </div>
+        <p class="desc">Del aeropuerto a la facultad en una sola secuencia: primer día de clases, entrevista con un profesor, mesa de debate. Autoevaluación final.</p>
+        <dl class="detalle">
+          <div><dt>Gramática</dt><dd>Repaso integrado de todos los tiempos vistos</dd></div>
+          <div><dt>Vocabulario</dt><dd>Repaso cruzado viaje + derecho</dd></div>
+          <div><dt>Conversación</dt><dd>Simulacro largo, sin apoyo</dd></div>
+        </dl>
+      </div>
+    </div>
+  </section>
+
+  <section class="empezar">
+    <h2>Cómo empezamos</h2>
+    <p>Esta página es el mapa del programa completo. La gramática y la conversación pasan en el chat, módulo por módulo. Para vocabulario visual, escucha y habla en voz alta de cada módulo, usá la <a href="practica.html" style="color:inherit;text-decoration:underline;">ficha de práctica</a> — funciona offline, con la voz de tu propio sistema. <strong>Ya empezamos con el Módulo 0.</strong></p>
+  </section>
+
+  <footer>
+    <span>Expediente N.º 001 — Español para viaje y doctorado</span>
+    <span>Buenos Aires, 2026</span>
+  </footer>
+
+</div>
+<script>
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', () => navigator.serviceWorker.register('sw.js').catch(() => {}));
+}
+</script>
+</body>
+</html>

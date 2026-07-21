@@ -1,0 +1,845 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Práctica — Curso de español</title>
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#5b4a96">
+<link rel="icon" href="icons/favicon-32.png" sizes="32x32">
+<link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+<style>
+  :root {
+    --bg: #eeede4;
+    --bg-raised: #faf9f4;
+    --ink: #221f2b;
+    --ink-soft: #55506a;
+    --ink-faint: #85809a;
+    --accent: #5b4a96;
+    --accent-soft: #e9e2f6;
+    --accent-ink: #ffffff;
+    --ok: #2f6f5e;
+    --ok-soft: #dfeee8;
+    --bad: #8a2e2e;
+    --bad-soft: #f3e2e0;
+    --warn: #a3791f;
+    --warn-soft: #f3ead1;
+    --rule: #d9d4c6;
+    --track-viaje: #2f6f5e;
+    --track-viaje-soft: #dfeee8;
+    --track-derecho: #8a2e2e;
+    --track-derecho-soft: #f3e2e0;
+    --track-mixto: #a3791f;
+    --track-mixto-soft: #f3ead1;
+    --serif: "Iowan Old Style", "Palatino Linotype", "URW Palladio L", Palatino, "Book Antiqua", P052, serif;
+    --sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    --mono: ui-monospace, "Cascadia Mono", "Consolas", "SFMono-Regular", Menlo, monospace;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #17151f; --bg-raised: #201c2c; --ink: #ede9f5; --ink-soft: #a79fc2; --ink-faint: #746b93;
+      --accent: #b6a5e8; --accent-ink: #17151f; --accent-soft: #2c2542;
+      --ok: #7fdcc0; --ok-soft: #1e3630; --bad: #e39a9a; --bad-soft: #3a2323;
+      --warn: #e0bd6b; --warn-soft: #3a3120; --rule: #352f47;
+      --track-viaje: #7fdcc0; --track-viaje-soft: #1e3630;
+      --track-derecho: #e39a9a; --track-derecho-soft: #3a2323;
+      --track-mixto: #e0bd6b; --track-mixto-soft: #3a3120;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #17151f; --bg-raised: #201c2c; --ink: #ede9f5; --ink-soft: #a79fc2; --ink-faint: #746b93;
+    --accent: #b6a5e8; --accent-ink: #17151f; --accent-soft: #2c2542;
+    --ok: #7fdcc0; --ok-soft: #1e3630; --bad: #e39a9a; --bad-soft: #3a2323;
+    --warn: #e0bd6b; --warn-soft: #3a3120; --rule: #352f47;
+    --track-viaje: #7fdcc0; --track-viaje-soft: #1e3630;
+    --track-derecho: #e39a9a; --track-derecho-soft: #3a2323;
+    --track-mixto: #e0bd6b; --track-mixto-soft: #3a3120;
+  }
+  :root[data-theme="light"] {
+    --bg: #eeede4; --bg-raised: #faf9f4; --ink: #221f2b; --ink-soft: #55506a; --ink-faint: #85809a;
+    --accent: #5b4a96; --accent-ink: #ffffff; --accent-soft: #e9e2f6;
+    --ok: #2f6f5e; --ok-soft: #dfeee8; --bad: #8a2e2e; --bad-soft: #f3e2e0;
+    --warn: #a3791f; --warn-soft: #f3ead1; --rule: #d9d4c6;
+    --track-viaje: #2f6f5e; --track-viaje-soft: #dfeee8;
+    --track-derecho: #8a2e2e; --track-derecho-soft: #f3e2e0;
+    --track-mixto: #a3791f; --track-mixto-soft: #f3ead1;
+  }
+
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; background: var(--bg); color: var(--ink);
+    font-family: var(--sans); line-height: 1.55; -webkit-font-smoothing: antialiased;
+  }
+  @media (prefers-reduced-motion: reduce) { * { animation-duration: .01ms !important; transition-duration: .01ms !important; } }
+
+  .wrap { max-width: 880px; margin: 0 auto; padding: clamp(18px,4vw,48px) clamp(14px,4vw,24px) 90px; }
+
+  .back { font-family: var(--mono); font-size: .78rem; color: var(--ink-faint); text-decoration: none; }
+  .back:hover { color: var(--accent); }
+
+  header.top { margin: 18px 0 22px; padding-bottom: 18px; border-bottom: 1px solid var(--rule); }
+  .eyebrow { font-family: var(--mono); font-size: .72rem; letter-spacing: .14em; text-transform: uppercase; color: var(--ink-faint); margin: 0 0 8px; }
+  h1 { font-family: var(--serif); font-weight: 600; font-size: clamp(1.5rem,3.6vw,2.1rem); margin: 0 0 8px; text-wrap: balance; }
+  .lede { color: var(--ink-soft); max-width: 62ch; margin: 0; font-size: .96rem; }
+
+  /* ---------- Barra de estadísticas (gamificación) ---------- */
+  .statsbar {
+    margin-top: 18px; display: flex; align-items: center; gap: 16px; flex-wrap: wrap;
+    background: var(--bg-raised); border: 1px solid var(--rule); border-radius: 8px;
+    padding: 10px 16px;
+  }
+  .stat { font-family: var(--mono); font-size: .84rem; color: var(--ink-soft); white-space: nowrap; }
+  .stat b { color: var(--ink); font-size: .92rem; }
+  .stat-bar { flex: 1; min-width: 120px; display: flex; align-items: center; gap: 8px; }
+  .stat-bar .track { flex: 1; height: 8px; border-radius: 999px; background: var(--rule); overflow: hidden; }
+  .stat-bar .fill { height: 100%; background: var(--accent); border-radius: 999px; transition: width .3s ease; width: 0%; }
+  .stat-bar .pct { font-family: var(--mono); font-size: .76rem; color: var(--ink-faint); min-width: 3ch; text-align: right; }
+
+  .voice-bar {
+    margin-top: 14px; display: flex; align-items: center; gap: 10px; flex-wrap: wrap;
+    font-family: var(--mono); font-size: .78rem; color: var(--ink-soft);
+  }
+  select {
+    font-family: var(--sans); font-size: .84rem; padding: 5px 8px; border-radius: 4px;
+    border: 1px solid var(--rule); background: var(--bg-raised); color: var(--ink);
+  }
+  .tip { font-size: .8rem; color: var(--ink-faint); margin-top: 6px; }
+
+  /* ---------- Navegación de módulos ---------- */
+  .modnav { display: flex; gap: 8px; overflow-x: auto; padding: 4px 2px 14px; margin-bottom: 8px; scrollbar-width: thin; }
+  .pill {
+    flex: 0 0 auto; font-family: var(--sans); font-size: .8rem; font-weight: 600; cursor: pointer;
+    background: var(--bg-raised); border: 1px solid var(--rule); color: var(--ink-soft);
+    border-radius: 999px; padding: 7px 14px 7px 10px; display: flex; align-items: center; gap: 6px;
+    white-space: nowrap;
+  }
+  .pill .pillnum {
+    font-family: var(--mono); font-size: .72rem; width: 1.4em; height: 1.4em; border-radius: 50%;
+    display: inline-flex; align-items: center; justify-content: center; background: var(--rule); color: var(--ink-faint);
+  }
+  .pill.badge-viaje .pillnum { background: var(--track-viaje-soft); color: var(--track-viaje); }
+  .pill.badge-derecho .pillnum { background: var(--track-derecho-soft); color: var(--track-derecho); }
+  .pill.badge-mixto .pillnum { background: var(--track-mixto-soft); color: var(--track-mixto); }
+  .pill.active { border-color: var(--accent); color: var(--ink); background: var(--accent-soft); }
+  .pill:hover { border-color: var(--accent); }
+
+  .modulo-estado {
+    font-family: var(--mono); font-size: .66rem; letter-spacing: .05em; text-transform: uppercase;
+    padding: 2px 8px; border-radius: 999px; display: inline-block; margin-left: 8px;
+  }
+  .modulo-estado.concluido { background: var(--ok-soft); color: var(--ok); }
+  .modulo-estado.en_curso { background: var(--warn-soft); color: var(--warn); }
+  .modulo-estado.pendiente { background: var(--rule); color: var(--ink-faint); }
+
+  section { margin-top: 44px; }
+  .section-head { display: flex; align-items: baseline; gap: 12px; margin-bottom: 6px; border-bottom: 1px solid var(--rule); padding-bottom: 10px; }
+  .section-head .n { font-family: var(--mono); color: var(--accent); font-size: .82rem; }
+  .section-head h2 { font-family: var(--serif); font-weight: 600; font-size: 1.28rem; margin: 0; }
+  p.hint { color: var(--ink-soft); font-size: .9rem; margin: 10px 0 18px; max-width: 62ch; }
+
+  .placeholder {
+    background: var(--bg-raised); border: 1px dashed var(--rule); border-radius: 8px;
+    padding: 22px; color: var(--ink-faint); font-size: .92rem; text-align: center;
+  }
+
+  button {
+    font-family: var(--sans); font-size: .82rem; font-weight: 600; cursor: pointer;
+    border-radius: 5px; border: 1px solid transparent; padding: 7px 13px;
+  }
+  button:disabled { cursor: default; opacity: .55; }
+  button:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+  .btn-primary { background: var(--accent); color: var(--accent-ink); }
+  .btn-primary:hover:not(:disabled) { filter: brightness(1.08); }
+  .btn-ghost { background: transparent; border-color: var(--rule); color: var(--ink-soft); }
+  .btn-ghost:hover:not(:disabled) { border-color: var(--accent); color: var(--accent); }
+  .btn-listen { background: var(--accent-soft); color: var(--accent); border-color: transparent; }
+  .btn-listen:hover:not(:disabled) { filter: brightness(1.05); }
+  .btn-record { background: var(--bad-soft); color: var(--bad); border-color: transparent; }
+  .btn-record.recording { background: var(--bad); color: var(--accent-ink); }
+
+  /* ---------- Vocabulario: flashcard de opción múltiple ---------- */
+  .flashcard {
+    background: var(--bg-raised); border: 1px solid var(--rule); border-radius: 10px;
+    padding: clamp(20px,4vw,32px); text-align: center; max-width: 520px; margin: 0 auto;
+  }
+  .flashcard .tag { font-family: var(--mono); font-size: .7rem; letter-spacing: .05em; text-transform: uppercase; color: var(--ink-faint); }
+  .flashcard .visual { font-size: 3.4rem; line-height: 1; margin: 14px 0 20px; }
+  .flashcard .visual svg { width: 3.2rem; height: 3.2rem; }
+  .choices { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px,1fr)); gap: 10px; }
+  .choice-btn {
+    font-family: var(--sans); font-size: .96rem; font-weight: 600; padding: 12px 14px;
+    border-radius: 8px; border: 1px solid var(--rule); background: var(--bg); color: var(--ink); cursor: pointer;
+  }
+  .choice-btn:hover:not(:disabled) { border-color: var(--accent); }
+  .choice-btn.is-correct { border-color: var(--ok); background: var(--ok-soft); color: var(--ok); }
+  .choice-btn.is-wrong { border-color: var(--bad); background: var(--bad-soft); color: var(--bad); }
+  .flashcard-foot { display: flex; justify-content: center; gap: 10px; margin-top: 18px; }
+  .flashcard-counter { font-family: var(--mono); font-size: .78rem; color: var(--ink-faint); margin-top: 14px; }
+  .flashcard-done { padding: 30px 20px; text-align: center; }
+  .flashcard-done .big { font-size: 2.2rem; }
+
+  /* ---------- Escucha y escribe ---------- */
+  .dictado { display: flex; flex-direction: column; gap: 16px; }
+  .ditem { background: var(--bg-raised); border: 1px solid var(--rule); border-radius: 6px; padding: 16px 18px; }
+  .ditem.is-done { border-color: var(--ok); }
+  .ditem .row1 { display: flex; align-items: center; gap: 10px; margin-bottom: 10px; flex-wrap: wrap; }
+  .ditem .num { font-family: var(--mono); color: var(--ink-faint); font-size: .8rem; }
+  .ditem textarea {
+    width: 100%; min-height: 44px; resize: vertical; font-family: var(--sans); font-size: .92rem;
+    padding: 8px 10px; border-radius: 4px; border: 1px solid var(--rule); background: var(--bg); color: var(--ink);
+  }
+  .ditem .actions { display: flex; gap: 8px; margin-top: 10px; flex-wrap: wrap; }
+  .diffline { margin-top: 12px; font-size: .95rem; line-height: 1.9; }
+  .w-match { color: var(--ink); }
+  .w-wrong { color: var(--bad); text-decoration: line-through; text-decoration-color: var(--bad); }
+  .w-missing { color: var(--ink-faint); font-style: italic; }
+  .w-missing::before { content: "⟨ "; }
+  .w-missing::after { content: " ⟩"; }
+
+  /* ---------- Shadowing + grabación ---------- */
+  .shadow-list { display: flex; flex-direction: column; gap: 10px; }
+  .sitem {
+    background: var(--bg-raised); border: 1px solid var(--rule); border-radius: 6px;
+    padding: 14px 18px; display: flex; align-items: center; gap: 10px; flex-wrap: wrap;
+  }
+  .sitem.is-done { border-color: var(--ok); }
+  .sitem .txt { flex: 1; min-width: 160px; font-size: 1rem; }
+  .sitem .txt .es { font-weight: 600; }
+  label.check { display: flex; align-items: center; gap: 6px; font-size: .82rem; color: var(--ink-soft); font-family: var(--mono); cursor: pointer; }
+  .progress { font-family: var(--mono); font-size: .8rem; color: var(--ink-faint); margin-top: 10px; }
+  .mic-tip { font-size: .78rem; color: var(--ink-faint); margin-top: 8px; }
+
+  footer { margin-top: 50px; padding-top: 16px; border-top: 1px solid var(--rule); font-family: var(--mono); font-size: .72rem; color: var(--ink-faint); }
+
+  @media (max-width: 480px) {
+    .choices { grid-template-columns: 1fr 1fr; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <a class="back" href="programa.html">&larr; Volver al programa</a>
+
+  <header class="top">
+    <p class="eyebrow">Ficha de práctica</p>
+    <h1 id="moduleTitle">—</h1>
+    <p class="lede" id="moduleDesc">—</p>
+
+    <div class="statsbar">
+      <span class="stat">⭐ <b id="xpTotal">0</b> XP</span>
+      <span class="stat">🔥 <b id="streakCount">0</b> días</span>
+      <div class="stat-bar">
+        <span class="stat">Módulo</span>
+        <div class="track"><div class="fill" id="moduleProgressFill"></div></div>
+        <span class="pct" id="moduleProgressPct">0%</span>
+      </div>
+    </div>
+
+    <div class="voice-bar">
+      <span>Voz para escuchar:</span>
+      <select id="voiceSelect"></select>
+      <button class="btn-ghost" id="testVoice" type="button">🔊 probar</button>
+    </div>
+    <p class="tip" id="voiceTip"></p>
+  </header>
+
+  <nav class="modnav" id="modNav"></nav>
+
+  <div id="moduleContent"></div>
+
+  <footer>Práctica local · datos en tu navegador (localStorage) · Buenos Aires, 2026</footer>
+</div>
+
+<script>
+/* ======================================================================
+   Datos del curso — espejo de curso.json.
+   Si editás curso.json, copiá el contenido actualizado acá adentro.
+   ====================================================================== */
+const CURSO = {
+  "modulos": [
+    {
+      "id": 0, "bloque": 0, "bloque_titulo": "Punto de partida", "titulo": "Diagnóstico y bases",
+      "badges": [{ "clase": "mixto", "etiqueta": "Mixto" }],
+      "descripcion": "Pronunciación, alfabeto, ser/estar, presente regular e irregular, saludos formales e informales.",
+      "estado": "concluido",
+      "vocabulario": { "items": [
+        { "cat": "saludo informal", "emoji": "🙋", "answer": "hola" },
+        { "cat": "saludo formal · mañana", "emoji": "🌅", "answer": "buenos días" },
+        { "cat": "saludo formal · tarde", "emoji": "🌤️", "answer": "buenas tardes" },
+        { "cat": "saludo formal · noche", "emoji": "🌙", "answer": "buenas noches" },
+        { "cat": "despedida", "emoji": "👋", "answer": "adiós" },
+        { "cat": "cortesía · pedir", "emoji": "🙏", "answer": "por favor" },
+        { "cat": "cortesía · agradecer", "emoji": "🙌", "answer": "gracias" },
+        { "cat": "cortesía · responder \"gracias\"", "emoji": "👍", "answer": "de nada" },
+        { "cat": "presentación", "emoji": "🤝", "answer": "mucho gusto" },
+        { "cat": "afirmación", "emoji": "✅", "answer": "sí" },
+        { "cat": "negación", "emoji": "❌", "answer": "no" },
+        { "cat": "número", "emoji": "0️⃣", "answer": "cero" },
+        { "cat": "número", "emoji": "1️⃣", "answer": "uno" },
+        { "cat": "número", "emoji": "2️⃣", "answer": "dos" },
+        { "cat": "número", "emoji": "3️⃣", "answer": "tres" },
+        { "cat": "número", "emoji": "4️⃣", "answer": "cuatro" },
+        { "cat": "número", "emoji": "5️⃣", "answer": "cinco" },
+        { "cat": "número", "emoji": "6️⃣", "answer": "seis" },
+        { "cat": "número", "emoji": "7️⃣", "answer": "siete" },
+        { "cat": "número", "emoji": "8️⃣", "answer": "ocho" },
+        { "cat": "número", "emoji": "9️⃣", "answer": "nueve" },
+        { "cat": "número", "emoji": "🔟", "answer": "diez" }
+      ]},
+      "dictado": [
+        "Hola, ¿cómo estás?",
+        "Buenos días, ¿cómo te llamas?",
+        "Mucho gusto, soy estudiante de doctorado.",
+        "Gracias por tu ayuda.",
+        "Estoy muy bien, gracias, ¿y tú?"
+      ],
+      "shadowing": [
+        "Hola, me llamo…",
+        "Soy de Brasil.",
+        "Estoy en Buenos Aires.",
+        "Soy estudiante de doctorado en Derecho.",
+        "Mucho gusto."
+      ]
+    },
+    {
+      "id": 1, "bloque": 1, "bloque_titulo": "Para viajar", "titulo": "Llegada y movimiento",
+      "badges": [{ "clase": "viaje", "etiqueta": "Viaje" }],
+      "descripcion": "Aeropuerto, migraciones, taxis y transporte público, pedir y entender indicaciones en la calle.",
+      "estado": "en_curso",
+      "vocabulario": { "items": [
+        { "cat": "medio de transporte · llegar", "emoji": "✈️", "answer": "vuelo" },
+        { "cat": "control al llegar · documentos", "emoji": "🛂", "answer": "migraciones" },
+        { "cat": "control de equipaje prohibido", "emoji": "🛃", "answer": "aduana" },
+        { "cat": "buscar la valija", "emoji": "🛄", "answer": "equipaje" },
+        { "cat": "documento de viaje", "icon": "pasaporte", "answer": "pasaporte" },
+        { "cat": "transporte subterráneo porteño", "emoji": "🚇", "answer": "subte" },
+        { "cat": "transporte de superficie", "emoji": "🚌", "answer": "colectivo" },
+        { "cat": "transporte privado", "emoji": "🚕", "answer": "taxi" },
+        { "cat": "para pagar el viaje en Buenos Aires", "icon": "tarjeta", "answer": "tarjeta SUBE" },
+        { "cat": "punto de partida", "emoji": "🛫", "answer": "salida" },
+        { "cat": "punto de llegada", "emoji": "🛬", "answer": "llegada" },
+        { "cat": "parada intermedia del vuelo", "icon": "escala", "answer": "escala" },
+        { "cat": "dirección · hacia la izquierda", "emoji": "⬅️", "answer": "a la izquierda" },
+        { "cat": "dirección · hacia la derecha", "emoji": "➡️", "answer": "a la derecha" },
+        { "cat": "dirección · todo recto", "emoji": "⬆️", "answer": "todo derecho" },
+        { "cat": "ubicación en la calle", "emoji": "📍", "answer": "la esquina" }
+      ]},
+      "dictado": [
+        "Perdón, ¿dónde queda el control de migraciones?",
+        "Sigue todo derecho y dobla a la izquierda.",
+        "¿Cuánto cuesta un boleto de subte?",
+        "Toma un taxi hasta el hotel, por favor.",
+        "Mi vuelo tiene una escala en San Pablo."
+      ],
+      "shadowing": [
+        "¿Dónde queda la salida?",
+        "Necesito un taxi, por favor.",
+        "¿Cuánto cuesta el boleto?",
+        "Estoy buscando mi equipaje.",
+        "¿Me puedes indicar el camino al subte?"
+      ]
+    },
+    { "id": 2, "bloque": 1, "bloque_titulo": "Para viajar", "titulo": "Alojamiento y vida diaria",
+      "badges": [{ "clase": "viaje", "etiqueta": "Viaje" }],
+      "descripcion": "Reservar alojamiento, pedir en un restaurante, hacer compras cotidianas.",
+      "estado": "pendiente", "vocabulario": { "items": [] }, "dictado": [], "shadowing": [] },
+    { "id": 3, "bloque": 1, "bloque_titulo": "Para viajar", "titulo": "Buenos Aires y el español rioplatense",
+      "badges": [{ "clase": "viaje", "etiqueta": "Viaje" }, { "clase": "mixto", "etiqueta": "Reconocimiento" }],
+      "descripcion": "Entender el voseo y el \"che\" de oído, el acento porteño (yeísmo rehilado), barrios y referencias culturales básicas.",
+      "estado": "pendiente", "vocabulario": { "items": [] }, "dictado": [], "shadowing": [] },
+    { "id": 4, "bloque": 2, "bloque_titulo": "Para la universidad y el derecho", "titulo": "La vida académica",
+      "badges": [{ "clase": "derecho", "etiqueta": "Universidad" }],
+      "descripcion": "Inscripción, campus, biblioteca, trámites migratorios de estudiante extranjero.",
+      "estado": "pendiente", "vocabulario": { "items": [] }, "dictado": [], "shadowing": [] },
+    { "id": 5, "bloque": 2, "bloque_titulo": "Para la universidad y el derecho", "titulo": "Vocabulario jurídico esencial",
+      "badges": [{ "clase": "derecho", "etiqueta": "Derecho" }],
+      "descripcion": "Ramas del derecho, poder judicial, fuentes del derecho, latinismos usados en español jurídico.",
+      "estado": "pendiente", "vocabulario": { "items": [] }, "dictado": [], "shadowing": [] },
+    { "id": 6, "bloque": 2, "bloque_titulo": "Para la universidad y el derecho", "titulo": "Trámites y vida cotidiana en Buenos Aires",
+      "badges": [{ "clase": "viaje", "etiqueta": "Viaje" }, { "clase": "derecho", "etiqueta": "Universidad" }],
+      "descripcion": "Banco, salud, vivienda estable, DNI/CUIT, trámites de residencia.",
+      "estado": "pendiente", "vocabulario": { "items": [] }, "dictado": [], "shadowing": [] },
+    { "id": 7, "bloque": 2, "bloque_titulo": "Para la universidad y el derecho", "titulo": "Lectura y redacción jurídica",
+      "badges": [{ "clase": "derecho", "etiqueta": "Derecho" }],
+      "descripcion": "Comprensión de sentencias y doctrina, conectores argumentativos, fichaje y resumen académico.",
+      "estado": "pendiente", "vocabulario": { "items": [] }, "dictado": [], "shadowing": [] },
+    { "id": 8, "bloque": 3, "bloque_titulo": "Fluidez y práctica real", "titulo": "Seminarios y debate académico",
+      "badges": [{ "clase": "derecho", "etiqueta": "Derecho" }],
+      "descripcion": "Participar en clase, defender una posición, citar y parafrasear a otros autores.",
+      "estado": "pendiente", "vocabulario": { "items": [] }, "dictado": [], "shadowing": [] },
+    { "id": 9, "bloque": 3, "bloque_titulo": "Fluidez y práctica real", "titulo": "Simulacros integrados",
+      "badges": [{ "clase": "mixto", "etiqueta": "Integrador" }],
+      "descripcion": "Del aeropuerto a la facultad en una sola secuencia: primer día de clases, entrevista con un profesor, mesa de debate. Autoevaluación final.",
+      "estado": "pendiente", "vocabulario": { "items": [] }, "dictado": [], "shadowing": [] }
+  ]
+};
+
+/* íconos simples (SVG) para conceptos sin buen emoji */
+const ICONS = {
+  pasaporte: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="5" y="2.5" width="14" height="19" rx="1.5"/><circle cx="12" cy="10" r="2.6"/><path d="M9.2 15.5c0-1.8 1.3-2.7 2.8-2.7s2.8.9 2.8 2.7"/><path d="M8 19h8"/></svg>',
+  tarjeta: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="2.5" y="5.5" width="19" height="13" rx="2"/><path d="M2.5 9.5h19"/><path d="M6 14.5h5"/></svg>',
+  escala: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 16l6-6 4 4 8-8"/><path d="M15 6h6v6"/></svg>'
+};
+
+/* ======================================================================
+   Utilidades de almacenamiento
+   ====================================================================== */
+function getJSON(key, fallback) {
+  try { const v = localStorage.getItem(key); return v ? JSON.parse(v) : fallback; }
+  catch (e) { return fallback; }
+}
+function setJSON(key, val) { try { localStorage.setItem(key, JSON.stringify(val)); } catch (e) {} }
+
+/* ======================================================================
+   Gamificación: XP y racha
+   ====================================================================== */
+const XP_KEY = 'esp:xp:total';
+const STREAK_KEY = 'esp:streak';
+
+function getXP() { return parseInt(localStorage.getItem(XP_KEY) || '0', 10); }
+function todayStr() { return new Date().toISOString().slice(0, 10); }
+
+function touchStreak() {
+  const s = getJSON(STREAK_KEY, { count: 0, last: null });
+  const today = todayStr();
+  if (s.last !== today) {
+    const y = new Date(); y.setDate(y.getDate() - 1);
+    const yesterday = y.toISOString().slice(0, 10);
+    s.count = (s.last === yesterday) ? s.count + 1 : 1;
+    s.last = today;
+    setJSON(STREAK_KEY, s);
+  }
+  return s;
+}
+
+function addXP(n) {
+  const streak = touchStreak();
+  const next = getXP() + n;
+  localStorage.setItem(XP_KEY, String(next));
+  document.getElementById('xpTotal').textContent = next;
+  document.getElementById('streakCount').textContent = streak.count;
+}
+
+function renderStatsBar() {
+  document.getElementById('xpTotal').textContent = getXP();
+  const s = getJSON(STREAK_KEY, { count: 0, last: null });
+  document.getElementById('streakCount').textContent = s.count;
+}
+
+/* ======================================================================
+   Estado de la app
+   ====================================================================== */
+const initialModule = CURSO.modulos.find(m => m.estado === 'en_curso') || CURSO.modulos[0];
+const state = { activeModule: initialModule.id };
+
+/* ======================================================================
+   Texto a voz
+   ====================================================================== */
+let voices = [];
+const voiceSelect = document.getElementById('voiceSelect');
+const voiceTip = document.getElementById('voiceTip');
+
+function loadVoices() {
+  voices = window.speechSynthesis ? window.speechSynthesis.getVoices() : [];
+  const spanish = voices.filter(v => v.lang && v.lang.toLowerCase().startsWith('es'));
+  const list = spanish.length ? spanish : voices;
+  voiceSelect.innerHTML = '';
+  if (!list.length) {
+    voiceTip.textContent = 'No se encontraron voces todavía. Si no escuchás nada, probá abrir esta página en Microsoft Edge (usa las voces de Windows) o instalá un paquete de idioma en español desde la configuración de Windows.';
+    return;
+  }
+  list.forEach((v) => {
+    const opt = document.createElement('option');
+    opt.value = v.name;
+    opt.textContent = v.name + ' (' + v.lang + ')';
+    voiceSelect.appendChild(opt);
+  });
+  voiceTip.textContent = spanish.length
+    ? 'Tip: si tenés más de una voz en español, probá cuál suena más parecida al acento rioplatense.'
+    : 'No se encontró ninguna voz en español instalada en tu sistema. Podés instalar una desde Configuración → Hora e idioma → Idioma y región en Windows.';
+}
+if ('speechSynthesis' in window) {
+  loadVoices();
+  window.speechSynthesis.onvoiceschanged = loadVoices;
+} else {
+  voiceTip.textContent = 'Tu navegador no soporta síntesis de voz. Probá con Chrome o Edge actualizados.';
+}
+function speak(text, rate) {
+  if (!('speechSynthesis' in window)) return;
+  window.speechSynthesis.cancel();
+  const u = new SpeechSynthesisUtterance(text);
+  const chosen = voices.find(v => v.name === voiceSelect.value);
+  if (chosen) { u.voice = chosen; u.lang = chosen.lang; } else { u.lang = 'es-AR'; }
+  u.rate = rate || 0.95;
+  window.speechSynthesis.speak(u);
+}
+document.getElementById('testVoice').addEventListener('click', () => speak('Hola, ¿cómo estás? Esta es una prueba de voz.'));
+
+/* ======================================================================
+   Normalización y comparación de texto
+   ====================================================================== */
+function stripAccents(s) { return s.normalize('NFD').replace(/[̀-ͯ]/g, ''); }
+function normWord(w) { return stripAccents(w.toLowerCase()).replace(/[^\p{L}\p{N}]/gu, ''); }
+function slug(s) { return normWord(s.replace(/\s+/g, '_')); }
+function tokenize(s) { return s.trim().split(/\s+/).filter(Boolean); }
+
+function diffWords(userTokens, correctTokens) {
+  const un = userTokens.map(normWord), cn = correctTokens.map(normWord);
+  const n = un.length, m = cn.length;
+  const dp = Array.from({ length: n + 1 }, () => new Array(m + 1).fill(0));
+  for (let i = 1; i <= n; i++) for (let j = 1; j <= m; j++)
+    dp[i][j] = un[i - 1] === cn[j - 1] ? dp[i - 1][j - 1] + 1 : Math.max(dp[i - 1][j], dp[i][j - 1]);
+  let i = n, j = m; const ops = [];
+  while (i > 0 && j > 0) {
+    if (un[i - 1] === cn[j - 1]) { ops.push({ type: 'match', word: correctTokens[j - 1] }); i--; j--; }
+    else if (dp[i - 1][j] >= dp[i][j - 1]) { ops.push({ type: 'wrong', word: userTokens[i - 1] }); i--; }
+    else { ops.push({ type: 'missing', word: correctTokens[j - 1] }); j--; }
+  }
+  while (i > 0) { ops.push({ type: 'wrong', word: userTokens[i - 1] }); i--; }
+  while (j > 0) { ops.push({ type: 'missing', word: correctTokens[j - 1] }); j--; }
+  return ops.reverse();
+}
+
+/* ======================================================================
+   Repetición espaciada (Leitner) para vocabulario
+   ====================================================================== */
+const BOX_INTERVAL_DAYS = [0, 1, 3, 7, 16];
+const DAY_MS = 86400000;
+
+function vocabKey(modId, answer) { return 'esp:' + modId + ':vocab:' + slug(answer); }
+function getVocabState(modId, answer) { return getJSON(vocabKey(modId, answer), { box: 0, due: 0, seen: false }); }
+function setVocabState(modId, answer, st) { setJSON(vocabKey(modId, answer), st); }
+
+function vocabAnswerCorrect(modId, answer) {
+  const st = getVocabState(modId, answer);
+  st.box = Math.min(st.box + 1, BOX_INTERVAL_DAYS.length - 1);
+  st.due = Date.now() + BOX_INTERVAL_DAYS[st.box] * DAY_MS;
+  st.seen = true;
+  setVocabState(modId, answer, st);
+}
+function vocabAnswerWrong(modId, answer) {
+  const st = getVocabState(modId, answer);
+  st.box = 0;
+  st.due = Date.now();
+  st.seen = true;
+  setVocabState(modId, answer, st);
+}
+function vocabLearnedCount(modId, items) {
+  return items.filter(it => getVocabState(modId, it.answer).box >= 1).length;
+}
+
+/* ======================================================================
+   Progreso reproducido por localStorage (dictado / shadowing)
+   ====================================================================== */
+function dictadoDoneKey(modId, idx) { return 'esp:' + modId + ':dictado:' + idx + ':done'; }
+function isDictadoDone(modId, idx) { return localStorage.getItem(dictadoDoneKey(modId, idx)) === '1'; }
+function setDictadoDone(modId, idx) { localStorage.setItem(dictadoDoneKey(modId, idx), '1'); }
+
+function shadowDoneKey(modId, idx) { return 'esp:' + modId + ':shadow:' + idx + ':done'; }
+function isShadowDone(modId, idx) { return localStorage.getItem(shadowDoneKey(modId, idx)) === '1'; }
+function setShadowDone(modId, idx, val) { localStorage.setItem(shadowDoneKey(modId, idx), val ? '1' : '0'); }
+
+/* ======================================================================
+   Navegación de módulos
+   ====================================================================== */
+function renderNav() {
+  const nav = document.getElementById('modNav');
+  nav.innerHTML = '';
+  CURSO.modulos.forEach(m => {
+    const btn = document.createElement('button');
+    const clase = (m.badges[0] && m.badges[0].clase) || 'mixto';
+    btn.className = 'pill badge-' + clase + (m.id === state.activeModule ? ' active' : '');
+    btn.innerHTML = '<span class="pillnum">' + m.id + '</span>' + m.titulo + (m.estado === 'concluido' ? ' ✓' : '');
+    btn.addEventListener('click', () => { state.activeModule = m.id; renderAll(); });
+    nav.appendChild(btn);
+  });
+}
+
+/* ======================================================================
+   Sección §1 — Vocabulario (flashcards de opción múltiple)
+   ====================================================================== */
+function renderVocabSection(container, mod) {
+  const items = mod.vocabulario.items;
+  const wrap = document.createElement('section');
+  wrap.innerHTML = '<div class="section-head"><span class="n">§1</span><h2>Vocabulario</h2></div>';
+
+  if (!items.length) {
+    wrap.innerHTML += '<div class="placeholder">Este módulo todavía no tiene vocabulario cargado.</div>';
+    container.appendChild(wrap);
+    return;
+  }
+
+  wrap.innerHTML += '<p class="hint">Elegí la palabra correcta. Lo que falles vuelve a aparecer más adelante; lo que aciertes se espacía para repasarlo más tarde.</p>';
+  const host = document.createElement('div');
+  wrap.appendChild(host);
+  container.appendChild(wrap);
+
+  const now = Date.now();
+  let due = items.filter(it => {
+    const st = getVocabState(mod.id, it.answer);
+    return !st.seen || st.due <= now;
+  });
+  if (!due.length) due = items.slice();
+  due = due.sort(() => Math.random() - 0.5);
+
+  let queue = due.slice();
+  let idx = 0;
+  let correctCount = 0;
+  let totalRounds = 0;
+
+  function pickDistractors(correctItem, n) {
+    const pool = items.filter(it => it.answer !== correctItem.answer);
+    pool.sort(() => Math.random() - 0.5);
+    return pool.slice(0, Math.min(n, pool.length)).map(it => it.answer);
+  }
+
+  function visualFor(item) {
+    if (item.emoji) return '<div class="visual">' + item.emoji + '</div>';
+    if (item.icon && ICONS[item.icon]) return '<div class="visual">' + ICONS[item.icon] + '</div>';
+    return '<div class="visual">🔤</div>';
+  }
+
+  function renderCard() {
+    if (idx >= queue.length) {
+      host.innerHTML = '<div class="flashcard flashcard-done"><div class="big">✅</div><p>Ronda completa: ' + correctCount + ' / ' + totalRounds + ' aciertos.</p>' +
+        '<button class="btn-primary" id="vocabAgain" type="button">Repasar otra vez</button></div>';
+      document.getElementById('vocabAgain').addEventListener('click', () => {
+        due = items.slice().sort(() => Math.random() - 0.5);
+        queue = due.slice(); idx = 0; correctCount = 0; totalRounds = 0;
+        renderCard();
+      });
+      updateModuleProgress();
+      return;
+    }
+    const item = queue[idx];
+    const options = pickDistractors(item, 3).concat([item.answer]).sort(() => Math.random() - 0.5);
+    host.innerHTML =
+      '<div class="flashcard">' +
+        '<div class="tag">' + item.cat + '</div>' +
+        visualFor(item) +
+        '<div class="choices">' +
+          options.map(opt => '<button type="button" class="choice-btn" data-val="' + opt.replace(/"/g, '&quot;') + '">' + opt + '</button>').join('') +
+        '</div>' +
+        '<div class="flashcard-foot">' +
+          '<button class="btn-listen" type="button" id="vocabListen">🔊 escuchar</button>' +
+        '</div>' +
+        '<div class="flashcard-counter">Tarjeta ' + (idx + 1) + ' / ' + queue.length + ' · aprendidas en este módulo: ' + vocabLearnedCount(mod.id, items) + ' / ' + items.length + '</div>' +
+      '</div>';
+
+    document.getElementById('vocabListen').addEventListener('click', () => speak(item.answer));
+
+    let answered = false;
+    host.querySelectorAll('.choice-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        if (answered) return;
+        answered = true;
+        totalRounds++;
+        const val = btn.getAttribute('data-val');
+        const ok = val.toLowerCase() === item.answer.toLowerCase();
+        host.querySelectorAll('.choice-btn').forEach(b => {
+          b.disabled = true;
+          if (b.getAttribute('data-val').toLowerCase() === item.answer.toLowerCase()) b.classList.add('is-correct');
+          else if (b === btn) b.classList.add('is-wrong');
+        });
+        if (ok) {
+          correctCount++;
+          vocabAnswerCorrect(mod.id, item.answer);
+          addXP(10);
+        } else {
+          vocabAnswerWrong(mod.id, item.answer);
+          addXP(2);
+          queue.splice(idx + 3 <= queue.length ? idx + 3 : queue.length, 0, item);
+        }
+        speak(item.answer);
+        setTimeout(() => { idx++; renderCard(); }, 850);
+      });
+    });
+  }
+  renderCard();
+}
+
+/* ======================================================================
+   Sección §2 — Escucha y escribe (dictado)
+   ====================================================================== */
+function renderDictadoSection(container, mod) {
+  const phrases = mod.dictado;
+  const wrap = document.createElement('section');
+  wrap.innerHTML = '<div class="section-head"><span class="n">§2</span><h2>Escucha y escribe</h2></div>';
+
+  if (!phrases.length) {
+    wrap.innerHTML += '<div class="placeholder">Este módulo todavía no tiene dictado cargado.</div>';
+    container.appendChild(wrap);
+    return;
+  }
+
+  wrap.innerHTML += '<p class="hint">Escuchá cada frase (podés repetirla) y escribí exactamente lo que entendiste. Al comprobar, vas a ver en gris lo que faltó y tachado lo que sobró.</p>';
+  const list = document.createElement('div');
+  list.className = 'dictado';
+  phrases.forEach((phrase, idx) => {
+    const el = document.createElement('div');
+    el.className = 'ditem' + (isDictadoDone(mod.id, idx) ? ' is-done' : '');
+    el.innerHTML =
+      '<div class="row1">' +
+        '<span class="num">' + (idx + 1) + '.</span>' +
+        '<button class="btn-listen" type="button" data-act="play">🔊 escuchar</button>' +
+        '<button class="btn-ghost" type="button" data-act="replay">↻ repetir más lento</button>' +
+      '</div>' +
+      '<textarea placeholder="escribí lo que escuchaste…"></textarea>' +
+      '<div class="actions"><button class="btn-primary" type="button" data-act="check">Comprobar</button></div>' +
+      '<div class="diffline"></div>';
+    el.querySelector('[data-act="play"]').addEventListener('click', () => speak(phrase));
+    el.querySelector('[data-act="replay"]').addEventListener('click', () => speak(phrase, 0.6));
+    const ta = el.querySelector('textarea');
+    const diffline = el.querySelector('.diffline');
+    el.querySelector('[data-act="check"]').addEventListener('click', () => {
+      const ops = diffWords(tokenize(ta.value), tokenize(phrase));
+      diffline.innerHTML = ops.map(op => '<span class="w-' + op.type + '">' + op.word + '</span>').join(' ');
+      const allMatch = ops.every(op => op.type === 'match');
+      if (allMatch && !isDictadoDone(mod.id, idx)) {
+        setDictadoDone(mod.id, idx);
+        el.classList.add('is-done');
+        addXP(8);
+        updateModuleProgress();
+      }
+    });
+    list.appendChild(el);
+  });
+  wrap.appendChild(list);
+  container.appendChild(wrap);
+}
+
+/* ======================================================================
+   Sección §3 — Habla en voz alta (shadowing + grabación local)
+   ====================================================================== */
+let micStream = null;
+async function ensureMic() {
+  if (micStream) return micStream;
+  micStream = await navigator.mediaDevices.getUserMedia({ audio: true });
+  return micStream;
+}
+window.addEventListener('beforeunload', () => { if (micStream) micStream.getTracks().forEach(t => t.stop()); });
+
+function renderShadowSection(container, mod) {
+  const phrases = mod.shadowing;
+  const wrap = document.createElement('section');
+  wrap.innerHTML = '<div class="section-head"><span class="n">§3</span><h2>Habla en voz alta</h2></div>';
+
+  if (!phrases.length) {
+    wrap.innerHTML += '<div class="placeholder">Este módulo todavía no tiene frases de shadowing cargadas.</div>';
+    container.appendChild(wrap);
+    return;
+  }
+
+  wrap.innerHTML += '<p class="hint">Escuchá cada frase, repetila en voz alta y grabate para comparar tu pronunciación con el audio de referencia (la grabación queda solo en tu navegador, no se envía a ningún lado). Marcá la casilla cuando te sientas cómodo.</p>';
+  const list = document.createElement('div');
+  list.className = 'shadow-list';
+
+  const hasMic = !!(navigator.mediaDevices && navigator.mediaDevices.getUserMedia) && ('MediaRecorder' in window);
+
+  phrases.forEach((phrase, idx) => {
+    const el = document.createElement('div');
+    el.className = 'sitem' + (isShadowDone(mod.id, idx) ? ' is-done' : '');
+    el.innerHTML =
+      '<button class="btn-listen" type="button" data-act="play">🔊</button>' +
+      '<div class="txt"><span class="es">' + phrase + '</span></div>' +
+      (hasMic ? '<button class="btn-record" type="button" data-act="record">🎙️ grabar</button><button class="btn-ghost" type="button" data-act="playmine" disabled>▶️ mi voz</button>' : '') +
+      '<label class="check"><input type="checkbox" ' + (isShadowDone(mod.id, idx) ? 'checked' : '') + '> practicado</label>';
+    el.querySelector('[data-act="play"]').addEventListener('click', () => speak(phrase));
+
+    if (hasMic) {
+      const recBtn = el.querySelector('[data-act="record"]');
+      const playBtn = el.querySelector('[data-act="playmine"]');
+      let recorder = null, chunks = [], blobUrl = null, recording = false;
+      recBtn.addEventListener('click', async () => {
+        if (!recording) {
+          try {
+            const stream = await ensureMic();
+            chunks = [];
+            recorder = new MediaRecorder(stream);
+            recorder.ondataavailable = e => chunks.push(e.data);
+            recorder.onstop = () => {
+              const blob = new Blob(chunks, { type: 'audio/webm' });
+              if (blobUrl) URL.revokeObjectURL(blobUrl);
+              blobUrl = URL.createObjectURL(blob);
+              playBtn.disabled = false;
+            };
+            recorder.start();
+            recording = true;
+            recBtn.textContent = '⏹ detener';
+            recBtn.classList.add('recording');
+          } catch (err) {
+            recBtn.textContent = 'sin micrófono';
+            recBtn.disabled = true;
+          }
+        } else {
+          recorder.stop();
+          recording = false;
+          recBtn.textContent = '🎙️ grabar';
+          recBtn.classList.remove('recording');
+        }
+      });
+      playBtn.addEventListener('click', () => { if (blobUrl) new Audio(blobUrl).play(); });
+    }
+
+    el.querySelector('input[type="checkbox"]').addEventListener('change', (e) => {
+      setShadowDone(mod.id, idx, e.target.checked);
+      el.classList.toggle('is-done', e.target.checked);
+      if (e.target.checked) addXP(5);
+      updateModuleProgress();
+    });
+    list.appendChild(el);
+  });
+  wrap.appendChild(list);
+  if (!hasMic) wrap.innerHTML += '<p class="mic-tip">Tu navegador no permite grabar audio acá (o no diste permiso de micrófono). El resto del ejercicio funciona igual.</p>';
+  container.appendChild(wrap);
+}
+
+/* ======================================================================
+   Progreso del módulo (barra en el header)
+   ====================================================================== */
+function updateModuleProgress() {
+  const mod = CURSO.modulos.find(m => m.id === state.activeModule);
+  const items = mod.vocabulario.items;
+  const totalUnits = items.length + mod.dictado.length + mod.shadowing.length;
+  if (!totalUnits) {
+    document.getElementById('moduleProgressFill').style.width = '0%';
+    document.getElementById('moduleProgressPct').textContent = '—';
+    return;
+  }
+  let done = vocabLearnedCount(mod.id, items);
+  mod.dictado.forEach((_, idx) => { if (isDictadoDone(mod.id, idx)) done++; });
+  mod.shadowing.forEach((_, idx) => { if (isShadowDone(mod.id, idx)) done++; });
+  const pct = Math.round((done / totalUnits) * 100);
+  document.getElementById('moduleProgressFill').style.width = pct + '%';
+  document.getElementById('moduleProgressPct').textContent = pct + '%';
+}
+
+/* ======================================================================
+   Render principal
+   ====================================================================== */
+function renderAll() {
+  const mod = CURSO.modulos.find(m => m.id === state.activeModule);
+  document.getElementById('moduleTitle').innerHTML = 'Módulo ' + mod.id + ' — ' + mod.titulo +
+    '<span class="modulo-estado ' + mod.estado + '">' + mod.estado.replace('_', ' ') + '</span>';
+  document.getElementById('moduleDesc').textContent = mod.descripcion;
+
+  renderNav();
+  renderStatsBar();
+
+  const content = document.getElementById('moduleContent');
+  content.innerHTML = '';
+  renderVocabSection(content, mod);
+  renderDictadoSection(content, mod);
+  renderShadowSection(content, mod);
+  updateModuleProgress();
+}
+
+renderAll();
+
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', () => navigator.serviceWorker.register('sw.js').catch(() => {}));
+}
+</script>
+</body>
+</html>

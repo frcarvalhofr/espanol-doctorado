@@ -1,0 +1,255 @@
+{
+  "$schema_note": "Fuente estructurada única del curso. programa.html y practica.html van a pasar a leer este archivo (próximo paso); por ahora es el catálogo de contenido y progreso.",
+
+  "meta": {
+    "titulo": "Del aeropuerto de Ezeiza a la Facultad de Derecho",
+    "subtitulo": "Un recorrido de español para viajar por el mundo hispanohablante y cursar un doctorado en Derecho en Buenos Aires.",
+    "nivel_partida": "Básico / Intermedio (A2–B1)",
+    "objetivo": "Viajes + vida académica jurídica",
+    "destino": "Buenos Aires, Argentina",
+    "forma_tratamiento": "Tuteo (tú) — con oído entrenado para el voseo",
+    "pilares": {
+      "gramatica": "Un punto gramatical por módulo, explicado con ejemplos y contrastado con el portugués cuando la diferencia es sutil o confusa.",
+      "vocabulario": "Listas breves y temáticas: lo que se dice en un mostrador de migraciones o lo que se dice en un aula de posgrado, no vocabulario genérico de manual. Se practica con imágenes en la ficha de práctica de cada módulo.",
+      "conversacion": "Diálogos y simulacros en el chat, más ejercicios de dictado y \"habla en voz alta\" con audio real en la ficha de práctica de cada módulo."
+    },
+    "nota_tu_vos": {
+      "titulo": "Vas a hablar en tú, pero vas a escuchar en vos",
+      "es": "En Buenos Aires casi todo el mundo te va a hablar de vos (vos tenés, vos podés, vos sabés), incluidos tus profesores y compañeros de doctorado. Como preferís usar tú, este programa te va a enseñar a producir siempre en tú/usted — nadie se va a extrañar, es perfectamente normal para un extranjero — pero cada módulo con contenido rioplatense incluye una nota de \"reconocimiento\": cómo identificar el voseo cuando lo escuchás, sin que tengas que producirlo.",
+      "pt": "Você vai falar sempre em \"tú\", mas em Buenos Aires quase todo mundo vai falar com você em \"vos\" (vos tenés, vos podés). Isso é absolutamente normal para um estrangeiro. O programa ensina você a reconhecer o voseo de ouvido — para entender — sem exigir que você o produza."
+    }
+  },
+
+  "progreso": {
+    "modulo_actual": 1,
+    "modulos_concluidos": [0]
+  },
+
+  "modulos": [
+    {
+      "id": 0,
+      "bloque": 0,
+      "bloque_titulo": "Punto de partida",
+      "titulo": "Diagnóstico y bases",
+      "badges": [{ "clase": "mixto", "etiqueta": "Mixto" }],
+      "descripcion": "Pronunciación, alfabeto, ser/estar, presente regular e irregular, saludos formales e informales.",
+      "estado": "concluido",
+      "gramatica": {
+        "punto": "Ser vs. estar · presente indicativo",
+        "ejemplos": []
+      },
+      "vocabulario": {
+        "tema": "Saludos, presentaciones, números",
+        "items": [
+          { "cat": "saludo informal", "emoji": "🙋", "answer": "hola" },
+          { "cat": "saludo formal · mañana", "emoji": "🌅", "answer": "buenos días" },
+          { "cat": "saludo formal · tarde", "emoji": "🌤️", "answer": "buenas tardes" },
+          { "cat": "saludo formal · noche", "emoji": "🌙", "answer": "buenas noches" },
+          { "cat": "despedida", "emoji": "👋", "answer": "adiós" },
+          { "cat": "cortesía · pedir", "emoji": "🙏", "answer": "por favor" },
+          { "cat": "cortesía · agradecer", "emoji": "🙌", "answer": "gracias" },
+          { "cat": "cortesía · responder \"gracias\"", "emoji": "👍", "answer": "de nada" },
+          { "cat": "presentación", "emoji": "🤝", "answer": "mucho gusto" },
+          { "cat": "afirmación", "emoji": "✅", "answer": "sí" },
+          { "cat": "negación", "emoji": "❌", "answer": "no" },
+          { "cat": "número", "emoji": "0️⃣", "answer": "cero" },
+          { "cat": "número", "emoji": "1️⃣", "answer": "uno" },
+          { "cat": "número", "emoji": "2️⃣", "answer": "dos" },
+          { "cat": "número", "emoji": "3️⃣", "answer": "tres" },
+          { "cat": "número", "emoji": "4️⃣", "answer": "cuatro" },
+          { "cat": "número", "emoji": "5️⃣", "answer": "cinco" },
+          { "cat": "número", "emoji": "6️⃣", "answer": "seis" },
+          { "cat": "número", "emoji": "7️⃣", "answer": "siete" },
+          { "cat": "número", "emoji": "8️⃣", "answer": "ocho" },
+          { "cat": "número", "emoji": "9️⃣", "answer": "nueve" },
+          { "cat": "número", "emoji": "🔟", "answer": "diez" }
+        ]
+      },
+      "dictado": [
+        "Hola, ¿cómo estás?",
+        "Buenos días, ¿cómo te llamas?",
+        "Mucho gusto, soy estudiante de doctorado.",
+        "Gracias por tu ayuda.",
+        "Estoy muy bien, gracias, ¿y tú?"
+      ],
+      "shadowing": [
+        "Hola, me llamo…",
+        "Soy de Brasil.",
+        "Estoy en Buenos Aires.",
+        "Soy estudiante de doctorado en Derecho.",
+        "Mucho gusto."
+      ],
+      "conversacion": {
+        "prompt": "Presentarte y presentar tu proyecto de doctorado",
+        "notas": "Trabajado y respondido en el chat: quién es, de dónde es, dónde está, tema de doctorado."
+      }
+    },
+    {
+      "id": 1,
+      "bloque": 1,
+      "bloque_titulo": "Para viajar",
+      "titulo": "Llegada y movimiento",
+      "badges": [{ "clase": "viaje", "etiqueta": "Viaje" }],
+      "descripcion": "Aeropuerto, migraciones, taxis y transporte público, pedir y entender indicaciones en la calle.",
+      "estado": "en_curso",
+      "gramatica": {
+        "punto": "Verbos de movimiento · imperativo informal (tú)",
+        "ejemplos": ["Ve a la puerta 12.", "Sigue las señales de migraciones.", "Dobla a la derecha en la esquina."]
+      },
+      "vocabulario": {
+        "tema": "Migraciones, subte/colectivo, direcciones",
+        "items": [
+          { "cat": "medio de transporte · llegar", "emoji": "✈️", "answer": "vuelo" },
+          { "cat": "control al llegar · documentos", "emoji": "🛂", "answer": "migraciones" },
+          { "cat": "control de equipaje prohibido", "emoji": "🛃", "answer": "aduana" },
+          { "cat": "buscar la valija", "emoji": "🛄", "answer": "equipaje" },
+          { "cat": "documento de viaje", "icon": "pasaporte", "answer": "pasaporte" },
+          { "cat": "transporte subterráneo porteño", "emoji": "🚇", "answer": "subte" },
+          { "cat": "transporte de superficie", "emoji": "🚌", "answer": "colectivo" },
+          { "cat": "transporte privado", "emoji": "🚕", "answer": "taxi" },
+          { "cat": "para pagar el viaje en Buenos Aires", "icon": "tarjeta", "answer": "tarjeta SUBE" },
+          { "cat": "punto de partida", "emoji": "🛫", "answer": "salida" },
+          { "cat": "punto de llegada", "emoji": "🛬", "answer": "llegada" },
+          { "cat": "parada intermedia del vuelo", "icon": "escala", "answer": "escala" },
+          { "cat": "dirección · hacia la izquierda", "emoji": "⬅️", "answer": "a la izquierda" },
+          { "cat": "dirección · hacia la derecha", "emoji": "➡️", "answer": "a la derecha" },
+          { "cat": "dirección · todo recto", "emoji": "⬆️", "answer": "todo derecho" },
+          { "cat": "ubicación en la calle", "emoji": "📍", "answer": "la esquina" }
+        ]
+      },
+      "dictado": [
+        "Perdón, ¿dónde queda el control de migraciones?",
+        "Sigue todo derecho y dobla a la izquierda.",
+        "¿Cuánto cuesta un boleto de subte?",
+        "Toma un taxi hasta el hotel, por favor.",
+        "Mi vuelo tiene una escala en San Pablo."
+      ],
+      "shadowing": [
+        "¿Dónde queda la salida?",
+        "Necesito un taxi, por favor.",
+        "¿Cuánto cuesta el boleto?",
+        "Estoy buscando mi equipaje.",
+        "¿Me puedes indicar el camino al subte?"
+      ],
+      "conversacion": { "prompt": "Simulacro: del avión al hotel", "notas": "" }
+    },
+    {
+      "id": 2,
+      "bloque": 1,
+      "bloque_titulo": "Para viajar",
+      "titulo": "Alojamiento y vida diaria",
+      "badges": [{ "clase": "viaje", "etiqueta": "Viaje" }],
+      "descripcion": "Reservar alojamiento, pedir en un restaurante, hacer compras cotidianas.",
+      "estado": "pendiente",
+      "gramatica": { "punto": "Pretérito perfecto compuesto · \"gustar\" y verbos similares", "ejemplos": [] },
+      "vocabulario": { "tema": "Comida, precios, quejas y reclamos", "items": [] },
+      "dictado": [],
+      "shadowing": [],
+      "conversacion": { "prompt": "Pedir en un café porteño, negociar un alquiler temporal", "notas": "" }
+    },
+    {
+      "id": 3,
+      "bloque": 1,
+      "bloque_titulo": "Para viajar",
+      "titulo": "Buenos Aires y el español rioplatense",
+      "badges": [
+        { "clase": "viaje", "etiqueta": "Viaje" },
+        { "clase": "mixto", "etiqueta": "Reconocimiento" }
+      ],
+      "descripcion": "Entender el voseo y el \"che\" de oído, el acento porteño (yeísmo rehilado), barrios y referencias culturales básicas.",
+      "estado": "pendiente",
+      "gramatica": { "punto": "Voseo: reconocer, no producir", "ejemplos": [] },
+      "vocabulario": { "tema": "Lunfardo cotidiano, barrios, \"che/boludo/laburo\"", "items": [] },
+      "dictado": [],
+      "shadowing": [],
+      "conversacion": { "prompt": "Entender a un taxista o a un vecino porteño", "notas": "" }
+    },
+    {
+      "id": 4,
+      "bloque": 2,
+      "bloque_titulo": "Para la universidad y el derecho",
+      "titulo": "La vida académica",
+      "badges": [{ "clase": "derecho", "etiqueta": "Universidad" }],
+      "descripcion": "Inscripción, campus, biblioteca, trámites migratorios de estudiante extranjero.",
+      "estado": "pendiente",
+      "gramatica": { "punto": "Pretérito indefinido vs. imperfecto", "ejemplos": [] },
+      "vocabulario": { "tema": "Cátedra, legajo, beca, aula, biblioteca", "items": [] },
+      "dictado": [],
+      "shadowing": [],
+      "conversacion": { "prompt": "Hablar con la secretaría de posgrado", "notas": "" }
+    },
+    {
+      "id": 5,
+      "bloque": 2,
+      "bloque_titulo": "Para la universidad y el derecho",
+      "titulo": "Vocabulario jurídico esencial",
+      "badges": [{ "clase": "derecho", "etiqueta": "Derecho" }],
+      "descripcion": "Ramas del derecho, poder judicial, fuentes del derecho, latinismos usados en español jurídico.",
+      "estado": "pendiente",
+      "gramatica": { "punto": "Futuro simple · condicional", "ejemplos": [] },
+      "vocabulario": { "tema": "Fallo, sentencia, demanda, juzgado, código", "items": [] },
+      "dictado": [],
+      "shadowing": [],
+      "conversacion": { "prompt": "Describir tu área de investigación", "notas": "" }
+    },
+    {
+      "id": 6,
+      "bloque": 2,
+      "bloque_titulo": "Para la universidad y el derecho",
+      "titulo": "Trámites y vida cotidiana en Buenos Aires",
+      "badges": [
+        { "clase": "viaje", "etiqueta": "Viaje" },
+        { "clase": "derecho", "etiqueta": "Universidad" }
+      ],
+      "descripcion": "Banco, salud, vivienda estable, DNI/CUIT, trámites de residencia.",
+      "estado": "pendiente",
+      "gramatica": { "punto": "Subjuntivo presente (deseo, duda, petición)", "ejemplos": [] },
+      "vocabulario": { "tema": "Trámite, comprobante, turno, obra social", "items": [] },
+      "dictado": [],
+      "shadowing": [],
+      "conversacion": { "prompt": "Pedir un turno, reclamar en un banco", "notas": "" }
+    },
+    {
+      "id": 7,
+      "bloque": 2,
+      "bloque_titulo": "Para la universidad y el derecho",
+      "titulo": "Lectura y redacción jurídica",
+      "badges": [{ "clase": "derecho", "etiqueta": "Derecho" }],
+      "descripcion": "Comprensión de sentencias y doctrina, conectores argumentativos, fichaje y resumen académico.",
+      "estado": "pendiente",
+      "gramatica": { "punto": "Subjuntivo en subordinadas · voz pasiva", "ejemplos": [] },
+      "vocabulario": { "tema": "Por consiguiente, en tanto, cabe destacar", "items": [] },
+      "dictado": [],
+      "shadowing": [],
+      "conversacion": { "prompt": "Resumir un fallo en tus propias palabras", "notas": "" }
+    },
+    {
+      "id": 8,
+      "bloque": 3,
+      "bloque_titulo": "Fluidez y práctica real",
+      "titulo": "Seminarios y debate académico",
+      "badges": [{ "clase": "derecho", "etiqueta": "Derecho" }],
+      "descripcion": "Participar en clase, defender una posición, citar y parafrasear a otros autores.",
+      "estado": "pendiente",
+      "gramatica": { "punto": "Estilo indirecto · conectores de contraste", "ejemplos": [] },
+      "vocabulario": { "tema": "Coincido con, discrepo de, sostengo que", "items": [] },
+      "dictado": [],
+      "shadowing": [],
+      "conversacion": { "prompt": "Simulacro de seminario con réplica", "notas": "" }
+    },
+    {
+      "id": 9,
+      "bloque": 3,
+      "bloque_titulo": "Fluidez y práctica real",
+      "titulo": "Simulacros integrados",
+      "badges": [{ "clase": "mixto", "etiqueta": "Integrador" }],
+      "descripcion": "Del aeropuerto a la facultad en una sola secuencia: primer día de clases, entrevista con un profesor, mesa de debate. Autoevaluación final.",
+      "estado": "pendiente",
+      "gramatica": { "punto": "Repaso integrado de todos los tiempos vistos", "ejemplos": [] },
+      "vocabulario": { "tema": "Repaso cruzado viaje + derecho", "items": [] },
+      "dictado": [],
+      "shadowing": [],
+      "conversacion": { "prompt": "Simulacro largo, sin apoyo", "notas": "" }
+    }
+  ]
+}
