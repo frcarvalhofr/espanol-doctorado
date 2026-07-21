@@ -6,6 +6,16 @@ Professor de espanhol. O usuário tem nível básico/intermediário e usa este
 projeto para dois objetivos: viajar por países hispanofalantes e cursar um
 doutorado em Direito na Universidade de Buenos Aires.
 
+**Decisão de 2026-07**: o usuário não quer mais fazer gramática/conversação
+aqui no chat — quer que a aula inteira aconteça dentro do app
+(`practica.html`). Isso muda o papel do Claude na prática: em vez de
+"ensinar no chat", o trabalho é **autorar o conteúdo de cada módulo**
+(explicação de gramática com nota `PT —` quando necessário, exercícios de
+completar, e um diálogo de conversação guionado de múltipla escolha — ver
+`§1 Gramática` e `§5 Conversación` em `practica.html`) e colocá-lo em
+`curso.json` + no `CURSO` embebido. O chat só entra pra decidir formato/
+prioridade ou tirar dúvida pontual do usuário — não pra dar aula.
+
 ## Regras fixas do curso
 
 - Responder **sempre em espanhol**, exceto explicações gramaticais difíceis
@@ -38,17 +48,23 @@ Espanol-Doctorado/
 ├── programa.html     # mapa geral do curso (10 módulos) — hardcoded a partir de
                        #   curso.json; não editar sem necessidade
 ├── practica.html     # app de práctica gamificada (todos los módulos, motor único):
-                       #   §1 vocabulario (flashcards de opción múltiple + repetición
-                       #      espaciada tipo Leitner, con XP), §2 escucha y escribe
-                       #      (TTS + dictado con diff), §3 habla en voz alta (shadowing,
-                       #      TTS + grabación local de la propia voz vía MediaRecorder,
-                       #      sin reconocimiento de voz automático — decisión del
-                       #      usuario, porque el reconocimiento del navegador manda
-                       #      audio a servidores de Google; grabar+reproducir localmente
-                       #      no tiene ese problema). Datos embebidos como const CURSO
-                       #      (espejo manual de curso.json — fetch() no funciona sobre
-                       #      file://, así que hay que copiar el JSON adentro del
-                       #      <script> cada vez que curso.json cambia).
+                       #   §1 gramática (explicación ES + nota "PT —" cuando hace
+                       #      falta, ejemplos con TTS, ejercicios de completar de
+                       #      opción múltiple), §2 vocabulario (flashcards de opción
+                       #      múltiple + repetición espaciada tipo Leitner, con XP),
+                       #      §3 escucha y escribe (TTS + dictado con diff), §4 habla
+                       #      en voz alta (shadowing, TTS + grabación local de la
+                       #      propia voz vía MediaRecorder, sin reconocimiento de voz
+                       #      automático — decisión del usuario, porque el
+                       #      reconocimiento del navegador manda audio a servidores de
+                       #      Google; grabar+reproducir localmente no tiene ese
+                       #      problema), §5 conversación (diálogo guionado de opción
+                       #      múltiple — sin IA real, sin escribir, guion fijo escrito
+                       #      de antemano; ver decisión de 2026-07 arriba). Datos
+                       #      embebidos como const CURSO (espejo manual de curso.json
+                       #      — fetch() no funciona sobre file://, así que hay que
+                       #      copiar el JSON adentro del <script> cada vez que
+                       #      curso.json cambia).
 ├── index.html         # redirige a programa.html (requerido por GitHub Pages)
 ├── manifest.json       # metadatos PWA (nombre, ícono, modo standalone)
 ├── sw.js                # service worker: cachea el app shell para uso offline
@@ -57,10 +73,16 @@ Espanol-Doctorado/
 
 `curso.json` é a fonte de verdade do conteúdo: cada módulo tem `estado`
 (`concluido`/`en_curso`/`pendiente`) e `progreso.modulo_actual` aponta o
-próximo. Ao avançar um módulo: 1) preencher `vocabulario.items`, `dictado`,
-`shadowing` e `gramatica.ejemplos` desse módulo em `curso.json`; 2) copiar o
-mesmo módulo atualizado para o objeto `CURSO` dentro do `<script>` de
-`practica.html` (os dois precisam ficar em sincronia manual, por enquanto).
+próximo. Ao avançar um módulo: 1) preencher, em `curso.json`,
+`gramatica.explicacion` (parágrafos `{es, pt}`, `pt` só quando houver
+confusão específica de falante de português), `gramatica.ejemplos`,
+`gramatica.ejercicios` (`{frase, opciones, respuesta}`), `vocabulario.items`,
+`dictado`, `shadowing` e `conversacion.pasos` (diálogo guionado:
+`{npc, opciones: [{texto, resultado: "ok"|"mal", nota}]}`, sempre linear —
+toda opção avança pro próximo passo, "mal" só muda o feedback, nunca trava);
+2) copiar o mesmo módulo atualizado para o objeto `CURSO` dentro do
+`<script>` de `practica.html` (os dois precisam ficar em sincronia manual,
+por enquanto).
 
 ### Hospedagem (PWA / GitHub Pages)
 
@@ -90,10 +112,12 @@ timestamp `updatedAt` salvo dentro do próprio gist.
   saludos), `practica.html` e a atividade de conversação (apresentação
   pessoal: quién es, de dónde es, dónde está, tema de doctorado) já foram
   entregues e respondidas.
-- **Módulo 1 (Llegada y movimiento)**: **em curso.** Vocabulário (16 itens),
-  dictado (5 frases) e shadowing (5 frases) já carregados em `curso.json` e
-  `practica.html`. Falta: trabalhar a gramática (verbos de movimiento ·
-  imperativo informal tú) e o simulacro de conversação no chat.
+- **Módulo 1 (Llegada y movimiento)**: **em curso, conteúdo completo no
+  app.** Gramática (verbos de movimiento · imperativo informal tú, com
+  explicação + 4 exercícios), vocabulário (16 itens), dictado (5 frases),
+  shadowing (5 frases) e conversação (simulacro guionado de 6 passos, "del
+  avión al hotel") já carregados em `curso.json` e `practica.html`. Falta
+  só o usuário praticar — nada pendente de autoria.
 - Módulos 2–9: só o esqueleto (tema/gramática/badges), sem conteúdo de
   prática ainda.
 
