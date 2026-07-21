@@ -214,6 +214,18 @@
   @media (max-width: 480px) {
     .choices { grid-template-columns: 1fr 1fr; }
   }
+
+  /* ---------- Instalar app (PWA) ---------- */
+  .install-banner {
+    margin-top: 14px; display: flex; align-items: center; gap: 12px; flex-wrap: wrap;
+    background: var(--accent-soft); border-radius: 6px; padding: 12px 16px;
+  }
+  .install-banner p { margin: 0; font-size: .88rem; color: var(--ink-soft); flex: 1; min-width: 200px; }
+  #installBtn {
+    font-family: var(--sans); font-size: .82rem; font-weight: 600; cursor: pointer;
+    background: var(--accent); color: var(--accent-ink); border: none; border-radius: 5px; padding: 8px 14px;
+    white-space: nowrap;
+  }
 </style>
 </head>
 <body>
@@ -234,6 +246,11 @@
         <div class="track"><div class="fill" id="moduleProgressFill"></div></div>
         <span class="pct" id="moduleProgressPct">0%</span>
       </div>
+    </div>
+
+    <div class="install-banner" id="installBanner" hidden>
+      <p id="installNote">📲 Instalá esta página como app para usarla offline, con ícono propio.</p>
+      <button id="installBtn" type="button" hidden>📲 Instalar app</button>
     </div>
 
     <div class="voice-bar">
@@ -840,6 +857,37 @@ renderAll();
 if ('serviceWorker' in navigator) {
   window.addEventListener('load', () => navigator.serviceWorker.register('sw.js').catch(() => {}));
 }
+
+(function () {
+  const banner = document.getElementById('installBanner');
+  const btn = document.getElementById('installBtn');
+  const note = document.getElementById('installNote');
+  const isStandalone = window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone === true;
+  const isIOS = /iphone|ipad|ipod/i.test(navigator.userAgent);
+  if (isStandalone) return;
+
+  if (isIOS) {
+    note.textContent = '📲 Para instalar en iPhone/iPad: tocá el ícono de compartir (⬆️) en Safari y elegí "Añadir a pantalla de inicio".';
+    banner.hidden = false;
+    return;
+  }
+
+  let deferredPrompt = null;
+  window.addEventListener('beforeinstallprompt', (e) => {
+    e.preventDefault();
+    deferredPrompt = e;
+    banner.hidden = false;
+    btn.hidden = false;
+  });
+  btn.addEventListener('click', async () => {
+    if (!deferredPrompt) return;
+    deferredPrompt.prompt();
+    await deferredPrompt.userChoice;
+    deferredPrompt = null;
+    banner.hidden = true;
+  });
+  window.addEventListener('appinstalled', () => { banner.hidden = true; });
+})();
 </script>
 </body>
 </html>
