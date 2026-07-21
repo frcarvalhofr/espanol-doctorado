@@ -226,6 +226,18 @@
     background: var(--accent); color: var(--accent-ink); border: none; border-radius: 5px; padding: 8px 14px;
     white-space: nowrap;
   }
+
+  /* ---------- Sincronización (Gist privado) ---------- */
+  .sync-panel { margin-top: 14px; border: 1px solid var(--rule); border-radius: 6px; padding: 10px 16px; background: var(--bg-raised); }
+  .sync-panel summary { cursor: pointer; font-family: var(--sans); font-size: .86rem; font-weight: 600; color: var(--ink-soft); }
+  .sync-panel[open] summary { color: var(--accent); margin-bottom: 8px; }
+  .sync-panel .tip { margin: 8px 0; }
+  .sync-panel a { color: var(--accent); }
+  .sync-row { display: flex; gap: 8px; flex-wrap: wrap; align-items: center; margin: 10px 0; }
+  .sync-row input {
+    font-family: var(--mono); font-size: .82rem; padding: 7px 10px; border-radius: 4px;
+    border: 1px solid var(--rule); background: var(--bg); color: var(--ink); flex: 1; min-width: 200px;
+  }
 </style>
 </head>
 <body>
@@ -252,6 +264,17 @@
       <p id="installNote">📲 Instalá esta página como app para usarla offline, con ícono propio.</p>
       <button id="installBtn" type="button" hidden>📲 Instalar app</button>
     </div>
+
+    <details class="sync-panel">
+      <summary>☁️ Sincronizar entre dispositivos</summary>
+      <p class="tip">Guarda tu progreso (XP, racha, vocabulario aprendido) en un Gist privado de tu propia cuenta de GitHub, para tenerlo igual en el celular y en la computadora. Pegá acá un <a href="https://github.com/settings/tokens/new?description=espanol-doctorado-sync&scopes=gist" target="_blank" rel="noopener">token con permiso solo de "gist"</a> — queda guardado únicamente en este dispositivo.</p>
+      <div class="sync-row">
+        <input type="password" id="syncToken" placeholder="Token de GitHub (gist)" autocomplete="off">
+        <button class="btn-primary" id="syncSave" type="button">Guardar y sincronizar</button>
+        <button class="btn-ghost" id="syncForget" type="button">Olvidar en este dispositivo</button>
+      </div>
+      <p class="tip" id="syncStatus"></p>
+    </details>
 
     <div class="voice-bar">
       <span>Voz para escuchar:</span>
@@ -436,6 +459,7 @@ function addXP(n) {
   localStorage.setItem(XP_KEY, String(next));
   document.getElementById('xpTotal').textContent = next;
   document.getElementById('streakCount').textContent = streak.count;
+  markDirty();
 }
 
 function renderStatsBar() {
@@ -556,6 +580,123 @@ function setDictadoDone(modId, idx) { localStorage.setItem(dictadoDoneKey(modId,
 function shadowDoneKey(modId, idx) { return 'esp:' + modId + ':shadow:' + idx + ':done'; }
 function isShadowDone(modId, idx) { return localStorage.getItem(shadowDoneKey(modId, idx)) === '1'; }
 function setShadowDone(modId, idx, val) { localStorage.setItem(shadowDoneKey(modId, idx), val ? '1' : '0'); }
+
+/* ======================================================================
+   Sincronización entre dispositivos vía Gist privado de GitHub
+   El token y el id del gist quedan solo en localStorage de cada aparato;
+   nunca se guardan en curso.json ni se suben al repositorio público.
+   ====================================================================== */
+const GIST_MARKER = 'espanol-doctorado-progreso (privado — no compartir)';
+const SYNC_TOKEN_KEY = 'esp:sync:token';
+const SYNC_GISTID_KEY = 'esp:sync:gistId';
+const SYNC_UPDATED_KEY = 'esp:sync:updatedAt';
+
+function getSyncToken() { return localStorage.getItem(SYNC_TOKEN_KEY) || ''; }
+function setSyncStatus(msg) { const el = document.getElementById('syncStatus'); if (el) el.textContent = msg; }
+
+function collectSyncPayload() {
+  const data = {};
+  for (let i = 0; i < localStorage.length; i++) {
+    const k = localStorage.key(i);
+    if (k.startsWith('esp:') && k !== SYNC_TOKEN_KEY && k !== SYNC_GISTID_KEY) data[k] = localStorage.getItem(k);
+  }
+  return data;
+}
+function applySyncPayload(data) {
+  Object.keys(data).forEach((k) => { if (k !== SYNC_TOKEN_KEY && k !== SYNC_GISTID_KEY) localStorage.setItem(k, data[k]); });
+}
+
+let syncTimer = null;
+function markDirty() {
+  localStorage.setItem(SYNC_UPDATED_KEY, String(Date.now()));
+  if (!getSyncToken()) return;
+  clearTimeout(syncTimer);
+  syncTimer = setTimeout(pushSync, 1500);
+}
+
+async function githubFetch(url, opts) {
+  const token = getSyncToken();
+  const headers = Object.assign(
+    { 'Authorization': 'token ' + token, 'Accept': 'application/vnd.github+json', 'Content-Type': 'application/json' },
+    (opts && opts.headers) || {}
+  );
+  return fetch(url, Object.assign({}, opts, { headers }));
+}
+
+async function findOrCreateGist() {
+  const cached = localStorage.getItem(SYNC_GISTID_KEY);
+  if (cached) return cached;
+  const listRes = await githubFetch('https://api.github.com/gists?per_page=100');
+  if (listRes.ok) {
+    const list = await listRes.json();
+    const found = list.find((g) => g.description === GIST_MARKER);
+    if (found) { localStorage.setItem(SYNC_GISTID_KEY, found.id); return found.id; }
+  }
+  const createRes = await githubFetch('https://api.github.com/gists', {
+    method: 'POST',
+    body: JSON.stringify({ description: GIST_MARKER, public: false, files: { 'progreso.json': { content: JSON.stringify({ updatedAt: 0, data: {} }) } } })
+  });
+  if (!createRes.ok) throw new Error('no se pudo crear el gist');
+  const created = await createRes.json();
+  localStorage.setItem(SYNC_GISTID_KEY, created.id);
+  return created.id;
+}
+
+async function pushSync() {
+  if (!getSyncToken()) return;
+  try {
+    const gistId = await findOrCreateGist();
+    const updatedAt = parseInt(localStorage.getItem(SYNC_UPDATED_KEY) || String(Date.now()), 10);
+    const payload = { updatedAt, data: collectSyncPayload() };
+    const res = await githubFetch('https://api.github.com/gists/' + gistId, {
+      method: 'PATCH',
+      body: JSON.stringify({ files: { 'progreso.json': { content: JSON.stringify(payload) } } })
+    });
+    if (!res.ok) throw new Error('push falló');
+    setSyncStatus('☁️ sincronizado — ' + new Date(updatedAt).toLocaleString());
+  } catch (e) {
+    setSyncStatus('⚠️ no se pudo sincronizar (revisá el token o la conexión)');
+  }
+}
+
+async function pullSync() {
+  if (!getSyncToken()) return;
+  setSyncStatus('sincronizando…');
+  try {
+    const gistId = await findOrCreateGist();
+    const res = await githubFetch('https://api.github.com/gists/' + gistId);
+    if (!res.ok) throw new Error('pull falló');
+    const gist = await res.json();
+    const remote = JSON.parse(gist.files['progreso.json'].content || '{}');
+    const localUpdated = parseInt(localStorage.getItem(SYNC_UPDATED_KEY) || '0', 10);
+    const remoteUpdated = remote.updatedAt || 0;
+    if (remoteUpdated > localUpdated) {
+      applySyncPayload(remote.data || {});
+      localStorage.setItem(SYNC_UPDATED_KEY, String(remoteUpdated));
+      renderAll();
+      setSyncStatus('☁️ traído del otro dispositivo — ' + new Date(remoteUpdated).toLocaleString());
+    } else if (localUpdated > 0) {
+      await pushSync();
+    } else {
+      setSyncStatus('☁️ conectado, sin progreso todavía');
+    }
+  } catch (e) {
+    setSyncStatus('⚠️ no se pudo conectar con GitHub (revisá el token)');
+  }
+}
+
+document.getElementById('syncSave').addEventListener('click', () => {
+  const val = document.getElementById('syncToken').value.trim();
+  if (!val) return;
+  localStorage.setItem(SYNC_TOKEN_KEY, val);
+  document.getElementById('syncToken').value = '';
+  pullSync();
+});
+document.getElementById('syncForget').addEventListener('click', () => {
+  localStorage.removeItem(SYNC_TOKEN_KEY);
+  localStorage.removeItem(SYNC_GISTID_KEY);
+  setSyncStatus('token olvidado en este dispositivo');
+});
 
 /* ======================================================================
    Navegación de módulos
@@ -802,7 +943,7 @@ function renderShadowSection(container, mod) {
     el.querySelector('input[type="checkbox"]').addEventListener('change', (e) => {
       setShadowDone(mod.id, idx, e.target.checked);
       el.classList.toggle('is-done', e.target.checked);
-      if (e.target.checked) addXP(5);
+      if (e.target.checked) addXP(5); else markDirty();
       updateModuleProgress();
     });
     list.appendChild(el);
@@ -853,6 +994,7 @@ function renderAll() {
 }
 
 renderAll();
+if (getSyncToken()) pullSync();
 
 if ('serviceWorker' in navigator) {
   window.addEventListener('load', () => navigator.serviceWorker.register('sw.js').catch(() => {}));
