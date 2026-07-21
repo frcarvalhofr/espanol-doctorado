@@ -238,6 +238,35 @@
     font-family: var(--mono); font-size: .82rem; padding: 7px 10px; border-radius: 4px;
     border: 1px solid var(--rule); background: var(--bg); color: var(--ink); flex: 1; min-width: 200px;
   }
+
+  /* ---------- Gramática ---------- */
+  .gramatica-block { background: var(--bg-raised); border: 1px solid var(--rule); border-radius: 8px; padding: 18px 22px; }
+  .gram-punto { font-family: var(--serif); font-weight: 600; font-size: 1.05rem; margin: 0 0 12px; color: var(--ink); }
+  .gram-p { margin: 0 0 10px; font-size: .94rem; }
+  .gram-pt { margin: 0 0 14px; font-size: .86rem; color: var(--ink-soft); font-style: italic; }
+  .pt-tag { font-style: normal; font-family: var(--mono); font-size: .7rem; letter-spacing: .06em; color: var(--ink-faint); }
+  .gram-ejemplos { margin-top: 14px; display: flex; flex-direction: column; gap: 6px; }
+  .gram-ejemplo { display: flex; align-items: center; justify-content: space-between; gap: 10px; padding: 8px 12px; background: var(--bg); border-radius: 5px; font-size: .92rem; }
+  .gram-quiz { margin-top: 16px; display: flex; flex-direction: column; gap: 12px; }
+  .gram-item { background: var(--bg-raised); border: 1px solid var(--rule); border-radius: 8px; padding: 14px 18px; }
+  .gram-item.is-done { border-color: var(--ok); }
+  .gram-frase { margin: 0 0 10px; font-size: .96rem; }
+
+  /* ---------- Conversación (diálogo guionado) ---------- */
+  .convo-card { background: var(--bg-raised); border: 1px solid var(--rule); border-radius: 10px; padding: clamp(18px,4vw,28px); max-width: 560px; margin: 0 auto; }
+  .convo-npc { display: flex; align-items: flex-start; gap: 10px; margin-bottom: 18px; }
+  .convo-npc p { margin: 0; font-size: 1.02rem; font-weight: 600; color: var(--ink); background: var(--accent-soft); padding: 10px 14px; border-radius: 10px 10px 10px 2px; }
+  .convo-opciones { display: flex; flex-direction: column; gap: 8px; }
+  .convo-btn {
+    font-family: var(--sans); font-size: .92rem; text-align: left; padding: 10px 14px; border-radius: 8px;
+    border: 1px solid var(--rule); background: var(--bg); color: var(--ink); cursor: pointer;
+  }
+  .convo-btn:hover:not(:disabled) { border-color: var(--accent); }
+  .convo-btn.is-correct { border-color: var(--ok); background: var(--ok-soft); color: var(--ok); }
+  .convo-btn.is-wrong { border-color: var(--warn); background: var(--warn-soft); color: var(--warn); }
+  .convo-feedback { margin-top: 12px; font-size: .88rem; color: var(--ink-soft); min-height: 1.4em; }
+  .convo-foot { margin-top: 12px; text-align: right; }
+  .convo-count { font-family: var(--mono); font-size: .76rem; color: var(--ink-faint); }
 </style>
 </head>
 <body>
@@ -347,6 +376,21 @@ const CURSO = {
       "badges": [{ "clase": "viaje", "etiqueta": "Viaje" }],
       "descripcion": "Aeropuerto, migraciones, taxis y transporte público, pedir y entender indicaciones en la calle.",
       "estado": "en_curso",
+      "gramatica": {
+        "punto": "Verbos de movimiento · imperativo informal (tú)",
+        "explicacion": [
+          { "es": "Para dar indicaciones en la calle usás el imperativo afirmativo de tú. La forma más fácil de recordarlo: es igual al presente de él/ella.", "pt": "Pra dar instruções na rua você usa o imperativo afirmativo de tú. Jeito fácil de lembrar: é igual ao presente de él/ella (ele/ela) — sigue (\"ele segue\") vira \"Sigue!\" (\"Siga!\")." },
+          { "es": "Seguir → él sigue → ¡Sigue! · Doblar → él dobla → ¡Dobla! · Cruzar → él cruza → ¡Cruza! · Tomar → él toma → ¡Toma!", "pt": "" },
+          { "es": "Hay verbos irregulares comunes en viaje: ir → ¡Ve! · tener → ¡Ten! · salir → ¡Sal!", "pt": "Cuidado: em português \"vá\" (de você) é bem diferente de \"ve\" em espanhol — não confundir com o verbo \"ver\" (ver/olhar)." }
+        ],
+        "ejemplos": ["Ve a la puerta 12.", "Sigue las señales de migraciones.", "Dobla a la derecha en la esquina.", "Cruza la calle.", "Toma el subte hasta Plaza de Mayo."],
+        "ejercicios": [
+          { "frase": "___ todo derecho hasta el semáforo.", "opciones": ["Sigue", "Sigues", "Seguir"], "respuesta": "Sigue" },
+          { "frase": "___ a la izquierda en la esquina.", "opciones": ["Dobla", "Doblas", "Doblar"], "respuesta": "Dobla" },
+          { "frase": "___ el subte en la línea B.", "opciones": ["Toma", "Tomas", "Tomar"], "respuesta": "Toma" },
+          { "frase": "___ directo a la puerta 12, el vuelo sale pronto.", "opciones": ["Ve", "Vas", "Ir"], "respuesta": "Ve" }
+        ]
+      },
       "vocabulario": { "items": [
         { "cat": "medio de transporte · llegar", "emoji": "✈️", "answer": "vuelo" },
         { "cat": "control al llegar · documentos", "emoji": "🛂", "answer": "migraciones" },
@@ -378,7 +422,42 @@ const CURSO = {
         "¿Cuánto cuesta el boleto?",
         "Estoy buscando mi equipaje.",
         "¿Me puedes indicar el camino al subte?"
-      ]
+      ],
+      "conversacion": {
+        "escenario": "Simulacro: del avión al hotel",
+        "pasos": [
+          { "npc": "Buenos días. ¿Me muestra su pasaporte, por favor?", "opciones": [
+            { "texto": "Sí, aquí tiene.", "resultado": "ok", "nota": "" },
+            { "texto": "Sí, acá está.", "resultado": "ok", "nota": "\"Acá\" en vez de \"aquí\" es muy usado en Argentina — las dos formas están bien." },
+            { "texto": "No, no tengo.", "resultado": "mal", "nota": "Sin pasaporte no podés cruzar migraciones — en un viaje real, siempre lo llevás encima." }
+          ]},
+          { "npc": "¿Tiene algo para declarar?", "opciones": [
+            { "texto": "No, nada.", "resultado": "ok", "nota": "" },
+            { "texto": "Solo mi equipaje.", "resultado": "ok", "nota": "\"Declarar\" es avisar sobre objetos especiales (dinero, comida, etc.) — el equipaje normal no hace falta declararlo." },
+            { "texto": "¿Qué es declarar?", "resultado": "mal", "nota": "Está bien preguntar si no entendés, pero acá ya sabés: declarar = avisar en la aduana sobre lo que traés." }
+          ]},
+          { "npc": "¿Necesita ayuda? ¿Adónde va?", "opciones": [
+            { "texto": "Voy al hotel, en el centro.", "resultado": "ok", "nota": "" },
+            { "texto": "¿Dónde está la salida?", "resultado": "ok", "nota": "" },
+            { "texto": "Voy a un juzgado.", "resultado": "mal", "nota": "Fuera de contexto — recién estás llegando del aeropuerto, todavía no es momento de trámites judiciales." }
+          ]},
+          { "npc": "¿A dónde lo llevo?", "opciones": [
+            { "texto": "Al hotel San Telmo, por favor.", "resultado": "ok", "nota": "" },
+            { "texto": "Al aeropuerto, por favor.", "resultado": "mal", "nota": "Ya estás en el aeropuerto — el taxi te lleva desde acá hacia otro lugar, no de vuelta." },
+            { "texto": "No sé, decida usted.", "resultado": "mal", "nota": "Mejor tener siempre una dirección clara para dar." }
+          ]},
+          { "npc": "¿Prefiere que doble en la esquina o siga derecho?", "opciones": [
+            { "texto": "Doble en la esquina, por favor.", "resultado": "ok", "nota": "" },
+            { "texto": "Siga todo derecho.", "resultado": "ok", "nota": "" },
+            { "texto": "Como usted quiera.", "resultado": "mal", "nota": "Está bien ser flexible, pero practicá dar una indicación concreta con \"doble\" o \"siga\"." }
+          ]},
+          { "npc": "¡Bienvenido! ¿Tiene una reserva?", "opciones": [
+            { "texto": "Sí, a mi nombre.", "resultado": "ok", "nota": "" },
+            { "texto": "No, ¿tiene habitaciones libres?", "resultado": "ok", "nota": "" },
+            { "texto": "Sí, tengo un vuelo mañana.", "resultado": "mal", "nota": "No responde la pregunta del recepcionista." }
+          ]}
+        ]
+      }
     },
     { "id": 2, "bloque": 1, "bloque_titulo": "Para viajar", "titulo": "Alojamiento y vida diaria",
       "badges": [{ "clase": "viaje", "etiqueta": "Viaje" }],
@@ -715,12 +794,85 @@ function renderNav() {
 }
 
 /* ======================================================================
-   Sección §1 — Vocabulario (flashcards de opción múltiple)
+   Sección §1 — Gramática (explicación + ejercicios de completar)
+   ====================================================================== */
+function gramaticaDoneKey(modId, idx) { return 'esp:' + modId + ':gram:' + idx + ':done'; }
+function isGramaticaDone(modId, idx) { return localStorage.getItem(gramaticaDoneKey(modId, idx)) === '1'; }
+function setGramaticaDone(modId, idx) { localStorage.setItem(gramaticaDoneKey(modId, idx), '1'); }
+
+function renderGramaticaSection(container, mod) {
+  const g = mod.gramatica;
+  const wrap = document.createElement('section');
+  wrap.innerHTML = '<div class="section-head"><span class="n">§1</span><h2>Gramática</h2></div>';
+
+  if (!g || !g.explicacion || !g.explicacion.length) {
+    wrap.innerHTML += '<div class="placeholder">Este módulo todavía no tiene la explicación de gramática cargada.</div>';
+    container.appendChild(wrap);
+    return;
+  }
+
+  const body = document.createElement('div');
+  body.className = 'gramatica-block';
+  body.innerHTML =
+    '<p class="gram-punto">' + g.punto + '</p>' +
+    g.explicacion.map((p) =>
+      '<p class="gram-p">' + p.es + '</p>' + (p.pt ? '<p class="gram-pt"><span class="pt-tag">PT —</span> ' + p.pt + '</p>' : '')
+    ).join('');
+
+  if (g.ejemplos && g.ejemplos.length) {
+    body.innerHTML += '<div class="gram-ejemplos">' + g.ejemplos.map((ej) =>
+      '<div class="gram-ejemplo"><span>' + ej + '</span><button class="btn-listen" type="button" data-say="' + ej.replace(/"/g, '&quot;') + '">🔊</button></div>'
+    ).join('') + '</div>';
+  }
+  wrap.appendChild(body);
+  container.appendChild(wrap);
+  body.querySelectorAll('[data-say]').forEach((b) => b.addEventListener('click', () => speak(b.getAttribute('data-say'))));
+
+  if (g.ejercicios && g.ejercicios.length) {
+    const quiz = document.createElement('div');
+    quiz.className = 'gram-quiz';
+    quiz.innerHTML = '<p class="hint">Elegí la forma correcta para completar cada frase.</p>';
+    g.ejercicios.forEach((ex, idx) => {
+      const item = document.createElement('div');
+      item.className = 'gram-item' + (isGramaticaDone(mod.id, idx) ? ' is-done' : '');
+      item.innerHTML =
+        '<p class="gram-frase">' + ex.frase + '</p>' +
+        '<div class="choices">' + ex.opciones.map((op) =>
+          '<button type="button" class="choice-btn" data-val="' + op.replace(/"/g, '&quot;') + '">' + op + '</button>'
+        ).join('') + '</div>';
+      let answered = isGramaticaDone(mod.id, idx);
+      item.querySelectorAll('.choice-btn').forEach((btn) => {
+        if (answered) btn.disabled = true;
+        btn.addEventListener('click', () => {
+          if (answered) return;
+          answered = true;
+          const ok = btn.getAttribute('data-val') === ex.respuesta;
+          item.querySelectorAll('.choice-btn').forEach((b) => {
+            b.disabled = true;
+            if (b.getAttribute('data-val') === ex.respuesta) b.classList.add('is-correct');
+            else if (b === btn) b.classList.add('is-wrong');
+          });
+          if (ok && !isGramaticaDone(mod.id, idx)) {
+            setGramaticaDone(mod.id, idx);
+            item.classList.add('is-done');
+            addXP(6);
+            updateModuleProgress();
+          }
+        });
+      });
+      quiz.appendChild(item);
+    });
+    wrap.appendChild(quiz);
+  }
+}
+
+/* ======================================================================
+   Sección §2 — Vocabulario (flashcards de opción múltiple)
    ====================================================================== */
 function renderVocabSection(container, mod) {
   const items = mod.vocabulario.items;
   const wrap = document.createElement('section');
-  wrap.innerHTML = '<div class="section-head"><span class="n">§1</span><h2>Vocabulario</h2></div>';
+  wrap.innerHTML = '<div class="section-head"><span class="n">§2</span><h2>Vocabulario</h2></div>';
 
   if (!items.length) {
     wrap.innerHTML += '<div class="placeholder">Este módulo todavía no tiene vocabulario cargado.</div>';
@@ -823,7 +975,7 @@ function renderVocabSection(container, mod) {
 function renderDictadoSection(container, mod) {
   const phrases = mod.dictado;
   const wrap = document.createElement('section');
-  wrap.innerHTML = '<div class="section-head"><span class="n">§2</span><h2>Escucha y escribe</h2></div>';
+  wrap.innerHTML = '<div class="section-head"><span class="n">§3</span><h2>Escucha y escribe</h2></div>';
 
   if (!phrases.length) {
     wrap.innerHTML += '<div class="placeholder">Este módulo todavía no tiene dictado cargado.</div>';
@@ -881,7 +1033,7 @@ window.addEventListener('beforeunload', () => { if (micStream) micStream.getTrac
 function renderShadowSection(container, mod) {
   const phrases = mod.shadowing;
   const wrap = document.createElement('section');
-  wrap.innerHTML = '<div class="section-head"><span class="n">§3</span><h2>Habla en voz alta</h2></div>';
+  wrap.innerHTML = '<div class="section-head"><span class="n">§4</span><h2>Habla en voz alta</h2></div>';
 
   if (!phrases.length) {
     wrap.innerHTML += '<div class="placeholder">Este módulo todavía no tiene frases de shadowing cargadas.</div>';
@@ -954,12 +1106,77 @@ function renderShadowSection(container, mod) {
 }
 
 /* ======================================================================
+   Sección §5 — Conversación (diálogo guionado, sin escribir)
+   ====================================================================== */
+function conversacionDoneKey(modId) { return 'esp:' + modId + ':conv:done'; }
+function isConversacionDone(modId) { return localStorage.getItem(conversacionDoneKey(modId)) === '1'; }
+function setConversacionDone(modId) { localStorage.setItem(conversacionDoneKey(modId), '1'); }
+
+function renderConversacionSection(container, mod) {
+  const conv = mod.conversacion;
+  const wrap = document.createElement('section');
+  wrap.innerHTML = '<div class="section-head"><span class="n">§5</span><h2>Conversación</h2></div>';
+
+  if (!conv || !conv.pasos || !conv.pasos.length) {
+    wrap.innerHTML += '<div class="placeholder">Este módulo todavía no tiene simulacro de conversación cargado.</div>';
+    container.appendChild(wrap);
+    return;
+  }
+
+  wrap.innerHTML += '<p class="hint">' + conv.escenario + '. Elegí cómo responder en cada intercambio — es un guion fijo, no hace falta escribir nada.</p>';
+  const host = document.createElement('div');
+  wrap.appendChild(host);
+  container.appendChild(wrap);
+
+  let step = 0;
+  let correctCount = 0;
+
+  function renderStep() {
+    if (step >= conv.pasos.length) {
+      host.innerHTML = '<div class="flashcard flashcard-done"><div class="big">🎉</div><p>Simulacro completo: ' + correctCount + ' / ' + conv.pasos.length + ' respuestas naturales.</p></div>';
+      if (!isConversacionDone(mod.id)) { setConversacionDone(mod.id); addXP(20); }
+      updateModuleProgress();
+      return;
+    }
+    const paso = conv.pasos[step];
+    host.innerHTML =
+      '<div class="convo-card">' +
+        '<div class="convo-npc"><button class="btn-listen" type="button" id="convoListen">🔊</button><p>' + paso.npc + '</p></div>' +
+        '<div class="convo-opciones">' + paso.opciones.map((op, i) =>
+          '<button type="button" class="convo-btn" data-i="' + i + '">' + op.texto + '</button>'
+        ).join('') + '</div>' +
+        '<div class="convo-feedback"></div>' +
+        '<div class="convo-foot"><span class="convo-count">' + (step + 1) + ' / ' + conv.pasos.length + '</span></div>' +
+      '</div>';
+    document.getElementById('convoListen').addEventListener('click', () => speak(paso.npc));
+    const fb = host.querySelector('.convo-feedback');
+    let answered = false;
+    host.querySelectorAll('.convo-btn').forEach((btn) => {
+      btn.addEventListener('click', () => {
+        if (answered) return;
+        answered = true;
+        const op = paso.opciones[parseInt(btn.getAttribute('data-i'), 10)];
+        host.querySelectorAll('.convo-btn').forEach((b) => { b.disabled = true; });
+        btn.classList.add(op.resultado === 'ok' ? 'is-correct' : 'is-wrong');
+        if (op.resultado === 'ok') correctCount++;
+        fb.innerHTML = (op.resultado === 'ok' ? '✅ ' : '💡 ') + (op.nota || (op.resultado === 'ok' ? 'Respuesta natural.' : 'No es lo más natural acá.'));
+        speak(op.texto);
+        setTimeout(() => { step++; renderStep(); }, 1400);
+      });
+    });
+  }
+  renderStep();
+}
+
+/* ======================================================================
    Progreso del módulo (barra en el header)
    ====================================================================== */
 function updateModuleProgress() {
   const mod = CURSO.modulos.find(m => m.id === state.activeModule);
   const items = mod.vocabulario.items;
-  const totalUnits = items.length + mod.dictado.length + mod.shadowing.length;
+  const gramEjercicios = (mod.gramatica && mod.gramatica.ejercicios) || [];
+  const convPasos = (mod.conversacion && mod.conversacion.pasos) || [];
+  const totalUnits = items.length + mod.dictado.length + mod.shadowing.length + gramEjercicios.length + (convPasos.length ? 1 : 0);
   if (!totalUnits) {
     document.getElementById('moduleProgressFill').style.width = '0%';
     document.getElementById('moduleProgressPct').textContent = '—';
@@ -968,6 +1185,8 @@ function updateModuleProgress() {
   let done = vocabLearnedCount(mod.id, items);
   mod.dictado.forEach((_, idx) => { if (isDictadoDone(mod.id, idx)) done++; });
   mod.shadowing.forEach((_, idx) => { if (isShadowDone(mod.id, idx)) done++; });
+  gramEjercicios.forEach((_, idx) => { if (isGramaticaDone(mod.id, idx)) done++; });
+  if (convPasos.length && isConversacionDone(mod.id)) done++;
   const pct = Math.round((done / totalUnits) * 100);
   document.getElementById('moduleProgressFill').style.width = pct + '%';
   document.getElementById('moduleProgressPct').textContent = pct + '%';
@@ -987,9 +1206,11 @@ function renderAll() {
 
   const content = document.getElementById('moduleContent');
   content.innerHTML = '';
+  renderGramaticaSection(content, mod);
   renderVocabSection(content, mod);
   renderDictadoSection(content, mod);
   renderShadowSection(content, mod);
+  renderConversacionSection(content, mod);
   updateModuleProgress();
 }
 

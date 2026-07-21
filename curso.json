@@ -94,7 +94,18 @@
       "estado": "en_curso",
       "gramatica": {
         "punto": "Verbos de movimiento · imperativo informal (tú)",
-        "ejemplos": ["Ve a la puerta 12.", "Sigue las señales de migraciones.", "Dobla a la derecha en la esquina."]
+        "explicacion": [
+          { "es": "Para dar indicaciones en la calle usás el imperativo afirmativo de tú. La forma más fácil de recordarlo: es igual al presente de él/ella.", "pt": "Pra dar instruções na rua você usa o imperativo afirmativo de tú. Jeito fácil de lembrar: é igual ao presente de él/ella (ele/ela) — sigue (\"ele segue\") vira \"Sigue!\" (\"Siga!\")." },
+          { "es": "Seguir → él sigue → ¡Sigue! · Doblar → él dobla → ¡Dobla! · Cruzar → él cruza → ¡Cruza! · Tomar → él toma → ¡Toma!", "pt": "" },
+          { "es": "Hay verbos irregulares comunes en viaje: ir → ¡Ve! · tener → ¡Ten! · salir → ¡Sal!", "pt": "Cuidado: em português \"vá\" (de você) é bem diferente de \"ve\" em espanhol — não confundir com o verbo \"ver\" (ver/olhar)." }
+        ],
+        "ejemplos": ["Ve a la puerta 12.", "Sigue las señales de migraciones.", "Dobla a la derecha en la esquina.", "Cruza la calle.", "Toma el subte hasta Plaza de Mayo."],
+        "ejercicios": [
+          { "frase": "___ todo derecho hasta el semáforo.", "opciones": ["Sigue", "Sigues", "Seguir"], "respuesta": "Sigue" },
+          { "frase": "___ a la izquierda en la esquina.", "opciones": ["Dobla", "Doblas", "Doblar"], "respuesta": "Dobla" },
+          { "frase": "___ el subte en la línea B.", "opciones": ["Toma", "Tomas", "Tomar"], "respuesta": "Toma" },
+          { "frase": "___ directo a la puerta 12, el vuelo sale pronto.", "opciones": ["Ve", "Vas", "Ir"], "respuesta": "Ve" }
+        ]
       },
       "vocabulario": {
         "tema": "Migraciones, subte/colectivo, direcciones",
@@ -131,7 +142,59 @@
         "Estoy buscando mi equipaje.",
         "¿Me puedes indicar el camino al subte?"
       ],
-      "conversacion": { "prompt": "Simulacro: del avión al hotel", "notas": "" }
+      "conversacion": {
+        "escenario": "Simulacro: del avión al hotel",
+        "pasos": [
+          {
+            "npc": "Buenos días. ¿Me muestra su pasaporte, por favor?",
+            "opciones": [
+              { "texto": "Sí, aquí tiene.", "resultado": "ok", "nota": "" },
+              { "texto": "Sí, acá está.", "resultado": "ok", "nota": "\"Acá\" en vez de \"aquí\" es muy usado en Argentina — las dos formas están bien." },
+              { "texto": "No, no tengo.", "resultado": "mal", "nota": "Sin pasaporte no podés cruzar migraciones — en un viaje real, siempre lo llevás encima." }
+            ]
+          },
+          {
+            "npc": "¿Tiene algo para declarar?",
+            "opciones": [
+              { "texto": "No, nada.", "resultado": "ok", "nota": "" },
+              { "texto": "Solo mi equipaje.", "resultado": "ok", "nota": "\"Declarar\" es avisar sobre objetos especiales (dinero, comida, etc.) — el equipaje normal no hace falta declararlo." },
+              { "texto": "¿Qué es declarar?", "resultado": "mal", "nota": "Está bien preguntar si no entendés, pero acá ya sabés: declarar = avisar en la aduana sobre lo que traés." }
+            ]
+          },
+          {
+            "npc": "¿Necesita ayuda? ¿Adónde va?",
+            "opciones": [
+              { "texto": "Voy al hotel, en el centro.", "resultado": "ok", "nota": "" },
+              { "texto": "¿Dónde está la salida?", "resultado": "ok", "nota": "" },
+              { "texto": "Voy a un juzgado.", "resultado": "mal", "nota": "Fuera de contexto — recién estás llegando del aeropuerto, todavía no es momento de trámites judiciales." }
+            ]
+          },
+          {
+            "npc": "¿A dónde lo llevo?",
+            "opciones": [
+              { "texto": "Al hotel San Telmo, por favor.", "resultado": "ok", "nota": "" },
+              { "texto": "Al aeropuerto, por favor.", "resultado": "mal", "nota": "Ya estás en el aeropuerto — el taxi te lleva desde acá hacia otro lugar, no de vuelta." },
+              { "texto": "No sé, decida usted.", "resultado": "mal", "nota": "Mejor tener siempre una dirección clara para dar." }
+            ]
+          },
+          {
+            "npc": "¿Prefiere que doble en la esquina o siga derecho?",
+            "opciones": [
+              { "texto": "Doble en la esquina, por favor.", "resultado": "ok", "nota": "" },
+              { "texto": "Siga todo derecho.", "resultado": "ok", "nota": "" },
+              { "texto": "Como usted quiera.", "resultado": "mal", "nota": "Está bien ser flexible, pero practicá dar una indicación concreta con \"doble\" o \"siga\"." }
+            ]
+          },
+          {
+            "npc": "¡Bienvenido! ¿Tiene una reserva?",
+            "opciones": [
+              { "texto": "Sí, a mi nombre.", "resultado": "ok", "nota": "" },
+              { "texto": "No, ¿tiene habitaciones libres?", "resultado": "ok", "nota": "" },
+              { "texto": "Sí, tengo un vuelo mañana.", "resultado": "mal", "nota": "No responde la pregunta del recepcionista." }
+            ]
+          }
+        ]
+      }
     },
     {
       "id": 2,
